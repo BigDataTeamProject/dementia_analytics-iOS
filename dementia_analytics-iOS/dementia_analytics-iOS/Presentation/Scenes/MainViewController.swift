@@ -8,13 +8,24 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
+    
     override func viewDidLoad() {
-        self.view.backgroundColor = .green
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        configure()
+        addSubviews()
+        makeConstraints()
     }
-
-
+    
+    private func configure() {
+        
+    }
+    
+    private func addSubviews() {
+        
+    }
+    
+    private func makeConstraints() {
+        
+    }
 }
 
