@@ -13,6 +13,7 @@
 		A55087E429FF65890023D6CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55087E329FF65890023D6CC /* Assets.xcassets */; };
 		A55087E729FF65890023D6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55087E529FF65890023D6CC /* LaunchScreen.storyboard */; };
 		A55087F529FF66C50023D6CC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087F429FF66C50023D6CC /* MainView.swift */; };
+		A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,8 @@
 		A55087E629FF65890023D6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A55087E829FF65890023D6CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A55087F429FF66C50023D6CC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A55B68CB2A0E07CD007D740C /* dementia_analytics-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dementia_analytics-iOS.entitlements"; sourceTree = "<group>"; };
+		A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemntiaAnalyticsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +59,10 @@
 		A55087D929FF65880023D6CC /* dementia_analytics-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				A55B68CB2A0E07CD007D740C /* dementia_analytics-iOS.entitlements */,
 				A55087F029FF65C30023D6CC /* App */,
-				A55087F129FF65FF0023D6CC /* Presentation */,
-				A55087F229FF66100023D6CC /* Domain */,
-				A55087F329FF66170023D6CC /* Data */,
+				A55087F629FF66CA0023D6CC /* Scenes */,
+				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
 				A55087EE29FF65930023D6CC /* Utils */,
 				A55087EF29FF65B60023D6CC /* Resources */,
 			);
@@ -90,28 +93,6 @@
 				A55087DC29FF65880023D6CC /* SceneDelegate.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		A55087F129FF65FF0023D6CC /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				A55087F629FF66CA0023D6CC /* Scenes */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
-		A55087F229FF66100023D6CC /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		A55087F329FF66170023D6CC /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
 			sourceTree = "<group>";
 		};
 		A55087F629FF66CA0023D6CC /* Scenes */ = {
@@ -194,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A55087DF29FF65880023D6CC /* MainViewController.swift in Sources */,
+				A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */,
 				A55087F529FF66C50023D6CC /* MainView.swift in Sources */,
 				A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
@@ -335,6 +317,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dementia_analytics-iOS/dementia_analytics-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B2XR5545F7;
@@ -362,6 +345,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "dementia_analytics-iOS/dementia_analytics-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B2XR5545F7;

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import HealthKit
 
 final class MainView: UIView {
     
