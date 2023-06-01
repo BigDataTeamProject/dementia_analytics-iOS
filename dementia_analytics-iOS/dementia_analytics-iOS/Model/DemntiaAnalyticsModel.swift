@@ -38,27 +38,17 @@ final class DementiaAnalyticsModel {
     
     func request() {
         healthStore.requestAuthorization(toShare: nil, read: self.readObejctType) { result, error in
-            print(error)
         }
     }
     
     func read(){
-        // let start = makeStringToDate(str: "2023-05-01")
-        // let end = Date()
-        // let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
-        let awake = HKCategoryValueSleepAnalysis.predicateForSamples(.equalTo, value: .awake)
-        let inBed = HKCategoryValueSleepAnalysis.predicateForSamples(.equalTo, value: .inBed)
-        // let queryPredicate = HKSamplePredicate.sample(type: HKCategoryType(.sleepAnalysis), predicate: stagePredicate)
-        let queryPredicate = HKSamplePredicate.sample(type: HKCategoryType(.sleepAnalysis))
-        // let sleepQuery = HKSampleQueryDescriptor(predicates: [queryPredicate], sortDescriptors: [])
-        // Task{
-        //     let sleepSamples = try await sleepQuery.result(for: self.healthStore)
-        //     print(sleepSamples[0])
-        //     print(sleepSamples)
-        // }
+        let start = "2023-05-30".toDate()
+        let end = start
+        let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
+        let queryPredicate = HKCategoryValueSleepAnalysis.predicateForSamples(.equalTo, value:.asleepREM)
         
         let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis),
-                                  predicate: nil,
+                                  predicate: predicate,
                                   limit: 30,
                                   sortDescriptors: []) { [weak self] (query, sleepResult, error) -> Void in
             if error != nil {
@@ -66,8 +56,10 @@ final class DementiaAnalyticsModel {
             }
             if let result = sleepResult {
                 DispatchQueue.main.async {
-                    self?.sleepData = result as? [HKCategorySample] ?? []
-                    print(result)
+                    self?.sleepData = (result as? [HKCategorySample] ?? [])
+                    (result as? [HKCategorySample] ?? []).compactMap{ sample in
+                        SleepType(sample: sample)
+                    }
                 }
             }
         }

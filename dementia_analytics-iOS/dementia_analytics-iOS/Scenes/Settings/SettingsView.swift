@@ -8,6 +8,11 @@
 import UIKit
 
 final class SettingsView: UIView {
+    private lazy var backgroundDecorImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage.homeBackgroundDecor.image
+        return imageView
+    }()
     
     init() {
         super.init(frame: .zero)
@@ -25,17 +30,22 @@ final class SettingsView: UIView {
     }
     
     private func addSubviews() {
-        [].forEach { view in
+        [backgroundDecorImageView].forEach { view in
             self.addSubview(view)
         }
     }
     private func makeConstraints() {
-        // [].forEach { view in
-        //     view.translatesAutoresizingMaskIntoConstraints = false
-        // }
+        [backgroundDecorImageView].forEach { view in
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         let constraints: [NSLayoutConstraint] = [
-          
+            backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
+                                                            multiplier: 0.475),
+            backgroundDecorImageView.heightAnchor.constraint(equalTo:backgroundDecorImageView.widthAnchor,
+                                                             multiplier: UIImage.homeBackgroundDecor.aspectHeight),
+            backgroundDecorImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            backgroundDecorImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ]
         
         NSLayoutConstraint.activate(constraints)

@@ -14,9 +14,9 @@ class SettingsViewController: UIViewController {
     }
     
     override func loadView() {
-        view =  SettingsView()
+        view = SettingsView()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }

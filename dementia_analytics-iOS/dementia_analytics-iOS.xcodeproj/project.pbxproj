@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50570B32A26D57700B62C43 /* NumberPicker.swift */; };
+		A50CF4FC2A289DB300D31E77 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF4FB2A289DB300D31E77 /* SleepType.swift */; };
+		A50CF4FF2A28A10A00D31E77 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = A50CF4FE2A28A10A00D31E77 /* FSCalendar */; };
+		A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5002A28B8C400D31E77 /* Date+.swift */; };
+		A50CF5032A28B8E100D31E77 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5022A28B8E100D31E77 /* String+.swift */; };
+		A50CF5052A28C44400D31E77 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5042A28C44400D31E77 /* ProfileView.swift */; };
+		A50CF5072A28C5D900D31E77 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5062A28C5D900D31E77 /* Color+.swift */; };
 		A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */; };
 		A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */; };
 		A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341C2A28680F008FEB89 /* GraphViewController.swift */; };
@@ -39,6 +45,11 @@
 
 /* Begin PBXFileReference section */
 		A50570B32A26D57700B62C43 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
+		A50CF4FB2A289DB300D31E77 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
+		A50CF5002A28B8C400D31E77 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		A50CF5022A28B8E100D31E77 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		A50CF5042A28C44400D31E77 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A50CF5062A28C5D900D31E77 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A53A341C2A28680F008FEB89 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +86,7 @@
 				A5C650302A2745DB00EDF3A6 /* Alamofire in Frameworks */,
 				A56BC21B2A25B063007FE478 /* CoreDataStorage in Frameworks */,
 				A5F18CB02A265CCD00C2437D /* Lottie in Frameworks */,
+				A50CF4FF2A28A10A00D31E77 /* FSCalendar in Frameworks */,
 				A53A34332A287405008FEB89 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				A50570B32A26D57700B62C43 /* NumberPicker.swift */,
+				A50CF5042A28C44400D31E77 /* ProfileView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -211,8 +224,11 @@
 		A58E600A2A25FB0900CC1507 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				A50CF5062A28C5D900D31E77 /* Color+.swift */,
 				A58E60082A25FA1700CC1507 /* Font+.swift */,
 				A58E60102A25FF6300CC1507 /* UIImage+.swift */,
+				A50CF5002A28B8C400D31E77 /* Date+.swift */,
+				A50CF5022A28B8E100D31E77 /* String+.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -238,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
+				A50CF4FB2A289DB300D31E77 /* SleepType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -272,6 +289,7 @@
 				A5F18CAF2A265CCD00C2437D /* Lottie */,
 				A5C6502F2A2745DB00EDF3A6 /* Alamofire */,
 				A53A34322A287405008FEB89 /* Charts */,
+				A50CF4FE2A28A10A00D31E77 /* FSCalendar */,
 			);
 			productName = "dementia_analytics-iOS";
 			productReference = A55087D729FF65880023D6CC /* dementia_analytics-iOS.app */;
@@ -306,6 +324,7 @@
 				A5F18CAE2A265CCD00C2437D /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				A5C6502E2A2745DB00EDF3A6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				A53A34312A287405008FEB89 /* XCRemoteSwiftPackageReference "Charts" */,
+				A50CF4FD2A28A10A00D31E77 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = A55087D829FF65880023D6CC /* Products */;
 			projectDirPath = "";
@@ -338,22 +357,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A50CF5072A28C5D900D31E77 /* Color+.swift in Sources */,
 				A58E60092A25FA1700CC1507 /* Font+.swift in Sources */,
 				A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */,
+				A50CF5032A28B8E100D31E77 /* String+.swift in Sources */,
 				A53A34262A2872CC008FEB89 /* Chart+.swift in Sources */,
 				A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */,
 				A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */,
+				A50CF4FC2A289DB300D31E77 /* SleepType.swift in Sources */,
 				A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */,
 				A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */,
 				A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */,
 				A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */,
 				A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */,
 				A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */,
+				A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */,
 				A55087F529FF66C50023D6CC /* HomeView.swift in Sources */,
 				A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */,
 				A5B091302A261D9E008807AF /* GraphView.swift in Sources */,
 				A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */,
 				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
+				A50CF5052A28C44400D31E77 /* ProfileView.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +592,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A50CF4FD2A28A10A00D31E77 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
 		A53A34312A287405008FEB89 /* XCRemoteSwiftPackageReference "Charts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/danielgindi/Charts.git";
@@ -603,6 +635,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A50CF4FE2A28A10A00D31E77 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A50CF4FD2A28A10A00D31E77 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		A53A34322A287405008FEB89 /* Charts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A53A34312A287405008FEB89 /* XCRemoteSwiftPackageReference "Charts" */;
