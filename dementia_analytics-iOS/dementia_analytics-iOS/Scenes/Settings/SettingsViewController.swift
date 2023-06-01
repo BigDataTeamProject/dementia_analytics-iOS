@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import Combine
+import CoreDataStorage
 
 class SettingsViewController: UIViewController {
+    private var user: User? = nil
+    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
+    private let storage = CoreDataStorage.shared(name: "DementiaDataStorage")
     
-    private var testView: SettingsView {
+    
+    private var settingsView: SettingsView {
         return self.view as! SettingsView
     }
     
@@ -19,5 +25,18 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadUserData()
+    }
+    
+    func loadUserData(){
+        storage.read(type: User.self)
+            .receive(on: DispatchQueue.main)
+            .map{ user -> User? in user.count > 0 ?  user[0] : nil }
+            .replaceError(with: nil)
+            .sink(receiveValue: { [weak self] user in
+                self?.user = user
+                self?.settingsView.setUser(user: user)
+            })
+            .store(in: &cancellable)
     }
 }

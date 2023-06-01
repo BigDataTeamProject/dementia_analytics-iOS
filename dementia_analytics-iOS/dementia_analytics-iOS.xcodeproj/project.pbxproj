@@ -14,6 +14,8 @@
 		A50CF5032A28B8E100D31E77 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5022A28B8E100D31E77 /* String+.swift */; };
 		A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5042A28C44400D31E77 /* ContentBox.swift */; };
 		A50CF5072A28C5D900D31E77 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5062A28C5D900D31E77 /* Color+.swift */; };
+		A50CF50A2A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */; };
+		A50CF50C2A28D0D800D31E77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF50B2A28D0D800D31E77 /* User.swift */; };
 		A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */; };
 		A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */; };
 		A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341C2A28680F008FEB89 /* GraphViewController.swift */; };
@@ -49,6 +51,8 @@
 		A50CF5022A28B8E100D31E77 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A50CF5042A28C44400D31E77 /* ContentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBox.swift; sourceTree = "<group>"; };
 		A50CF5062A28C5D900D31E77 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		A50CF5092A28D0A600D31E77 /* DentiaDataStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DentiaDataStorage.xcdatamodel; sourceTree = "<group>"; };
+		A50CF50B2A28D0D800D31E77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A53A341C2A28680F008FEB89 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
@@ -251,7 +255,9 @@
 			isa = PBXGroup;
 			children = (
 				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
+				A50CF50B2A28D0D800D31E77 /* User.swift */,
 				A50CF4FB2A289DB300D31E77 /* SleepType.swift */,
+				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +372,7 @@
 				A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */,
 				A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */,
 				A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */,
+				A50CF50A2A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld in Sources */,
 				A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */,
 				A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */,
 				A55087F529FF66C50023D6CC /* HomeView.swift in Sources */,
@@ -375,6 +382,7 @@
 				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
 				A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
+				A50CF50C2A28D0D800D31E77 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +665,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A50CF5092A28D0A600D31E77 /* DentiaDataStorage.xcdatamodel */,
+			);
+			currentVersion = A50CF5092A28D0A600D31E77 /* DentiaDataStorage.xcdatamodel */;
+			path = DementiaDataStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A55087CF29FF65880023D6CC /* Project object */;
 }

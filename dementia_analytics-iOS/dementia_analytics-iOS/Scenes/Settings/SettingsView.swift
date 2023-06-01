@@ -26,6 +26,15 @@ final class SettingsView: UIView {
         return contentBox
     }()
     
+    private lazy var registerProfileButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.tintColor = .white
+        return button
+    }()
+    
     init() {
         super.init(frame: .zero)
         configure()
@@ -50,6 +59,7 @@ final class SettingsView: UIView {
             stackView.addArrangedSubview(view)
         }
     }
+    
     private func makeConstraints() {
         [backgroundDecorImageView, stackView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -73,5 +83,38 @@ final class SettingsView: UIView {
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setUser(user: User?){
+        let contentView = UIView()
+        let label = UILabel()
+        if let user = user {
+            label.text = user.name
+            label.textColor = .white
+            label.font = .kavoon(24)
+            registerProfileButton.tintColor = .daGray
+        } else {
+            label.text = StringCollection.profileNotFound
+            label.textColor = .daGray
+            label.font = .kavoon(18)
+            registerProfileButton.tintColor = .white
+        }
+        [label, registerProfileButton].forEach { view in
+            contentView.addSubview(view)
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        let constraints: [NSLayoutConstraint] = [
+            label.topAnchor.constraint(equalTo: contentView.topAnchor),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.trailingAnchor.constraint(lessThanOrEqualTo: registerProfileButton.leadingAnchor, constant: 10),
+            registerProfileButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            registerProfileButton.heightAnchor.constraint(equalToConstant: 28),
+            registerProfileButton.widthAnchor.constraint(equalTo: registerProfileButton.heightAnchor),
+            registerProfileButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6)
+        ]
+        NSLayoutConstraint.activate(constraints)
+        profileBox.setContentView(contentView)
+        layoutIfNeeded()
     }
 }

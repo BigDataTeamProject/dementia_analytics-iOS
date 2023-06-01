@@ -24,7 +24,7 @@ final class HomeView: UIView {
         let label = UILabel()
         button.setTitle(StringCollection.startButton.uppercased(), for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .kavoon(50)
+        button.titleLabel?.font = .kavoon(30)
         button.setBackgroundImage(UIImage.homeStartButtonBackground.image, for: .normal)
         return button
     }()
@@ -69,7 +69,7 @@ final class HomeView: UIView {
         }
         
         let constraints: [NSLayoutConstraint] = [
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 180),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 160),
             titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -22),
@@ -80,11 +80,13 @@ final class HomeView: UIView {
             homeBackground.heightAnchor.constraint(equalTo: homeBackground.widthAnchor,
                                                    multiplier: UIImage.homeBackground.aspectHeight),
             
-            startButton.topAnchor.constraint(equalTo: homeBackground.bottomAnchor, constant: 24),
             startButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 56),
             startButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -56),
             startButton.heightAnchor.constraint(equalTo: startButton.widthAnchor,
-                                                multiplier: UIImage.homeStartButtonBackground.aspectHeight),
+                                                multiplier: UIImage
+                .homeStartButtonBackground
+                .aspectHeight),
+            startButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
             
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),

@@ -18,7 +18,6 @@ final class ContentBox: UIView  {
     
     private lazy var contentBox: UIView = {
         let view = UIView()
-        // view.layer.
         view.backgroundColor = .daGreen
         view.layer.cornerRadius = 30
         return view
@@ -42,7 +41,15 @@ final class ContentBox: UIView  {
     }
     
     func setContentView(_ view: UIView){
-        self.contentBox = view
+        contentBox.addSubview(view)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let constraints: [NSLayoutConstraint] = [
+            view.leadingAnchor.constraint(equalTo: contentBox.leadingAnchor, constant: 20),
+            view.trailingAnchor.constraint(equalTo: contentBox.trailingAnchor, constant: -20),
+            view.topAnchor.constraint(equalTo: contentBox.topAnchor),
+            view.bottomAnchor.constraint(equalTo: contentBox.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
         layoutSubviews()
     }
     
@@ -64,7 +71,7 @@ final class ContentBox: UIView  {
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-
+            
             contentBox.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             contentBox.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
             contentBox.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),

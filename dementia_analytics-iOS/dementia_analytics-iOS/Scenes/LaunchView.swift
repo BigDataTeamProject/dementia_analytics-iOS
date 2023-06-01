@@ -84,6 +84,7 @@ final class LaunchView: UIView {
                 completion()
             }
         }
+        decorView.animationSpeed = 1.5
         decorView.play{ _ in
             if !self.personView.isAnimationPlaying {
                 self.personView.removeFromSuperview()

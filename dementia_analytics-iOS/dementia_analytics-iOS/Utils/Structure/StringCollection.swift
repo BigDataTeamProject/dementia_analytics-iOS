@@ -10,4 +10,5 @@ import Foundation
 struct StringCollection{
     static let title = "Dementia Management"
     static let startButton = "add"
+    static let profileNotFound = "update the user information"
 }
