@@ -12,13 +12,12 @@
 		A50CF4FF2A28A10A00D31E77 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = A50CF4FE2A28A10A00D31E77 /* FSCalendar */; };
 		A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5002A28B8C400D31E77 /* Date+.swift */; };
 		A50CF5032A28B8E100D31E77 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5022A28B8E100D31E77 /* String+.swift */; };
-		A50CF5052A28C44400D31E77 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5042A28C44400D31E77 /* ProfileView.swift */; };
+		A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5042A28C44400D31E77 /* ContentBox.swift */; };
 		A50CF5072A28C5D900D31E77 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5062A28C5D900D31E77 /* Color+.swift */; };
 		A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */; };
 		A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */; };
 		A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341C2A28680F008FEB89 /* GraphViewController.swift */; };
 		A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34202A2868D5008FEB89 /* SettingsView.swift */; };
-		A53A34262A2872CC008FEB89 /* Chart+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34252A2872CC008FEB89 /* Chart+.swift */; };
 		A53A34332A287405008FEB89 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = A53A34322A287405008FEB89 /* Charts */; };
 		A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DA29FF65880023D6CC /* AppDelegate.swift */; };
 		A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DC29FF65880023D6CC /* SceneDelegate.swift */; };
@@ -48,13 +47,12 @@
 		A50CF4FB2A289DB300D31E77 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
 		A50CF5002A28B8C400D31E77 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50CF5022A28B8E100D31E77 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
-		A50CF5042A28C44400D31E77 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A50CF5042A28C44400D31E77 /* ContentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBox.swift; sourceTree = "<group>"; };
 		A50CF5062A28C5D900D31E77 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 		A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A53A341C2A28680F008FEB89 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		A53A34202A2868D5008FEB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A53A34252A2872CC008FEB89 /* Chart+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chart+.swift"; sourceTree = "<group>"; };
 		A55087D729FF65880023D6CC /* dementia_analytics-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dementia_analytics-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55087DA29FF65880023D6CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A55087DC29FF65880023D6CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				A50570B32A26D57700B62C43 /* NumberPicker.swift */,
-				A50CF5042A28C44400D31E77 /* ProfileView.swift */,
+				A50CF5042A28C44400D31E77 /* ContentBox.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -166,7 +164,6 @@
 				A58E600A2A25FB0900CC1507 /* Extentions */,
 				A55087E529FF65890023D6CC /* LaunchScreen.storyboard */,
 				A55087E829FF65890023D6CC /* Info.plist */,
-				A53A34252A2872CC008FEB89 /* Chart+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -361,7 +358,6 @@
 				A58E60092A25FA1700CC1507 /* Font+.swift in Sources */,
 				A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */,
 				A50CF5032A28B8E100D31E77 /* String+.swift in Sources */,
-				A53A34262A2872CC008FEB89 /* Chart+.swift in Sources */,
 				A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */,
 				A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */,
 				A50CF4FC2A289DB300D31E77 /* SleepType.swift in Sources */,
@@ -377,7 +373,7 @@
 				A5B091302A261D9E008807AF /* GraphView.swift in Sources */,
 				A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */,
 				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
-				A50CF5052A28C44400D31E77 /* ProfileView.swift in Sources */,
+				A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

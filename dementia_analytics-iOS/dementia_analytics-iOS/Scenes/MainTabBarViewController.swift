@@ -41,11 +41,11 @@ final class MainTabBarViewController: UITabBarController {
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().backgroundColor = UIColor.white
-        
         tabBar.layer.shadowColor = UIColor.black.cgColor
         tabBar.layer.shadowOpacity =  0.5
         tabBar.layer.shadowOffset = CGSize(width: 0, height: 2)
         tabBar.layer.shadowRadius = 2.0
+        tabBar.layer.shadowPath = UIBezierPath(roundedRect:tabBar.bounds, cornerRadius: tabBar.layer.cornerRadius).cgPath
     }
     
     override func viewDidLayoutSubviews() {

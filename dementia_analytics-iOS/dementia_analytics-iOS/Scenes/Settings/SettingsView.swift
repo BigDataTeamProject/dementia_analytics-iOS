@@ -14,6 +14,18 @@ final class SettingsView: UIView {
         return imageView
     }()
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        return stackView
+    }()
+    
+    private lazy var profileBox: ContentBox = {
+        let contentBox = ContentBox()
+        contentBox.setTitle("Profile")
+        return contentBox
+    }()
+    
     init() {
         super.init(frame: .zero)
         configure()
@@ -30,16 +42,28 @@ final class SettingsView: UIView {
     }
     
     private func addSubviews() {
-        [backgroundDecorImageView].forEach { view in
+        [backgroundDecorImageView, stackView].forEach { view in
             self.addSubview(view)
+        }
+        
+        [profileBox].forEach { view in
+            stackView.addArrangedSubview(view)
         }
     }
     private func makeConstraints() {
-        [backgroundDecorImageView].forEach { view in
+        [backgroundDecorImageView, stackView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
         let constraints: [NSLayoutConstraint] = [
+            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 180),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            
+            profileBox.leadingAnchor.constraint(equalTo:  stackView.leadingAnchor),
+            profileBox.trailingAnchor.constraint(equalTo:  stackView.trailingAnchor),
+            
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),
             backgroundDecorImageView.heightAnchor.constraint(equalTo:backgroundDecorImageView.widthAnchor,

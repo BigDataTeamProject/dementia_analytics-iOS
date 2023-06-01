@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIColor {
-    static let daGreen: UIColor = UIColor(red: 50, green: 136, blue: 100, alpha: 1)
-    static let daRed: UIColor = UIColor(red: 255, green: 101, blue: 132, alpha: 1)
-    static let daGray: UIColor = UIColor(red: 217, green: 217, blue: 217, alpha: 1)
+    static let daGreen: UIColor = UIColor(red: 50/255, green: 136/255, blue: 100/255, alpha: 1)
+    static let daRed: UIColor = UIColor(red: 255/255, green: 101/255, blue: 132/255, alpha: 1)
+    static let daGray: UIColor = UIColor(red: 217/255, green: 217/255, blue: 217/255, alpha: 1)
 }
