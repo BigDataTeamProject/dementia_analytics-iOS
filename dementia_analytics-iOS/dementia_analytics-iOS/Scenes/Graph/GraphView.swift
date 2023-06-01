@@ -1,5 +1,5 @@
 //
-//  TestView.swift
+//  GraphView.swift
 //  dementia_analytics-iOS
 //
 //  Created by 이전희 on 2023/05/30.
@@ -7,17 +7,11 @@
 
 import UIKit
 
-final class TestView: UIView {
+final class GraphView: UIView {
     private lazy var backgroundDecorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.homeBackgroundDecor.image
         return imageView
-    }()
-    
-    private lazy var agePicker: NumberPicker = {
-        let numberPicker = NumberPicker()
-        numberPicker.maxValue = 100
-        return numberPicker
     }()
     
     init() {
@@ -36,22 +30,17 @@ final class TestView: UIView {
     }
     
     private func addSubviews() {
-        [backgroundDecorImageView, agePicker].forEach { view in
+        [backgroundDecorImageView].forEach { view in
             self.addSubview(view)
         }
     }
     
     private func makeConstraints() {
-        [backgroundDecorImageView, agePicker].forEach { view in
+        [backgroundDecorImageView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
         let constraints: [NSLayoutConstraint] = [
-            agePicker.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            agePicker.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            agePicker.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            agePicker.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),
             backgroundDecorImageView.heightAnchor.constraint(equalTo:backgroundDecorImageView.widthAnchor,

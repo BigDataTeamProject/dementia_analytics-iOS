@@ -46,25 +46,6 @@ final class HomeView: UIView {
         configure()
         addSubviews()
         makeConstraints()
-        showLaunchView()
-    }
-    
-    private func showLaunchView(){
-        let launchView: LaunchView = LaunchView()
-        self.addSubview(launchView)
-        launchView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let constraints: [NSLayoutConstraint] = [
-            launchView.topAnchor.constraint(equalTo: self.topAnchor),
-            launchView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            launchView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            launchView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ]
-
-        NSLayoutConstraint.activate(constraints)
-        launchView.animationPlay {
-            launchView.removeFromSuperview()
-        }
     }
     
     required init?(coder: NSCoder) {

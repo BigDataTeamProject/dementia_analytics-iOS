@@ -8,6 +8,6 @@
 import Foundation
 
 struct StringCollection{
-    static let title = "Dementia similarity test"
-    static let startButton = "Start"
+    static let title = "Dementia Management"
+    static let startButton = "add"
 }

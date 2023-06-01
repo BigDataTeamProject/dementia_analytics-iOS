@@ -12,6 +12,7 @@ final class DementiaAnalyticsModel {
     
     let healthStore = HKHealthStore()
     let readObejctType: Set<HKObjectType>
+    var sleepData:[HKCategorySample] = []
     
     private init() {
         let readQuantityTypeIdentifiers: [HKQuantityTypeIdentifier] = [
@@ -37,7 +38,7 @@ final class DementiaAnalyticsModel {
     
     func request() {
         healthStore.requestAuthorization(toShare: nil, read: self.readObejctType) { result, error in
-            // print(result, error)
+            print(error)
         }
     }
     
@@ -49,11 +50,27 @@ final class DementiaAnalyticsModel {
         let inBed = HKCategoryValueSleepAnalysis.predicateForSamples(.equalTo, value: .inBed)
         // let queryPredicate = HKSamplePredicate.sample(type: HKCategoryType(.sleepAnalysis), predicate: stagePredicate)
         let queryPredicate = HKSamplePredicate.sample(type: HKCategoryType(.sleepAnalysis))
-        let sleepQuery = HKSampleQueryDescriptor(predicates: [queryPredicate], sortDescriptors: [])
-        Task{
-            let sleepSamples = try await sleepQuery.result(for: self.healthStore)
-            print(sleepSamples[0])
-            print(sleepSamples)
+        // let sleepQuery = HKSampleQueryDescriptor(predicates: [queryPredicate], sortDescriptors: [])
+        // Task{
+        //     let sleepSamples = try await sleepQuery.result(for: self.healthStore)
+        //     print(sleepSamples[0])
+        //     print(sleepSamples)
+        // }
+        
+        let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis),
+                                  predicate: nil,
+                                  limit: 30,
+                                  sortDescriptors: []) { [weak self] (query, sleepResult, error) -> Void in
+            if error != nil {
+                return
+            }
+            if let result = sleepResult {
+                DispatchQueue.main.async {
+                    self?.sleepData = result as? [HKCategorySample] ?? []
+                    print(result)
+                }
+            }
         }
+        healthStore.execute(query)
     }
 }
