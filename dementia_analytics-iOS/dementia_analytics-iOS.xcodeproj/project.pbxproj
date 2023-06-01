@@ -7,26 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50570B32A26D57700B62C43 /* NumberPicker.swift */; };
 		A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DA29FF65880023D6CC /* AppDelegate.swift */; };
 		A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DC29FF65880023D6CC /* SceneDelegate.swift */; };
-		A55087DF29FF65880023D6CC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DE29FF65880023D6CC /* MainViewController.swift */; };
+		A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DE29FF65880023D6CC /* HomeViewController.swift */; };
 		A55087E429FF65890023D6CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55087E329FF65890023D6CC /* Assets.xcassets */; };
 		A55087E729FF65890023D6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55087E529FF65890023D6CC /* LaunchScreen.storyboard */; };
-		A55087F529FF66C50023D6CC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087F429FF66C50023D6CC /* MainView.swift */; };
+		A55087F529FF66C50023D6CC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087F429FF66C50023D6CC /* HomeView.swift */; };
+		A56BC21B2A25B063007FE478 /* CoreDataStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A56BC21A2A25B063007FE478 /* CoreDataStorage */; };
+		A58E60062A25F9E700CC1507 /* Kavoon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A58E60042A25F9E700CC1507 /* Kavoon-Regular.ttf */; };
+		A58E60072A25F9E700CC1507 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A58E60052A25F9E700CC1507 /* OFL.txt */; };
+		A58E60092A25FA1700CC1507 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E60082A25FA1700CC1507 /* Font+.swift */; };
+		A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E600B2A25FC3000CC1507 /* StringCollection.swift */; };
+		A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */; };
+		A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E60102A25FF6300CC1507 /* UIImage+.swift */; };
+		A5B091302A261D9E008807AF /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B0912F2A261D9E008807AF /* TestView.swift */; };
+		A5B091322A261DAF008807AF /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B091312A261DAF008807AF /* TestViewController.swift */; };
+		A5C650302A2745DB00EDF3A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A5C6502F2A2745DB00EDF3A6 /* Alamofire */; };
+		A5C650342A2749BE00EDF3A6 /* BMEULJIROTTF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */; };
 		A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */; };
+		A5F18CB02A265CCD00C2437D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A5F18CAF2A265CCD00C2437D /* Lottie */; };
+		A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F18CB62A265D7F00C2437D /* LaunchView.swift */; };
+		A5F18CBC2A26634400C2437D /* decor.json in Resources */ = {isa = PBXBuildFile; fileRef = A5F18CBA2A26634400C2437D /* decor.json */; };
+		A5F18CBD2A26634400C2437D /* person.json in Resources */ = {isa = PBXBuildFile; fileRef = A5F18CBB2A26634400C2437D /* person.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A50570B32A26D57700B62C43 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
 		A55087D729FF65880023D6CC /* dementia_analytics-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dementia_analytics-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55087DA29FF65880023D6CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A55087DC29FF65880023D6CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A55087DE29FF65880023D6CC /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A55087DE29FF65880023D6CC /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A55087E329FF65890023D6CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A55087E629FF65890023D6CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A55087E829FF65890023D6CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A55087F429FF66C50023D6CC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A55087F429FF66C50023D6CC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A55B68CB2A0E07CD007D740C /* dementia_analytics-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dementia_analytics-iOS.entitlements"; sourceTree = "<group>"; };
+		A58E60042A25F9E700CC1507 /* Kavoon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kavoon-Regular.ttf"; sourceTree = "<group>"; };
+		A58E60052A25F9E700CC1507 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		A58E60082A25FA1700CC1507 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		A58E600B2A25FC3000CC1507 /* StringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCollection.swift; sourceTree = "<group>"; };
+		A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInformation.swift; sourceTree = "<group>"; };
+		A58E60102A25FF6300CC1507 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		A5B0912F2A261D9E008807AF /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		A5B091312A261DAF008807AF /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMEULJIROTTF.ttf; sourceTree = "<group>"; };
 		A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemntiaAnalyticsModel.swift; sourceTree = "<group>"; };
+		A5F18CB62A265D7F00C2437D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		A5F18CBA2A26634400C2437D /* decor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = decor.json; sourceTree = "<group>"; };
+		A5F18CBB2A26634400C2437D /* person.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = person.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,12 +63,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5C650302A2745DB00EDF3A6 /* Alamofire in Frameworks */,
+				A56BC21B2A25B063007FE478 /* CoreDataStorage in Frameworks */,
+				A5F18CB02A265CCD00C2437D /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A50570B52A26D5E700B62C43 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A50570B32A26D57700B62C43 /* NumberPicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		A55087CE29FF65880023D6CC = {
 			isa = PBXGroup;
 			children = (
@@ -62,7 +102,7 @@
 				A55B68CB2A0E07CD007D740C /* dementia_analytics-iOS.entitlements */,
 				A55087F029FF65C30023D6CC /* App */,
 				A55087F629FF66CA0023D6CC /* Scenes */,
-				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
+				A5D7DCC82A28528D0036C3BA /* Model */,
 				A55087EE29FF65930023D6CC /* Utils */,
 				A55087EF29FF65B60023D6CC /* Resources */,
 			);
@@ -72,6 +112,8 @@
 		A55087EE29FF65930023D6CC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A58E600D2A25FF1000CC1507 /* Structure */,
+				A58E600A2A25FB0900CC1507 /* Extentions */,
 				A55087E529FF65890023D6CC /* LaunchScreen.storyboard */,
 				A55087E829FF65890023D6CC /* Info.plist */,
 			);
@@ -81,6 +123,8 @@
 		A55087EF29FF65B60023D6CC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A5F18CB12A265D4800C2437D /* lottie */,
+				A58E60022A25F9D000CC1507 /* Fonts */,
 				A55087E329FF65890023D6CC /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -98,10 +142,83 @@
 		A55087F629FF66CA0023D6CC /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				A55087F429FF66C50023D6CC /* MainView.swift */,
-				A55087DE29FF65880023D6CC /* MainViewController.swift */,
+				A5F18CB62A265D7F00C2437D /* LaunchView.swift */,
+				A55087F429FF66C50023D6CC /* HomeView.swift */,
+				A55087DE29FF65880023D6CC /* HomeViewController.swift */,
+				A5B0912E2A261D89008807AF /* TestView */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		A58E60022A25F9D000CC1507 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A5C650322A27461300EDF3A6 /* BMEULJIRO */,
+				A58E60032A25F9E700CC1507 /* Kavoon */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		A58E60032A25F9E700CC1507 /* Kavoon */ = {
+			isa = PBXGroup;
+			children = (
+				A58E60042A25F9E700CC1507 /* Kavoon-Regular.ttf */,
+				A58E60052A25F9E700CC1507 /* OFL.txt */,
+			);
+			path = Kavoon;
+			sourceTree = "<group>";
+		};
+		A58E600A2A25FB0900CC1507 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				A58E60082A25FA1700CC1507 /* Font+.swift */,
+				A58E60102A25FF6300CC1507 /* UIImage+.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		A58E600D2A25FF1000CC1507 /* Structure */ = {
+			isa = PBXGroup;
+			children = (
+				A58E600B2A25FC3000CC1507 /* StringCollection.swift */,
+				A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */,
+			);
+			path = Structure;
+			sourceTree = "<group>";
+		};
+		A5B0912E2A261D89008807AF /* TestView */ = {
+			isa = PBXGroup;
+			children = (
+				A5B0912F2A261D9E008807AF /* TestView.swift */,
+				A5B091312A261DAF008807AF /* TestViewController.swift */,
+				A50570B52A26D5E700B62C43 /* Components */,
+			);
+			path = TestView;
+			sourceTree = "<group>";
+		};
+		A5C650322A27461300EDF3A6 /* BMEULJIRO */ = {
+			isa = PBXGroup;
+			children = (
+				A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */,
+			);
+			path = BMEULJIRO;
+			sourceTree = "<group>";
+		};
+		A5D7DCC82A28528D0036C3BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A5F18CB12A265D4800C2437D /* lottie */ = {
+			isa = PBXGroup;
+			children = (
+				A5F18CBA2A26634400C2437D /* decor.json */,
+				A5F18CBB2A26634400C2437D /* person.json */,
+			);
+			path = lottie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +237,11 @@
 			dependencies = (
 			);
 			name = "dementia_analytics-iOS";
+			packageProductDependencies = (
+				A56BC21A2A25B063007FE478 /* CoreDataStorage */,
+				A5F18CAF2A265CCD00C2437D /* Lottie */,
+				A5C6502F2A2745DB00EDF3A6 /* Alamofire */,
+			);
 			productName = "dementia_analytics-iOS";
 			productReference = A55087D729FF65880023D6CC /* dementia_analytics-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -148,6 +270,11 @@
 				Base,
 			);
 			mainGroup = A55087CE29FF65880023D6CC;
+			packageReferences = (
+				A56BC2192A25B063007FE478 /* XCRemoteSwiftPackageReference "CoreDataStorage" */,
+				A5F18CAE2A265CCD00C2437D /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				A5C6502E2A2745DB00EDF3A6 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = A55087D829FF65880023D6CC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -162,7 +289,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F18CBD2A26634400C2437D /* person.json in Resources */,
 				A55087E729FF65890023D6CC /* LaunchScreen.storyboard in Resources */,
+				A58E60062A25F9E700CC1507 /* Kavoon-Regular.ttf in Resources */,
+				A5C650342A2749BE00EDF3A6 /* BMEULJIROTTF.ttf in Resources */,
+				A58E60072A25F9E700CC1507 /* OFL.txt in Resources */,
+				A5F18CBC2A26634400C2437D /* decor.json in Resources */,
 				A55087E429FF65890023D6CC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -174,10 +306,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A55087DF29FF65880023D6CC /* MainViewController.swift in Sources */,
+				A58E60092A25FA1700CC1507 /* Font+.swift in Sources */,
+				A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */,
+				A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */,
+				A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */,
+				A5B091322A261DAF008807AF /* TestViewController.swift in Sources */,
+				A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */,
 				A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */,
-				A55087F529FF66C50023D6CC /* MainView.swift in Sources */,
+				A55087F529FF66C50023D6CC /* HomeView.swift in Sources */,
 				A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */,
+				A5B091302A261D9E008807AF /* TestView.swift in Sources */,
+				A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */,
+				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +530,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A56BC2192A25B063007FE478 /* XCRemoteSwiftPackageReference "CoreDataStorage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Jeonhui/CoreDataStorage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		A5C6502E2A2745DB00EDF3A6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		A5F18CAE2A265CCD00C2437D /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A56BC21A2A25B063007FE478 /* CoreDataStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A56BC2192A25B063007FE478 /* XCRemoteSwiftPackageReference "CoreDataStorage" */;
+			productName = CoreDataStorage;
+		};
+		A5C6502F2A2745DB00EDF3A6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5C6502E2A2745DB00EDF3A6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		A5F18CAF2A265CCD00C2437D /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5F18CAE2A265CCD00C2437D /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A55087CF29FF65880023D6CC /* Project object */;
 }

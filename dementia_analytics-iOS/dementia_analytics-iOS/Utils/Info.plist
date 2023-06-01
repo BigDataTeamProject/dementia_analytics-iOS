@@ -2,10 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Kavoon-Regular.ttf</string>
+		<string>BMEULJIROTTF.ttf</string>
+	</array>
 	<key>NSHealthShareUsageDescription</key>
-	<string>건강 데이터 쓰기</string>
+	<string>건강 데이터를 dementia_analytics-iOS에서 기록하기 위해 필요합니다.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>건강 데이터 읽기</string>
+	<string>건강 데이터를 dementia_analytics-iOS에서 사용하기 위해 필요합니다.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
