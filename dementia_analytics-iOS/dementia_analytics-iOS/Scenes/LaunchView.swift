@@ -13,7 +13,7 @@ final class LaunchView: UIView {
         let label = UILabel()
         label.text = StringCollection.title
         label.numberOfLines = 2
-        label.font = .kavoon(50)
+        label.font = .bmEuljiro(50)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -33,7 +33,7 @@ final class LaunchView: UIView {
     lazy var teamLabel: UILabel = {
         let label = UILabel()
         label.text = StringCollection.team
-        label.font = .kavoon(20)
+        label.font = .bmEuljiro(30)
         label.textColor = .daGray
         label.textAlignment = .center
         return label

@@ -13,7 +13,7 @@ final class HomeView: UIView {
         let label = UILabel()
         label.text = StringCollection.title
         label.numberOfLines = 2
-        label.font = .kavoon(50)
+        label.font = .bmEuljiro(50)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -24,8 +24,8 @@ final class HomeView: UIView {
         let label = UILabel()
         button.setTitle(StringCollection.startButton.uppercased(), for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .kavoon(30)
-        button.layer.backgroundColor = UIColor.daGreen.cgColor
+        button.titleLabel?.font = .bmEuljiro(30)
+        button.setBackgroundColor(.daGreen, for: .normal)
         button.layer.cornerRadius = 30
         return button
     }()

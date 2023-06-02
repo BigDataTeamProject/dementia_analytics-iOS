@@ -16,7 +16,7 @@ final class MainTabBarViewController: UITabBarController {
     
     init(){
         super.init(nibName: nil, bundle: nil)
-        showLaunchView()
+        // showLaunchView()
     }
     
     required init?(coder: NSCoder) {
@@ -26,9 +26,9 @@ final class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        homeVC.title = "Home"
-        graphVC.title = "Graph"
-        settingsVC.title = "Settings"
+        homeVC.title = StringCollection.home
+        graphVC.title = StringCollection.graph
+        settingsVC.title = StringCollection.settings
         
         homeVC.tabBarItem.image = UIImage.init(systemName: "house")
         graphVC.tabBarItem.image = UIImage.init(systemName: "chart.xyaxis.line")

@@ -44,6 +44,10 @@
 		A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F18CB62A265D7F00C2437D /* LaunchView.swift */; };
 		A5F18CBC2A26634400C2437D /* decor.json in Resources */ = {isa = PBXBuildFile; fileRef = A5F18CBA2A26634400C2437D /* decor.json */; };
 		A5F18CBD2A26634400C2437D /* person.json in Resources */ = {isa = PBXBuildFile; fileRef = A5F18CBB2A26634400C2437D /* person.json */; };
+		A5FE2E972A29A26500386F7B /* SettingContentBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE2E962A29A26500386F7B /* SettingContentBox.swift */; };
+		A5FE2E992A29D65300386F7B /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE2E982A29D65300386F7B /* UIButton+.swift */; };
+		A5FE2E9B2A29DD1A00386F7B /* InputContentBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE2E9A2A29DD1A00386F7B /* InputContentBox.swift */; };
+		A5FE2E9D2A2A0F3500386F7B /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FE2E9C2A2A0F3500386F7B /* UIView+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +86,10 @@
 		A5F18CB62A265D7F00C2437D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		A5F18CBA2A26634400C2437D /* decor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = decor.json; sourceTree = "<group>"; };
 		A5F18CBB2A26634400C2437D /* person.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = person.json; sourceTree = "<group>"; };
+		A5FE2E962A29A26500386F7B /* SettingContentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingContentBox.swift; sourceTree = "<group>"; };
+		A5FE2E982A29D65300386F7B /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		A5FE2E9A2A29DD1A00386F7B /* InputContentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContentBox.swift; sourceTree = "<group>"; };
+		A5FE2E9C2A2A0F3500386F7B /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,8 @@
 			children = (
 				A50570B32A26D57700B62C43 /* NumberPicker.swift */,
 				A50CF5042A28C44400D31E77 /* ContentBox.swift */,
+				A5FE2E962A29A26500386F7B /* SettingContentBox.swift */,
+				A5FE2E9A2A29DD1A00386F7B /* InputContentBox.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -244,6 +254,8 @@
 				A58E60102A25FF6300CC1507 /* UIImage+.swift */,
 				A50CF5002A28B8C400D31E77 /* Date+.swift */,
 				A50CF5022A28B8E100D31E77 /* String+.swift */,
+				A5FE2E982A29D65300386F7B /* UIButton+.swift */,
+				A5FE2E9C2A2A0F3500386F7B /* UIView+.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -378,6 +390,7 @@
 				A58E60092A25FA1700CC1507 /* Font+.swift in Sources */,
 				A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */,
 				A50CF5032A28B8E100D31E77 /* String+.swift in Sources */,
+				A5FE2E992A29D65300386F7B /* UIButton+.swift in Sources */,
 				A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */,
 				A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */,
 				A50CF4FC2A289DB300D31E77 /* SleepType.swift in Sources */,
@@ -385,6 +398,7 @@
 				A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */,
 				A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */,
 				A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */,
+				A5FE2E9B2A29DD1A00386F7B /* InputContentBox.swift in Sources */,
 				A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */,
 				A50CF50A2A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld in Sources */,
 				A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */,
@@ -394,7 +408,9 @@
 				A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */,
 				A5B091302A261D9E008807AF /* GraphView.swift in Sources */,
 				A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */,
+				A5FE2E972A29A26500386F7B /* SettingContentBox.swift in Sources */,
 				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
+				A5FE2E9D2A2A0F3500386F7B /* UIView+.swift in Sources */,
 				A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */,
 				A54C97242A28EC080037A9CF /* UpdateProfileViewController.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,

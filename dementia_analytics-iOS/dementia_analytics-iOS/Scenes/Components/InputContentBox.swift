@@ -1,5 +1,5 @@
 //
-//  ContentBox.swift
+//  InputContentBox.swift
 //  dementia_analytics-iOS
 //
 //  Created by 이전희 on 2023/06/01.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-final class ContentBox: UIView  {
+final class InputContentBox: UIView  {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
-        label.textColor = .black
+        label.numberOfLines = 1
+        label.textColor = .white
         label.textAlignment = .left
         return label
     }()
     
     private lazy var contentView: UIView = {
         let view = UIView()
-        view.backgroundColor = .daGreen
+        view.backgroundColor = .white
         view.layer.cornerRadius = 20
         return view
     }()
@@ -34,7 +34,7 @@ final class ContentBox: UIView  {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setTitle(_ title: String?, fontSize: CGFloat = 30){
+    func setTitle(_ title: String?, fontSize: CGFloat = 22){
         self.titleLabel.text = title
         self.titleLabel.font = .bmEuljiro(fontSize)
         layoutSubviews()
@@ -68,16 +68,16 @@ final class ContentBox: UIView  {
         }
         
         let constraints: [NSLayoutConstraint] = [
-            self.heightAnchor.constraint(equalToConstant: 120),
+            self.heightAnchor.constraint(equalToConstant: 90),
             titleLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 30),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            titleLabel.heightAnchor.constraint(equalToConstant: 22),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
             
-            contentView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
-            contentView.heightAnchor.constraint(equalToConstant: 80)
+            contentView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
+            contentView.heightAnchor.constraint(equalToConstant: 60)
         ]
         
         NSLayoutConstraint.activate(constraints)

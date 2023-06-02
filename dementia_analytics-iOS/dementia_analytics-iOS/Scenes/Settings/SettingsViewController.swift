@@ -30,8 +30,18 @@ class SettingsViewController: UIViewController {
     }
     
     func configure(){
-        self.settingsView.registerProfileButton
-            .addTarget(self, action: #selector(showUpdateProfile), for: .touchUpInside)
+        self.settingsView.showUpdateProfile = {
+            let updateProfileVC = UpdateProfileViewController(user: self.user)
+            self.present(updateProfileVC, animated: true) { [weak self] in
+                self?.loadUserData()
+            }
+        }
+        
+        self.settingsView.moveToSetting = {
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url)
+            }
+        }
     }
     
     func loadUserData(){
@@ -44,13 +54,5 @@ class SettingsViewController: UIViewController {
                 self?.settingsView.setUser(user: user)
             })
             .store(in: &cancellable)
-    }
-    
-    @objc
-    func showUpdateProfile(){
-        let updateProfileVC = UpdateProfileViewController(user: self.user)
-        self.present(updateProfileVC, animated: true) { [weak self] in
-            self?.loadUserData()
-        }
     }
 }

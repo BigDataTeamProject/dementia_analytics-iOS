@@ -8,6 +8,9 @@
 import UIKit
 
 final class SettingsView: UIView {
+    var showUpdateProfile: (()->Void)? = nil
+    var moveToSetting: (()->Void)? = nil
+    
     private let auth: Bool = DementiaAnalyticsModel.shared.auth
     
     private lazy var backgroundDecorImageView: UIImageView = {
@@ -19,18 +22,16 @@ final class SettingsView: UIView {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 20
         return stackView
     }()
     
     private lazy var profileBox: ContentBox = {
         let contentBox = ContentBox()
-        contentBox.setTitle("Profile")
+        contentBox.setTitle(StringCollection.profile)
         return contentBox
-    }()
-    
-    private lazy var authCheckView: UIView = {
-        let view = UIView()
-        return view
     }()
     
     lazy var registerProfileButton: UIButton = {
@@ -43,16 +44,16 @@ final class SettingsView: UIView {
                         for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.tintColor = .white
+        button.setTitleColor(.white, for: .normal)
         return button
     }()
     
     init() {
         super.init(frame: .zero)
-        checkAuth()
         configure()
         addSubviews()
         makeConstraints()
+        setAuth()
     }
     
     required init?(coder: NSCoder) {
@@ -61,6 +62,9 @@ final class SettingsView: UIView {
     
     private func configure() {
         self.backgroundColor = .white
+        registerProfileButton.addTarget(self,
+                                        action: #selector(showUpdateProfileButton),
+                                        for: .touchUpInside)
     }
     
     private func addSubviews() {
@@ -68,7 +72,7 @@ final class SettingsView: UIView {
             self.addSubview(view)
         }
         
-        [profileBox, authCheckView].forEach { view in
+        [profileBox].forEach { view in
             stackView.addArrangedSubview(view)
         }
     }
@@ -82,15 +86,6 @@ final class SettingsView: UIView {
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 140),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            
-            profileBox.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            profileBox.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            
-            authCheckView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
-            authCheckView .trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
-            authCheckView .heightAnchor.constraint(equalToConstant: 80),
-            
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),
             backgroundDecorImageView.heightAnchor.constraint(equalTo:backgroundDecorImageView.widthAnchor,
@@ -108,16 +103,18 @@ final class SettingsView: UIView {
         if let user = user {
             label.text = user.name
             label.textColor = .white
-            label.font = .kavoon(24)
+            label.font = .bmEuljiro(24)
             registerProfileButton.tintColor = .daGray
         } else {
             label.text = StringCollection.profileNotFound
             label.textColor = .daGray
-            label.font = .kavoon(18)
+            label.font = .bmEuljiro(18)
             registerProfileButton.tintColor = .white
         }
         [label, registerProfileButton].forEach { view in
             contentView.addSubview(view)
+        }
+        [label, registerProfileButton].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         let constraints: [NSLayoutConstraint] = [
@@ -135,15 +132,27 @@ final class SettingsView: UIView {
         layoutIfNeeded()
     }
     
-    func checkAuth(){
-        let label = StringCollection.noAuth
-        stackView.addArrangedSubview(<#T##view: UIView##UIView#>)
-        
-        let constraints: [NSLayoutConstraint] = [
-            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 140),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ]
+    func setAuth(){
+        if DementiaAnalyticsModel.shared.auth {
+            let authCheckBox = SettingContentBox()
+            authCheckBox.setDescription(StringCollection.noAuth)
+            authCheckBox.setButton(StringCollection.moveToSetting,
+                                   symbol: "greaterthan"){ [weak self] in
+                self?.moveToSettingButton()
+            }
+            
+            stackView.addArrangedSubview(authCheckBox)
+        } else {
+            
+        }
+        layoutSubviews()
+    }
+    
+    @objc func showUpdateProfileButton(){
+        showUpdateProfile?()
+    }
+    
+    func moveToSettingButton(){
+        moveToSetting?()
     }
 }
