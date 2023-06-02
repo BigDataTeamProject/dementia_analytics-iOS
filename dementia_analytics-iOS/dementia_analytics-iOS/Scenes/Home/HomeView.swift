@@ -19,13 +19,14 @@ final class HomeView: UIView {
         return label
     }()
     
-    lazy var startButton: UIButton = {
+    lazy var homeButton: UIButton = {
         let button = UIButton()
         let label = UILabel()
         button.setTitle(StringCollection.startButton.uppercased(), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .kavoon(30)
-        button.setBackgroundImage(UIImage.homeStartButtonBackground.image, for: .normal)
+        button.layer.backgroundColor = UIColor.daGreen.cgColor
+        button.layer.cornerRadius = 30
         return button
     }()
     
@@ -57,20 +58,19 @@ final class HomeView: UIView {
     }
     
     private func addSubviews() {
-        [backgroundDecorImageView, homeBackground, startButton, titleLabel].forEach { view in
+        [backgroundDecorImageView, homeBackground, homeButton, titleLabel].forEach { view in
             self.addSubview(view)
         }
     }
     
     private func makeConstraints() {
         
-        [titleLabel, startButton, homeBackground, backgroundDecorImageView].forEach { view in
+        [titleLabel, homeButton, homeBackground, backgroundDecorImageView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
         let constraints: [NSLayoutConstraint] = [
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 160),
-            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 140),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -22),
             
@@ -80,13 +80,10 @@ final class HomeView: UIView {
             homeBackground.heightAnchor.constraint(equalTo: homeBackground.widthAnchor,
                                                    multiplier: UIImage.homeBackground.aspectHeight),
             
-            startButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 56),
-            startButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -56),
-            startButton.heightAnchor.constraint(equalTo: startButton.widthAnchor,
-                                                multiplier: UIImage
-                .homeStartButtonBackground
-                .aspectHeight),
-            startButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+            homeButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            homeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
+            homeButton.heightAnchor.constraint(equalToConstant: 80),
+            homeButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -120),
             
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),
@@ -95,6 +92,7 @@ final class HomeView: UIView {
             backgroundDecorImageView.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundDecorImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ]
+        
         
         NSLayoutConstraint.activate(constraints)
     }

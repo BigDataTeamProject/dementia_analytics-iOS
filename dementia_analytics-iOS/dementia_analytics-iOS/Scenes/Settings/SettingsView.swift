@@ -8,6 +8,8 @@
 import UIKit
 
 final class SettingsView: UIView {
+    private let auth: Bool = DementiaAnalyticsModel.shared.auth
+    
     private lazy var backgroundDecorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.homeBackgroundDecor.image
@@ -26,9 +28,19 @@ final class SettingsView: UIView {
         return contentBox
     }()
     
-    private lazy var registerProfileButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "square.and.pencil"), for: .normal)
+    private lazy var authCheckView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    lazy var registerProfileButton: UIButton = {
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets.init(top: 4, leading: 4, bottom: 4, trailing: 4)
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
+        let button = UIButton(configuration: config)
+        button.setImage(UIImage(systemName: "square.and.pencil",
+                                withConfiguration: imageConfig),
+                        for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.tintColor = .white
@@ -37,6 +49,7 @@ final class SettingsView: UIView {
     
     init() {
         super.init(frame: .zero)
+        checkAuth()
         configure()
         addSubviews()
         makeConstraints()
@@ -55,7 +68,7 @@ final class SettingsView: UIView {
             self.addSubview(view)
         }
         
-        [profileBox].forEach { view in
+        [profileBox, authCheckView].forEach { view in
             stackView.addArrangedSubview(view)
         }
     }
@@ -66,13 +79,17 @@ final class SettingsView: UIView {
         }
         
         let constraints: [NSLayoutConstraint] = [
-            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 180),
+            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 140),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
-            profileBox.leadingAnchor.constraint(equalTo:  stackView.leadingAnchor),
-            profileBox.trailingAnchor.constraint(equalTo:  stackView.trailingAnchor),
+            profileBox.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            profileBox.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            
+            authCheckView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            authCheckView .trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
+            authCheckView .heightAnchor.constraint(equalToConstant: 80),
             
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),
@@ -109,12 +126,24 @@ final class SettingsView: UIView {
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             label.trailingAnchor.constraint(lessThanOrEqualTo: registerProfileButton.leadingAnchor, constant: 10),
             registerProfileButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            registerProfileButton.heightAnchor.constraint(equalToConstant: 28),
+            registerProfileButton.heightAnchor.constraint(equalToConstant: 38),
             registerProfileButton.widthAnchor.constraint(equalTo: registerProfileButton.heightAnchor),
             registerProfileButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6)
         ]
         NSLayoutConstraint.activate(constraints)
         profileBox.setContentView(contentView)
         layoutIfNeeded()
+    }
+    
+    func checkAuth(){
+        let label = StringCollection.noAuth
+        stackView.addArrangedSubview(<#T##view: UIView##UIView#>)
+        
+        let constraints: [NSLayoutConstraint] = [
+            stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 140),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ]
     }
 }

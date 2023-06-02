@@ -9,6 +9,7 @@ import HealthKit
 
 final class DementiaAnalyticsModel {
     static let shared = DementiaAnalyticsModel()
+    var auth: Bool = false
     
     let healthStore = HKHealthStore()
     let readObejctType: Set<HKObjectType>
@@ -38,6 +39,7 @@ final class DementiaAnalyticsModel {
     
     func request() {
         healthStore.requestAuthorization(toShare: nil, read: self.readObejctType) { result, error in
+            self.auth = result
         }
     }
     

@@ -21,12 +21,22 @@ final class LaunchView: UIView {
     
     private var personView: LottieAnimationView = {
         let animView = LottieAnimationView(name:"person")
+        animView.contentMode = .scaleAspectFill
         return animView
     }()
     
     private var decorView: LottieAnimationView = {
         let animView = LottieAnimationView(name:"decor")
         return animView
+    }()
+    
+    lazy var teamLabel: UILabel = {
+        let label = UILabel()
+        label.text = StringCollection.team
+        label.font = .kavoon(20)
+        label.textColor = .daGray
+        label.textAlignment = .center
+        return label
     }()
     
     init() {
@@ -45,27 +55,31 @@ final class LaunchView: UIView {
     }
     
     private func addSubviews() {
-        [decorView, personView, titleLabel].forEach { view in
+        [decorView,teamLabel, personView, titleLabel].forEach { view in
             self.addSubview(view)
         }
     }
     
     private func makeConstraints() {
         
-        [titleLabel, personView, decorView].forEach { view in
+        [titleLabel, personView, teamLabel, decorView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
         let constraints: [NSLayoutConstraint] = [
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 180),
-            titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 140),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -22),
             
-            personView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: -22),
+            personView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             personView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             personView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            personView.heightAnchor.constraint(equalTo: personView.widthAnchor),
+            personView.heightAnchor.constraint(equalTo: personView.widthAnchor,
+                                                   multiplier: UIImage.homeBackground.aspectHeight),
+            
+            teamLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            teamLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            teamLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -40),
             
             decorView.widthAnchor.constraint(equalTo: self.widthAnchor),
             decorView.heightAnchor.constraint(equalTo:self.widthAnchor),
@@ -77,6 +91,7 @@ final class LaunchView: UIView {
     }
     
     func animationPlay(_ completion: @escaping () -> Void){
+        decorView.animationSpeed = 1.5
         personView.play{ _ in
             if !self.decorView.isAnimationPlaying {
                 self.personView.removeFromSuperview()

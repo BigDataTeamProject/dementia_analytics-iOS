@@ -21,6 +21,8 @@
 		A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341C2A28680F008FEB89 /* GraphViewController.swift */; };
 		A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34202A2868D5008FEB89 /* SettingsView.swift */; };
 		A53A34332A287405008FEB89 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = A53A34322A287405008FEB89 /* Charts */; };
+		A54C97242A28EC080037A9CF /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54C97232A28EC080037A9CF /* UpdateProfileViewController.swift */; };
+		A54C97272A28EC1E0037A9CF /* UpdateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54C97262A28EC1E0037A9CF /* UpdateProfileView.swift */; };
 		A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DA29FF65880023D6CC /* AppDelegate.swift */; };
 		A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DC29FF65880023D6CC /* SceneDelegate.swift */; };
 		A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087DE29FF65880023D6CC /* HomeViewController.swift */; };
@@ -57,6 +59,8 @@
 		A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A53A341C2A28680F008FEB89 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		A53A34202A2868D5008FEB89 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A54C97232A28EC080037A9CF /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
+		A54C97262A28EC1E0037A9CF /* UpdateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileView.swift; sourceTree = "<group>"; };
 		A55087D729FF65880023D6CC /* dementia_analytics-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dementia_analytics-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A55087DA29FF65880023D6CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A55087DC29FF65880023D6CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,10 +130,20 @@
 		A53A341F2A286821008FEB89 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A54C97252A28EC0B0037A9CF /* UpdateProfileView */,
 				A53A34202A2868D5008FEB89 /* SettingsView.swift */,
 				A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		A54C97252A28EC0B0037A9CF /* UpdateProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				A54C97262A28EC1E0037A9CF /* UpdateProfileView.swift */,
+				A54C97232A28EC080037A9CF /* UpdateProfileViewController.swift */,
+			);
+			path = UpdateProfileView;
 			sourceTree = "<group>";
 		};
 		A55087CE29FF65880023D6CC = {
@@ -376,11 +390,13 @@
 				A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */,
 				A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */,
 				A55087F529FF66C50023D6CC /* HomeView.swift in Sources */,
+				A54C97272A28EC1E0037A9CF /* UpdateProfileView.swift in Sources */,
 				A55087DB29FF65880023D6CC /* AppDelegate.swift in Sources */,
 				A5B091302A261D9E008807AF /* GraphView.swift in Sources */,
 				A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */,
 				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
 				A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */,
+				A54C97242A28EC080037A9CF /* UpdateProfileViewController.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
 				A50CF50C2A28D0D800D31E77 /* User.swift in Sources */,
 			);

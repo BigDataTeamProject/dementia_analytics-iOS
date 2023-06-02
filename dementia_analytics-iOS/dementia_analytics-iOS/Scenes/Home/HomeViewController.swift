@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     }
     
     func configure(){
-        homeView.startButton.addTarget(self, action: #selector(showTestView), for: .touchUpInside)
+        homeView.homeButton.addTarget(self, action: #selector(showTestView), for: .touchUpInside)
     }
 }
 

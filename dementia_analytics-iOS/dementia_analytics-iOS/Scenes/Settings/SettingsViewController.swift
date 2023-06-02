@@ -11,8 +11,8 @@ import CoreDataStorage
 
 class SettingsViewController: UIViewController {
     private var user: User? = nil
-    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     private let storage = CoreDataStorage.shared(name: "DementiaDataStorage")
+    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     
     
     private var settingsView: SettingsView {
@@ -26,6 +26,12 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUserData()
+        configure()
+    }
+    
+    func configure(){
+        self.settingsView.registerProfileButton
+            .addTarget(self, action: #selector(showUpdateProfile), for: .touchUpInside)
     }
     
     func loadUserData(){
@@ -38,5 +44,13 @@ class SettingsViewController: UIViewController {
                 self?.settingsView.setUser(user: user)
             })
             .store(in: &cancellable)
+    }
+    
+    @objc
+    func showUpdateProfile(){
+        let updateProfileVC = UpdateProfileViewController(user: self.user)
+        self.present(updateProfileVC, animated: true) { [weak self] in
+            self?.loadUserData()
+        }
     }
 }
