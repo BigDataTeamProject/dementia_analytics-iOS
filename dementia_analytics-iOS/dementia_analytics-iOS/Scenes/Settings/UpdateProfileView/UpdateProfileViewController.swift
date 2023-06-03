@@ -44,6 +44,9 @@ class UpdateProfileViewController: UIViewController {
     }
     
     func configure(){
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        
         self.updateProfileView.nameInput.delegate = self
         self.updateProfileView.ageInput.delegate = self
         self.updateProfileView.heightInput.delegate = self
@@ -96,8 +99,8 @@ extension UpdateProfileViewController: UITextFieldDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.view.endEditing))
-        self.view.addGestureRecognizer(tapGesture)
+        super.touchesBegan(touches, with: event)
+        self.view.endEditing(true)
     }
     
     

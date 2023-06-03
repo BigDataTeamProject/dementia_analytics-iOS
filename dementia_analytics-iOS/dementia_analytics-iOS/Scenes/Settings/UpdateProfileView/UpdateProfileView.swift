@@ -81,7 +81,7 @@ final class UpdateProfileView: UIView {
         return contentBox
     }()
     
-    private lazy var storeButton: UIButton = {
+    lazy var storeButton: UIButton = {
         let button = UIButton()
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill

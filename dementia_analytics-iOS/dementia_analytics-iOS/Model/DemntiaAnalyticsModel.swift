@@ -13,10 +13,12 @@ import CombineMoya
 final class DementiaAnalyticsModel {
     static let shared = DementiaAnalyticsModel()
     var auth: Bool = false
-    
     let healthStore = HKHealthStore()
     let readObejctType: Set<HKObjectType>
-    var sleepData:[SleepType] = []
+    let readQuantityType: [HKQuantityType]
+    let readCategoryType: [HKCategoryType]
+    
+    var sleepData:[SleepValue] = []
     
     private init() {
         let readQuantityTypeIdentifiers: [HKQuantityTypeIdentifier] = [
@@ -25,17 +27,17 @@ final class DementiaAnalyticsModel {
             .distanceWalkingRunning,
             .stepCount
         ]
-        let readQuantityType: [HKSampleType] = readQuantityTypeIdentifiers
-            .compactMap { HKQuantityType($0) }
         let readCategoryTypeIdentifier: [HKCategoryTypeIdentifier] = [
             .sleepAnalysis,
             .sleepChanges
         ]
-        let readCategoryType: [HKSampleType] = readCategoryTypeIdentifier
+        
+        self.readQuantityType = readQuantityTypeIdentifiers
+            .compactMap { HKQuantityType($0) }
+        self.readCategoryType = readCategoryTypeIdentifier
             .compactMap{ HKCategoryType($0) }
         
-        let readIdentifiers:[HKSampleType] = readQuantityType + readCategoryType
-        
+        let readIdentifiers: [HKSampleType] = readQuantityType + readCategoryType
         let readObejctType = Set(readIdentifiers)
         self.readObejctType = readObejctType
     }
@@ -46,28 +48,34 @@ final class DementiaAnalyticsModel {
         }
     }
     
-    func read(){
-        let start = Date().addDate(byAddning: .year, value: -1)
-        let end = Date().addDate(byAddning: .day, value: -1)
+    private func readSampleQuery(sampleType: HKSampleType,
+                            completion: @escaping (_ result: [HKSample]?, _ error: Error?) -> Void){
+        let start = Date().addDate(byAddning: .year, value: -3)
+        let end = Date().addDate(byAddning: .day, value: 1)
         let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
-        let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis),
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        
+        let query = HKSampleQuery(sampleType: sampleType,
                                   predicate: predicate,
-                                  limit: 100,
-                                  sortDescriptors: []) { [weak self] (query, sleepResult, error) -> Void in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            if let result = sleepResult {
-                DispatchQueue.main.async {
-                    self?.sleepData = (result as? [HKCategorySample] ?? []).compactMap{ sample in
-                        SleepType(sample: sample)
-                    }
-                    print(self?.sleepData)
-                }
+                                  limit: Int(HKObjectQueryNoLimit),
+                                  sortDescriptors: [sortDescriptor]) { (query, sleepResult, error) -> Void in
+            DispatchQueue.main.async {
+                completion(sleepResult, error)
             }
         }
+        healthStore.execute(query)
+    }
+    
+    private func readStatisticsQuery(quantityType: HKQuantityType,
+                            completion: @escaping (_ result: [HKSample]?, _ error: Error?) -> Void){
+        let start = Date().addDate(byAddning: .year, value: -3)
+        let end = Date().addDate(byAddning: .day, value: 1)
+        let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+    
+        let query = HKStatisticsQuery(quantityType: quantityType,
+                                      quantitySamplePredicate: predicate,
+                                      options: <#T##HKStatisticsOptions#>, completionHandler: <#T##(HKStatisticsQuery, HKStatistics?, Error?) -> Void#>)
         healthStore.execute(query)
     }
     
@@ -82,5 +90,39 @@ final class DementiaAnalyticsModel {
                 error as Error
             }
             .eraseToAnyPublisher()
+    }
+}
+
+extension DementiaAnalyticsModel {
+    func readSleepAnalysisData(){
+        self.readSampleQuery(sampleType: HKCategoryType(.sleepAnalysis)) { [weak self] result, error in
+            guard let result = result else { return }
+            self?.sleepData = (result as? [HKCategorySample] ?? []).compactMap{ sample in
+                let value = SleepValue(sample: sample)
+                guard let minute = value.durationMinute, minute > 0,
+                      value.type != nil else { return nil }
+                return value
+            }
+        }
+    }
+    
+    func readSleepChangeData(){
+        self.readSampleQuery(sampleType: HKCategoryType(.sleepChanges)) { [weak self] result, error in
+            guard let result = result else { return }
+            self?.sleepData = (result as? [HKCategorySample] ?? []).compactMap{ sample in
+                let value = SleepValue(sample: sample)
+                guard let minute = value.durationMinute, minute > 0,
+                      value.type != nil else { return nil }
+                return value
+            }
+        }
+    }
+    
+    func readActivitEnergyBurned(){
+        self.readSampleQuery(sampleType: HKQuantityType(.activeEnergyBurned)) { [weak self] result, error in
+    
+            guard let result = result, let sum = result.sumQuantity() else { return }
+            let cal = sum.doubleValue(for: HKUnit.kilocalorie())
+        }
     }
 }

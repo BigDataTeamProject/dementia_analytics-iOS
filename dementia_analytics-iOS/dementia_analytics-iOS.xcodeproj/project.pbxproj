@@ -15,7 +15,7 @@
 		A507FF522A2B270A00EC9426 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF512A2B270A00EC9426 /* Prediction.swift */; };
 		A507FF542A2B2BA700EC9426 /* ManageDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */; };
 		A507FF572A2B2BCC00EC9426 /* ManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */; };
-		A50CF4FC2A289DB300D31E77 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF4FB2A289DB300D31E77 /* SleepType.swift */; };
+		A50CF4FC2A289DB300D31E77 /* SleepValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF4FB2A289DB300D31E77 /* SleepValue.swift */; };
 		A50CF4FF2A28A10A00D31E77 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = A50CF4FE2A28A10A00D31E77 /* FSCalendar */; };
 		A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5002A28B8C400D31E77 /* Date+.swift */; };
 		A50CF5032A28B8E100D31E77 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5022A28B8E100D31E77 /* String+.swift */; };
@@ -64,7 +64,7 @@
 		A507FF512A2B270A00EC9426 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataViewController.swift; sourceTree = "<group>"; };
 		A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataView.swift; sourceTree = "<group>"; };
-		A50CF4FB2A289DB300D31E77 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
+		A50CF4FB2A289DB300D31E77 /* SleepValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepValue.swift; sourceTree = "<group>"; };
 		A50CF5002A28B8C400D31E77 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50CF5022A28B8E100D31E77 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A50CF5042A28C44400D31E77 /* ContentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBox.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 				A507FF512A2B270A00EC9426 /* Prediction.swift */,
 				A507FF4F2A2B120E00EC9426 /* Features.swift */,
 				A50CF50B2A28D0D800D31E77 /* User.swift */,
-				A50CF4FB2A289DB300D31E77 /* SleepType.swift */,
+				A50CF4FB2A289DB300D31E77 /* SleepValue.swift */,
 				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
 			);
 			path = Model;
@@ -423,7 +423,7 @@
 				A5FE2E992A29D65300386F7B /* UIButton+.swift in Sources */,
 				A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */,
 				A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */,
-				A50CF4FC2A289DB300D31E77 /* SleepType.swift in Sources */,
+				A50CF4FC2A289DB300D31E77 /* SleepValue.swift in Sources */,
 				A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */,
 				A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */,
 				A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */,
