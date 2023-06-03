@@ -8,5 +8,7 @@
 import Foundation
 
 extension Date {
-    
+    func addDate(byAddning: Calendar.Component, value: Int)-> Date {
+        return Calendar.current.date(byAdding: byAddning, value: value, to: self) ?? self
+    }
 }

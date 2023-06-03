@@ -24,4 +24,5 @@ struct StringCollection{
     static let profile = "사용자"
     static let cancel = "취소"
     static let store = "저장"
+    static let daDescription = "더욱 정확한 데이터를 측정하기 위해 모든 데이터를 허용해주세요."
 }

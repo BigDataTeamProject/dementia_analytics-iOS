@@ -41,6 +41,9 @@ final class ContentBox: UIView  {
     }
     
     func setContentView(_ view: UIView){
+        contentView.subviews.forEach { view in
+                view.removeFromSuperview()
+        }
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         let constraints: [NSLayoutConstraint] = [

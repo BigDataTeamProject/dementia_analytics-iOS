@@ -29,11 +29,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     @objc
     func showTestView(){
-        DementiaAnalyticsModel.shared.read()
-        navigationController?.pushViewController(GraphViewController(nibName: nil, bundle: nil), animated: true)
-        // if let url = URL(string: UIApplication.openSettingsURLString) {
-        //     UIApplication.shared.open(url)
-        // }
+        let vc = ManageDataViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

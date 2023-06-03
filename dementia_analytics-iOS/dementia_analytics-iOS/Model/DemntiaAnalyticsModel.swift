@@ -6,6 +6,9 @@
 //
 
 import HealthKit
+import Moya
+import Combine
+import CombineMoya
 
 final class DementiaAnalyticsModel {
     static let shared = DementiaAnalyticsModel()
@@ -13,7 +16,7 @@ final class DementiaAnalyticsModel {
     
     let healthStore = HKHealthStore()
     let readObejctType: Set<HKObjectType>
-    var sleepData:[HKCategorySample] = []
+    var sleepData:[SleepType] = []
     
     private init() {
         let readQuantityTypeIdentifiers: [HKQuantityTypeIdentifier] = [
@@ -44,27 +47,40 @@ final class DementiaAnalyticsModel {
     }
     
     func read(){
-        let start = "2023-05-30".toDate()
-        let end = start
+        let start = Date().addDate(byAddning: .year, value: -1)
+        let end = Date().addDate(byAddning: .day, value: -1)
         let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
-        let queryPredicate = HKCategoryValueSleepAnalysis.predicateForSamples(.equalTo, value:.asleepREM)
-        
         let query = HKSampleQuery(sampleType: HKCategoryType(.sleepAnalysis),
                                   predicate: predicate,
-                                  limit: 30,
+                                  limit: 100,
                                   sortDescriptors: []) { [weak self] (query, sleepResult, error) -> Void in
-            if error != nil {
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
+            
             if let result = sleepResult {
                 DispatchQueue.main.async {
-                    self?.sleepData = (result as? [HKCategorySample] ?? [])
-                    (result as? [HKCategorySample] ?? []).compactMap{ sample in
+                    self?.sleepData = (result as? [HKCategorySample] ?? []).compactMap{ sample in
                         SleepType(sample: sample)
                     }
+                    print(self?.sleepData)
                 }
             }
         }
         healthStore.execute(query)
+    }
+    
+    func send(features: Features) -> AnyPublisher<Prediction?, Error> {
+        let provider = MoyaProvider<APIService>()
+        let featuresData = features.toJSON()!
+        return provider.requestPublisher(.predict(featuresData))
+            .map{ response -> Prediction? in
+                return try? response.map(Prediction.self)
+            }
+            .mapError{ error in
+                error as Error
+            }
+            .eraseToAnyPublisher()
     }
 }

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50570B32A26D57700B62C43 /* NumberPicker.swift */; };
+		A507FF4A2A2B0E5300EC9426 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = A507FF492A2B0E5300EC9426 /* CombineMoya */; };
+		A507FF4C2A2B0E5300EC9426 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = A507FF4B2A2B0E5300EC9426 /* Moya */; };
+		A507FF4E2A2B0FAE00EC9426 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF4D2A2B0FAE00EC9426 /* APIService.swift */; };
+		A507FF502A2B120E00EC9426 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF4F2A2B120E00EC9426 /* Features.swift */; };
+		A507FF522A2B270A00EC9426 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF512A2B270A00EC9426 /* Prediction.swift */; };
+		A507FF542A2B2BA700EC9426 /* ManageDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */; };
+		A507FF572A2B2BCC00EC9426 /* ManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */; };
 		A50CF4FC2A289DB300D31E77 /* SleepType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF4FB2A289DB300D31E77 /* SleepType.swift */; };
 		A50CF4FF2A28A10A00D31E77 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = A50CF4FE2A28A10A00D31E77 /* FSCalendar */; };
 		A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5002A28B8C400D31E77 /* Date+.swift */; };
@@ -52,6 +59,11 @@
 
 /* Begin PBXFileReference section */
 		A50570B32A26D57700B62C43 /* NumberPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPicker.swift; sourceTree = "<group>"; };
+		A507FF4D2A2B0FAE00EC9426 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		A507FF4F2A2B120E00EC9426 /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
+		A507FF512A2B270A00EC9426 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataViewController.swift; sourceTree = "<group>"; };
+		A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataView.swift; sourceTree = "<group>"; };
 		A50CF4FB2A289DB300D31E77 /* SleepType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepType.swift; sourceTree = "<group>"; };
 		A50CF5002A28B8C400D31E77 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50CF5022A28B8E100D31E77 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -99,8 +111,10 @@
 			files = (
 				A5C650302A2745DB00EDF3A6 /* Alamofire in Frameworks */,
 				A56BC21B2A25B063007FE478 /* CoreDataStorage in Frameworks */,
+				A507FF4A2A2B0E5300EC9426 /* CombineMoya in Frameworks */,
 				A5F18CB02A265CCD00C2437D /* Lottie in Frameworks */,
 				A50CF4FF2A28A10A00D31E77 /* FSCalendar in Frameworks */,
+				A507FF4C2A2B0E5300EC9426 /* Moya in Frameworks */,
 				A53A34332A287405008FEB89 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,11 +133,21 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		A507FF552A2B2BAB00EC9426 /* LoadDataView */ = {
+			isa = PBXGroup;
+			children = (
+				A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */,
+				A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */,
+			);
+			path = LoadDataView;
+			sourceTree = "<group>";
+		};
 		A53A34192A2867DE008FEB89 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				A55087F429FF66C50023D6CC /* HomeView.swift */,
 				A55087DE29FF65880023D6CC /* HomeViewController.swift */,
+				A507FF552A2B2BAB00EC9426 /* LoadDataView */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -281,6 +305,9 @@
 			isa = PBXGroup;
 			children = (
 				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
+				A507FF4D2A2B0FAE00EC9426 /* APIService.swift */,
+				A507FF512A2B270A00EC9426 /* Prediction.swift */,
+				A507FF4F2A2B120E00EC9426 /* Features.swift */,
 				A50CF50B2A28D0D800D31E77 /* User.swift */,
 				A50CF4FB2A289DB300D31E77 /* SleepType.swift */,
 				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
@@ -319,6 +346,8 @@
 				A5C6502F2A2745DB00EDF3A6 /* Alamofire */,
 				A53A34322A287405008FEB89 /* Charts */,
 				A50CF4FE2A28A10A00D31E77 /* FSCalendar */,
+				A507FF492A2B0E5300EC9426 /* CombineMoya */,
+				A507FF4B2A2B0E5300EC9426 /* Moya */,
 			);
 			productName = "dementia_analytics-iOS";
 			productReference = A55087D729FF65880023D6CC /* dementia_analytics-iOS.app */;
@@ -354,6 +383,7 @@
 				A5C6502E2A2745DB00EDF3A6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				A53A34312A287405008FEB89 /* XCRemoteSwiftPackageReference "Charts" */,
 				A50CF4FD2A28A10A00D31E77 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				A507FF482A2B0E5300EC9426 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = A55087D829FF65880023D6CC /* Products */;
 			projectDirPath = "";
@@ -402,6 +432,8 @@
 				A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */,
 				A50CF50A2A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld in Sources */,
 				A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */,
+				A507FF542A2B2BA700EC9426 /* ManageDataViewController.swift in Sources */,
+				A507FF4E2A2B0FAE00EC9426 /* APIService.swift in Sources */,
 				A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */,
 				A55087F529FF66C50023D6CC /* HomeView.swift in Sources */,
 				A54C97272A28EC1E0037A9CF /* UpdateProfileView.swift in Sources */,
@@ -412,9 +444,12 @@
 				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
 				A5FE2E9D2A2A0F3500386F7B /* UIView+.swift in Sources */,
 				A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */,
+				A507FF572A2B2BCC00EC9426 /* ManageDataView.swift in Sources */,
 				A54C97242A28EC080037A9CF /* UpdateProfileViewController.swift in Sources */,
+				A507FF522A2B270A00EC9426 /* Prediction.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
 				A50CF50C2A28D0D800D31E77 /* User.swift in Sources */,
+				A507FF502A2B120E00EC9426 /* Features.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +663,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A507FF482A2B0E5300EC9426 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.0;
+			};
+		};
 		A50CF4FD2A28A10A00D31E77 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -671,6 +714,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A507FF492A2B0E5300EC9426 /* CombineMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A507FF482A2B0E5300EC9426 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = CombineMoya;
+		};
+		A507FF4B2A2B0E5300EC9426 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A507FF482A2B0E5300EC9426 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		A50CF4FE2A28A10A00D31E77 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A50CF4FD2A28A10A00D31E77 /* XCRemoteSwiftPackageReference "FSCalendar" */;

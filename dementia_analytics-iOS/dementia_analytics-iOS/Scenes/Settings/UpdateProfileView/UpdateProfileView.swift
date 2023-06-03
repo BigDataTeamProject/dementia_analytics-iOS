@@ -8,6 +8,9 @@
 import UIKit
 
 final class UpdateProfileView: UIView {
+    var storeAction: (()->Void)? = nil
+    var cancelAction: (()->Void)? = nil
+    
     private lazy var backgroundDecorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.homeBackgroundDecor.image
@@ -53,24 +56,28 @@ final class UpdateProfileView: UIView {
     private lazy var nameBox: InputContentBox = {
         let contentBox = InputContentBox()
         contentBox.setTitle(StringCollection.name, fontSize: 20)
+        contentBox.setContentView(nameInput)
         return contentBox
     }()
     
     private lazy var ageBox: InputContentBox = {
         let contentBox = InputContentBox()
         contentBox.setTitle(StringCollection.age, fontSize: 20)
+        contentBox.setContentView(ageInput)
         return contentBox
     }()
     
     private lazy var heightBox: InputContentBox = {
         let contentBox = InputContentBox()
         contentBox.setTitle(StringCollection.height, fontSize: 20)
+        contentBox.setContentView(heightInput)
         return contentBox
     }()
     
     private lazy var weightBox: InputContentBox = {
         let contentBox = InputContentBox()
         contentBox.setTitle(StringCollection.weight, fontSize: 20)
+        contentBox.setContentView(weightInput)
         return contentBox
     }()
     
@@ -84,6 +91,7 @@ final class UpdateProfileView: UIView {
         button.layer.cornerRadius = 20
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .bmEuljiro(20)
+        button.addTarget(self, action: #selector(store), for: .touchUpInside)
         return button
     }()
     
@@ -97,7 +105,35 @@ final class UpdateProfileView: UIView {
         button.layer.cornerRadius = 20
         button.titleLabel?.textAlignment = .center
         button.titleLabel?.font = .bmEuljiro(20)
+        button.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var nameInput: UITextField = {
+        let textField = UITextField()
+        textField.tag = 0
+        return textField
+    }()
+    
+    lazy var ageInput: UITextField = {
+        let textField = UITextField()
+        textField.keyboardType = .numberPad
+        textField.tag = 1
+        return textField
+    }()
+    
+    lazy var heightInput: UITextField = {
+        let textField = UITextField()
+        textField.keyboardType = .decimalPad
+        textField.tag = 2
+        return textField
+    }()
+    
+    lazy var weightInput: UITextField = {
+        let textField = UITextField()
+        textField.keyboardType = .decimalPad
+        textField.tag = 3
+        return textField
     }()
     
     init() {
@@ -189,5 +225,21 @@ final class UpdateProfileView: UIView {
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    @objc func store(){
+        storeAction?()
+    }
+    @objc func cancel(){
+        cancelAction?()
+    }
+    
+    func setUser(user: User?){
+        if let user = user {
+            self.nameInput.text = "\(user.name)"
+            self.ageInput.text = "\(user.age)"
+            self.heightInput.text = "\(user.height)"
+            self.weightInput.text = "\(user.weight)"
+        }
     }
 }

@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController {
     private var user: User? = nil
     private let storage = CoreDataStorage.shared(name: "DementiaDataStorage")
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
+    private let detectDismiss = PassthroughSubject<Bool, Never>()
     
     
     private var settingsView: SettingsView {
@@ -30,11 +31,20 @@ class SettingsViewController: UIViewController {
     }
     
     func configure(){
-        self.settingsView.showUpdateProfile = {
-            let updateProfileVC = UpdateProfileViewController(user: self.user)
-            self.present(updateProfileVC, animated: true) { [weak self] in
+        self.detectDismiss
+            .sink { [weak self] isDismiss in
+            if isDismiss {
                 self?.loadUserData()
             }
+        }
+        .store(in: &cancellable)
+        
+        self.settingsView.showUpdateProfile = { [weak self] in
+            guard let self = self else { return }
+            let updateProfileVC = UpdateProfileViewController(user: self.user)
+            updateProfileVC.dismissAlert = self.detectDismiss
+            self.present(updateProfileVC, animated: true)
+            
         }
         
         self.settingsView.moveToSetting = {

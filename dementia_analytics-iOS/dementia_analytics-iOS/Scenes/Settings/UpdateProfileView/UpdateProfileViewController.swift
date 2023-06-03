@@ -10,9 +10,16 @@ import Combine
 import CoreDataStorage
 
 class UpdateProfileViewController: UIViewController {
+    private var name: String? = nil
+    private var age: Int? = nil
+    private var height: CGFloat? = nil
+    private var weight: CGFloat? = nil
+    
     private var user: User? = nil
     private let storage = CoreDataStorage.shared(name: "DementiaDataStorage")
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
+    
+    var dismissAlert: PassthroughSubject<Bool, Never>? = nil
     
     private var updateProfileView: UpdateProfileView {
         return self.view as! UpdateProfileView
@@ -33,6 +40,78 @@ class UpdateProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configure()
     }
+    
+    func configure(){
+        self.updateProfileView.nameInput.delegate = self
+        self.updateProfileView.ageInput.delegate = self
+        self.updateProfileView.heightInput.delegate = self
+        self.updateProfileView.weightInput.delegate = self
+        self.updateProfileView.nameInput
+            .addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        self.updateProfileView.ageInput
+            .addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        self.updateProfileView.heightInput
+            .addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        self.updateProfileView.weightInput
+            .addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        self.updateProfileView.setUser(user: user)
+        self.name = user?.name
+        self.age = user?.age
+        self.height = user?.height
+        self.weight = user?.weight
+        
+        self.updateProfileView.storeAction = {
+            guard let name = self.name,
+                  let age = self.age,
+                  let height = self.height,
+                  let weight = self.weight else { return }
+            self.storage.deleteAll(User.self)
+                .flatMap { _ in
+                    return self.storage.create(User(name: name, age: age, height: height, weight: weight))
+                }
+                .map{ user -> User? in user }
+                .replaceError(with: nil)
+                .receive(on: DispatchQueue.main)
+                .sink { user in
+                    self.dismissAlert?.send(true)
+                    self.dismiss(animated: true)
+                }
+                .store(in: &self.cancellable)
+        }
+        
+        self.updateProfileView.cancelAction = {
+            self.dismissAlert?.send(true)
+            self.dismiss(animated: true)
+        }
+    }
+    
+}
 
+extension UpdateProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.view.endEditing))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    @objc func textFieldDidChange(_ sender: Any){
+        if let textfield = sender as? UITextField {
+            if let text = textfield.text{
+                switch textfield.tag {
+                case 0: self.name = text
+                case 1: self.age = Int(text)
+                case 2: self.height = CGFloat((text as NSString).floatValue)
+                case 3: self.weight = CGFloat((text as NSString).floatValue)
+                default: break
+                }
+            }
+        }
+    }
 }

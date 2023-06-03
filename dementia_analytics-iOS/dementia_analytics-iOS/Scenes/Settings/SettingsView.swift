@@ -99,6 +99,7 @@ final class SettingsView: UIView {
     
     func setUser(user: User?){
         let contentView = UIView()
+        contentView.tag = 10
         let label = UILabel()
         if let user = user {
             label.text = user.name
@@ -134,6 +135,14 @@ final class SettingsView: UIView {
     
     func setAuth(){
         if DementiaAnalyticsModel.shared.auth {
+            let descriptionLabel = UILabel()
+            descriptionLabel.text = StringCollection.daDescription
+            descriptionLabel.font = .bmEuljiro(16)
+            descriptionLabel.textColor = .lightGray
+            descriptionLabel.numberOfLines = 3
+            descriptionLabel.textAlignment = .center
+            stackView.addArrangedSubview(descriptionLabel)
+        } else {
             let authCheckBox = SettingContentBox()
             authCheckBox.setDescription(StringCollection.noAuth)
             authCheckBox.setButton(StringCollection.moveToSetting,
@@ -142,8 +151,6 @@ final class SettingsView: UIView {
             }
             
             stackView.addArrangedSubview(authCheckBox)
-        } else {
-            
         }
         layoutSubviews()
     }

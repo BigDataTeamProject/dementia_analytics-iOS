@@ -23,14 +23,12 @@ struct SleepType{
     }
     
     init(sample: HKCategorySample){
-        // if let typeValue = typeValue {
-        //     self.type = HKCategoryValueSleepAnalysis(rawValue: typeValue)
-        // } else {
-        //     self.type = nil
-        // }
-        let value = sample.value(forKey:HKPredicateKeyPathCategoryValue)
-        print(value)
-        self.type = nil
+        let value = sample.value(forKey:HKPredicateKeyPathCategoryValue) as? Int
+        if let value = value {
+            self.type = HKCategoryValueSleepAnalysis(rawValue: value)
+        } else {
+            self.type = nil
+        }
         self.startDate = sample.startDate
         self.endDate = sample.endDate
     }
