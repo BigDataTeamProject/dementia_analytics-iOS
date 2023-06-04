@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import Combine
 
 final class DataManager {
     static let shared = DataManager()
+    private let model = DementiaAnalyticsModel.shared
+    var auth: Bool {
+        model.auth
+    }
     var cnMean: Features? = nil
     var mciMean: Features? = nil
     var demMean: Features? = nil
@@ -38,5 +43,21 @@ final class DataManager {
         return (cnMean?.getValue(dataType: dataType),
                 demMean?.getValue(dataType: dataType),
                 mciMean?.getValue(dataType: dataType))
+    }
+    
+    func analysis() -> AnyPublisher<DementiaType, Never>? {
+        // let features = Features(sleepBreathAverage: <#T##CGFloat#>,
+        //          sleepHrAverage: <#T##CGFloat#>,
+        //          sleepHrLowest: <#T##CGFloat#>,
+        //          sleepDeep: <#T##CGFloat#>,
+        //          sleepRem: <#T##CGFloat#>,
+        //          activityCalTotal: <#T##CGFloat#>,
+        //          sleepAwake: <#T##CGFloat#>,
+        //          activitySteps: <#T##CGFloat#>,
+        //          activityTotal: <#T##CGFloat#>,
+        //          sleepDuration: <#T##CGFloat#>,
+        //          activityDailyMovement: <#T##CGFloat#>)
+        // model.send(features: <#T##Features#>)
+        return nil
     }
 }

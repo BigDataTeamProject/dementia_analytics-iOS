@@ -11,7 +11,7 @@ final class SettingsView: UIView {
     var showUpdateProfile: (()->Void)? = nil
     var moveToSetting: (()->Void)? = nil
     
-    private let auth: Bool = DementiaAnalyticsModel.shared.auth
+    private let auth: Bool = DataManager.shared.auth
     
     private lazy var backgroundDecorImageView: UIImageView = {
         let imageView = UIImageView()
@@ -134,7 +134,7 @@ final class SettingsView: UIView {
     }
     
     func setAuth(){
-        if DementiaAnalyticsModel.shared.auth {
+        if DataManager.shared.auth {
             let descriptionLabel = UILabel()
             descriptionLabel.text = StringCollection.daDescription
             descriptionLabel.font = .bmEuljiro(16)

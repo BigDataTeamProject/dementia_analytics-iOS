@@ -8,6 +8,7 @@
 import UIKit
 
 class ResultPageViewController: UIViewController {
+    private let dataManager = DataManager.shared
     
     private var resultPageView: ResultPageView {
         return self.view as! ResultPageView
@@ -23,7 +24,7 @@ class ResultPageViewController: UIViewController {
     }
     
     func configure(){
-        
+        dataManager.analysis()
     }
 
 }
