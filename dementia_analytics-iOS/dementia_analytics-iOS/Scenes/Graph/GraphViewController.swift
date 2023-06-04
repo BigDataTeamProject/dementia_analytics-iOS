@@ -9,13 +9,40 @@ import UIKit
 import Charts
 
 class GraphViewController: UIViewController {
+    private var chartPageViewControllerList: [UIViewController] = {
+        let viewControllers = [DADataType.activityCalTotal,
+                               DADataType.activityDailyMovement,
+                               DADataType.activitySteps,
+                               DADataType.activityTotal,
+                               DADataType.sleepRem,
+                               DADataType.sleepDeep,
+                               DADataType.sleepAwake,
+                               DADataType.sleepDuration,
+                               DADataType.sleepHrLowest,
+                               DADataType.sleepHrAverage,
+                               DADataType.sleepBreathAverage
+        ].enumerated().compactMap{ idx, type in
+            let chartPageViewController =  ChartPageViewController()
+            chartPageViewController.view.tag = idx + 1
+            chartPageViewController.setDataType(dataType: type)
+            return chartPageViewController
+        }
+        return viewControllers
+    }()
+    
+    private lazy var pageViewController: UIPageViewController = {
+        let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        return pageViewController
+    }()
     
     private var graphView: GraphView {
         return self.view as! GraphView
     }
     
     override func loadView() {
-        view =  GraphView()
+        let graphView = GraphView()
+        graphView.setPageView(pageView: pageViewController.view)
+        view = graphView
     }
     
     override func viewDidLoad() {
@@ -24,26 +51,34 @@ class GraphViewController: UIViewController {
     }
     
     func configure(){
-        graphView.collectionView.delegate = self
-        graphView.collectionView.dataSource = self
+        self.addChild(pageViewController)
+        self.pageViewController.dataSource = self
+        self.pageViewController.delegate = self
+        if let firstVC = chartPageViewControllerList.first {
+            pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        }
     }
 }
 
-extension GraphViewController: UICollectionViewDelegate,
-                               UICollectionViewDataSource,
-                               UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+extension GraphViewController: UIPageViewControllerDelegate,
+                               UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let index = chartPageViewControllerList
+            .compactMap({ $0.view.tag })
+            .firstIndex(of: viewController.view.tag) else { return nil }
+        let previousIndex = index - 1
+        if previousIndex < 0 { return nil }
+        print("prev: ",chartPageViewControllerList[previousIndex])
+        return chartPageViewControllerList[previousIndex]
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCollectionViewCell.identifier, for: indexPath)
-        cell.backgroundColor = .daGreen
-        return cell
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let index = chartPageViewControllerList
+            .compactMap({ $0.view.tag })
+            .firstIndex(of: viewController.view.tag) else { return nil }
+        let nextIndex = index + 1
+        if nextIndex == chartPageViewControllerList.count { return nil }
+        print("next: ",chartPageViewControllerList[nextIndex])
+        return chartPageViewControllerList[nextIndex]
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: graphView.collectionView.frame.width, height: graphView.collectionView.frame.height)
-    }
-    
 }

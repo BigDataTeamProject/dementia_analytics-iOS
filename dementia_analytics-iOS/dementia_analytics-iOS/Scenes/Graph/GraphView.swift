@@ -8,16 +8,6 @@
 import UIKit
 
 final class GraphView: UIView {
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(ChartCollectionViewCell.self,
-                                forCellWithReuseIdentifier: ChartCollectionViewCell.identifier)
-        return collectionView
-    }()
     
     private lazy var backgroundDecorImageView: UIImageView = {
         let imageView = UIImageView()
@@ -41,28 +31,39 @@ final class GraphView: UIView {
     }
     
     private func addSubviews() {
-        [backgroundDecorImageView, collectionView].forEach { view in
+        [backgroundDecorImageView].forEach { view in
             self.addSubview(view)
         }
     }
     
     private func makeConstraints() {
-        [backgroundDecorImageView, collectionView].forEach { view in
+        [backgroundDecorImageView].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
         let constraints: [NSLayoutConstraint] = [
-            collectionView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            collectionView.heightAnchor.constraint(equalTo: collectionView.widthAnchor),
-            
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),
             backgroundDecorImageView.heightAnchor.constraint(equalTo:backgroundDecorImageView.widthAnchor,
                                                              multiplier: UIImage.homeBackgroundDecor.aspectHeight),
             backgroundDecorImageView.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundDecorImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func setPageView(pageView: UIView){
+        
+        self.addSubview(pageView)
+        [pageView].forEach { view in
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        let constraints: [NSLayoutConstraint] = [
+            pageView.topAnchor.constraint(equalTo: self.topAnchor),
+            pageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            pageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            pageView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }

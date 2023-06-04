@@ -32,9 +32,16 @@ final class ManageDataView: UIView {
         return calendar
     }()
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(DataCollectionViewCell.self,
+                                forCellWithReuseIdentifier: DataCollectionViewCell.identifier)
+        return collectionView
     }()
     
     init() {
@@ -53,14 +60,14 @@ final class ManageDataView: UIView {
     }
     
     private func addSubviews() {
-        [backgroundDecorImageView, tableView, calendar].forEach { view in
+        [backgroundDecorImageView, collectionView, calendar].forEach { view in
             self.addSubview(view)
         }
     }
     
     private func makeConstraints() {
         
-        [backgroundDecorImageView, tableView, calendar].forEach { view in
+        [backgroundDecorImageView, collectionView, calendar].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -70,10 +77,10 @@ final class ManageDataView: UIView {
             calendar.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             calendar.heightAnchor.constraint(lessThanOrEqualToConstant: 400),
             
-            tableView.topAnchor.constraint(equalTo: calendar.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: calendar.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),

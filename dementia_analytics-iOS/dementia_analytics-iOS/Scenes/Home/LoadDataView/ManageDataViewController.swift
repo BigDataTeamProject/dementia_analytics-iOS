@@ -24,8 +24,8 @@ class ManageDataViewController: UIViewController {
     }
     
     func configure(){
-        self.manageDataView.tableView.delegate = self
-        self.manageDataView.tableView.dataSource = self
+        self.manageDataView.collectionView.delegate = self
+        self.manageDataView.collectionView.dataSource = self
         self.manageDataView.calendar.delegate = self
         self.manageDataView.calendar.dataSource = self
     }
@@ -45,4 +45,22 @@ extension ManageDataViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ManageDataViewController: FSCalendarDelegate, FSCalendarDataSource{
     
+}
+
+extension ManageDataViewController: UICollectionViewDelegate,
+                               UICollectionViewDataSource,
+                               UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DataCollectionViewCell.identifier, for: indexPath)
+        cell.backgroundColor = .daGreen
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: manageDataView.collectionView.frame.width - 20, height: 80)
+    }
 }
