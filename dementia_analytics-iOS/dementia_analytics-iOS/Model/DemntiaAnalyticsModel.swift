@@ -73,10 +73,10 @@ final class DementiaAnalyticsModel {
         let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
     
-        let query = HKStatisticsQuery(quantityType: quantityType,
-                                      quantitySamplePredicate: predicate,
-                                      options: <#T##HKStatisticsOptions#>, completionHandler: <#T##(HKStatisticsQuery, HKStatistics?, Error?) -> Void#>)
-        healthStore.execute(query)
+        // let query = HKStatisticsQuery(quantityType: quantityType,
+        //                               quantitySamplePredicate: predicate,
+        //                               options: <#T##HKStatisticsOptions#>, completionHandler: <#T##(HKStatisticsQuery, HKStatistics?, Error?) -> Void#>)
+        // healthStore.execute(query)
     }
     
     func send(features: Features) -> AnyPublisher<Prediction?, Error> {
@@ -121,8 +121,8 @@ extension DementiaAnalyticsModel {
     func readActivitEnergyBurned(){
         self.readSampleQuery(sampleType: HKQuantityType(.activeEnergyBurned)) { [weak self] result, error in
     
-            guard let result = result, let sum = result.sumQuantity() else { return }
-            let cal = sum.doubleValue(for: HKUnit.kilocalorie())
+            // guard let result = result, let sum = result.sumQuantity() else { return }
+            // let cal = sum.doubleValue(for: HKUnit.kilocalorie())
         }
     }
 }
