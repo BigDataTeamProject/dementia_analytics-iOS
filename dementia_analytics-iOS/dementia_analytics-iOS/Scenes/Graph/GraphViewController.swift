@@ -68,7 +68,6 @@ extension GraphViewController: UIPageViewControllerDelegate,
             .firstIndex(of: viewController.view.tag) else { return nil }
         let previousIndex = index - 1
         if previousIndex < 0 { return nil }
-        print("prev: ",chartPageViewControllerList[previousIndex])
         return chartPageViewControllerList[previousIndex]
     }
     
@@ -78,7 +77,6 @@ extension GraphViewController: UIPageViewControllerDelegate,
             .firstIndex(of: viewController.view.tag) else { return nil }
         let nextIndex = index + 1
         if nextIndex == chartPageViewControllerList.count { return nil }
-        print("next: ",chartPageViewControllerList[nextIndex])
         return chartPageViewControllerList[nextIndex]
     }
 }

@@ -26,6 +26,7 @@
 		A520E4132A2C6CD500A7120C /* ChartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4122A2C6CD500A7120C /* ChartPageViewController.swift */; };
 		A520E4152A2C746700A7120C /* ChartPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4142A2C746700A7120C /* ChartPageView.swift */; };
 		A520E4172A2C782D00A7120C /* DADataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4162A2C782D00A7120C /* DADataType.swift */; };
+		A520E41A2A2C829600A7120C /* DAData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4192A2C829600A7120C /* DAData.swift */; };
 		A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */; };
 		A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */; };
 		A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341C2A28680F008FEB89 /* GraphViewController.swift */; };
@@ -78,6 +79,7 @@
 		A520E4122A2C6CD500A7120C /* ChartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPageViewController.swift; sourceTree = "<group>"; };
 		A520E4142A2C746700A7120C /* ChartPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPageView.swift; sourceTree = "<group>"; };
 		A520E4162A2C782D00A7120C /* DADataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DADataType.swift; sourceTree = "<group>"; };
+		A520E4192A2C829600A7120C /* DAData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAData.swift; sourceTree = "<group>"; };
 		A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A53A341C2A28680F008FEB89 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
@@ -321,8 +323,9 @@
 				A507FF4F2A2B120E00EC9426 /* Features.swift */,
 				A50CF50B2A28D0D800D31E77 /* User.swift */,
 				A50CF4FB2A289DB300D31E77 /* SleepValue.swift */,
-				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
 				A520E4162A2C782D00A7120C /* DADataType.swift */,
+				A520E4192A2C829600A7120C /* DAData.swift */,
+				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 			files = (
 				A50CF5072A28C5D900D31E77 /* Color+.swift in Sources */,
 				A58E60092A25FA1700CC1507 /* Font+.swift in Sources */,
+				A520E41A2A2C829600A7120C /* DAData.swift in Sources */,
 				A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */,
 				A5455E742A2C61F3006A508C /* DataCollectionViewCell.swift in Sources */,
 				A50CF5032A28B8E100D31E77 /* String+.swift in Sources */,

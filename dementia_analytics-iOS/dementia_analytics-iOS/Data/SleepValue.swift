@@ -26,7 +26,7 @@ struct SleepValue: CustomStringConvertible{
     }
     
     var description: String {
-        return "SleepValue{\n\(type!)\nstartDate: \(startDate.koString())\nendDate: \(endDate.koString())\nduration: \(durationMinute)}"
+        return "SleepValue{\n\(type!)\nstartDate: \(startDate.koString())\nendDate: \(endDate.koString())\nduration: \(String(describing: durationMinute))}"
     }
     
     init(typeValue: Int?, startDate: Date, endDate: Date) {

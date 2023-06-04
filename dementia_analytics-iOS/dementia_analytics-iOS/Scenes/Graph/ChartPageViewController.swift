@@ -27,6 +27,11 @@ class ChartPageViewController: UIViewController {
     }
     
     func setDataType(dataType: DADataType){
-        chartPageView.setData(title: dataType.title, desc: "최근 데이터는 ~와 유사합니다")
+        chartPageView.setData(title: dataType.title,
+                              desc: "최근 데이터는 ~와 유사합니다",
+                              x: ["02-05", "03-04", "05-06"],
+                              y: [2.0, 3.0, 2.0],
+                              cnAvg: 1.0,
+                              demAvg: 3.0)
     }
 }

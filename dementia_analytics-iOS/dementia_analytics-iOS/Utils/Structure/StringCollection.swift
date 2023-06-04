@@ -37,4 +37,8 @@ struct StringCollection{
     static let activityTotal = "활동 시간"
     static let sleepDuration = "수면 시간"
     static let activityDailyMovement = "매일 움직인 거리"
+    
+    static let CN = "정상인"
+    static let DEM = "치매 환자"
+    static let MCI = "경증 치매 환자"
 }

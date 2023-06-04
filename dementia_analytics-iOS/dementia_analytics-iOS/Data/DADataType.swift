@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum DADataType {
-    case sleepBreathAverage
+enum DADataType: Int {
+    case sleepBreathAverage = 0
     case sleepHrAverage
     case sleepHrLowest
     case sleepDeep
@@ -19,6 +19,7 @@ enum DADataType {
     case activityTotal
     case sleepDuration
     case activityDailyMovement
+    case unknown
 }
 
 extension DADataType {
@@ -35,6 +36,7 @@ extension DADataType {
         case .activityTotal: return StringCollection.activityTotal
         case .sleepDuration: return StringCollection.sleepDuration
         case .activityDailyMovement: return StringCollection.activityDailyMovement
+        case .unknown: return ""
         }
     }
 }

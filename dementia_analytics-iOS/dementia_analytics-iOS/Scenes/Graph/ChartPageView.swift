@@ -21,6 +21,14 @@ final class ChartPageView: UIView {
         lineChartView.noDataText = "데이터가 없습니다."
         lineChartView.noDataFont = .bmEuljiro(20)
         lineChartView.noDataTextColor = .daGray
+        lineChartView.doubleTapToZoomEnabled = false
+        lineChartView.rightAxis.enabled = false
+        lineChartView.animate(xAxisDuration: 1.0, yAxisDuration: 2.0)
+        lineChartView.xAxis.labelFont = .bmEuljiro(14)
+        lineChartView.leftAxis.labelFont = .bmEuljiro(14)
+        lineChartView.extraRightOffset = 20
+        lineChartView.xAxis.drawGridLinesEnabled = false
+        
         return lineChartView
     }()
     
@@ -60,29 +68,76 @@ final class ChartPageView: UIView {
         let constraints: [NSLayoutConstraint] = [
             lineChartView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             lineChartView.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                                   constant: 20),
+                                                   constant: 30),
             lineChartView.trailingAnchor.constraint(equalTo: self.trailingAnchor,
-                                                   constant: -20),
-            lineChartView.heightAnchor.constraint(equalTo: lineChartView.widthAnchor),
+                                                    constant: -30),
+            lineChartView.heightAnchor.constraint(equalTo: lineChartView.widthAnchor, multiplier: 1.2),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                                   constant: 20),
+                                                constant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor,
-                                                   constant: -30),
+                                                 constant: -30),
             titleLabel.bottomAnchor.constraint(equalTo: lineChartView.topAnchor,
                                                constant: -30),
             descriptionLabel.topAnchor.constraint(equalTo: lineChartView.bottomAnchor,
-                                                  constant: 20),
+                                                  constant: 30),
             descriptionLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                                   constant: 20),
+                                                      constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor,
-                                                   constant: -20),
+                                                       constant: -20),
         ]
         NSLayoutConstraint.activate(constraints)
     }
     
-    func setData(title: String, desc: String){
+    func setData(title: String,
+                 desc: String,
+                 x:[String]? = nil,
+                 y:[CGFloat]? = nil,
+                 cnAvg: CGFloat? = nil,
+                 mciAvg: CGFloat? = nil,
+                 demAvg: CGFloat? = nil){
         self.titleLabel.text = title
         self.descriptionLabel.text = desc
+        if let y = y {
+            let entries = y.enumerated().compactMap { (idx, value) in
+                ChartDataEntry(x: Double(idx), y: Double(value))
+            }
+            let lineChartDataSet = LineChartDataSet(entries: entries,
+                                                    label: title)
+            lineChartDataSet.colors = [.daGreen]
+            lineChartDataSet.mode = .cubicBezier
+            lineChartDataSet.circleColors = [.daGreen]
+            let gradientColors = [UIColor.daGreen.cgColor, UIColor.clear.cgColor]
+            let colorLocations:[CGFloat] = [1.0, 0.0]
+            if let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
+                                         colors: gradientColors as CFArray,
+                                         locations: colorLocations){
+                lineChartDataSet.fill = LinearGradientFill(gradient: gradient, angle: 90.0)
+                lineChartDataSet.gradientPositions = colorLocations
+                lineChartDataSet.drawFilledEnabled = true
+            }
+            
+            if let x = x {
+                self.lineChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: x)
+                self.lineChartView.xAxis.setLabelCount(y.count, force: true)
+            }
+            lineChartView.data = LineChartData(dataSet: lineChartDataSet)
+        }
+        
+        if let cnAvg = cnAvg {
+            let cnLL = ChartLimitLine(limit: cnAvg, label: StringCollection.CN)
+            cnLL.lineColor = .daRed
+            lineChartView.leftAxis.addLimitLine(cnLL)
+        }
+        if let mciAvg = mciAvg {
+            let mciLL = ChartLimitLine(limit: mciAvg, label: StringCollection.MCI)
+            mciLL.lineColor = .daRed
+            lineChartView.leftAxis.addLimitLine(mciLL)
+        }
+        if let demAvg = demAvg {
+            let demLL = ChartLimitLine(limit: demAvg, label: StringCollection.DEM)
+            demLL.lineColor = .daRed
+            lineChartView.leftAxis.addLimitLine(demLL)
+        }
         layoutIfNeeded()
     }
 }
