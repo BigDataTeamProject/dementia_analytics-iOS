@@ -70,12 +70,10 @@ class UpdateProfileViewController: UIViewController {
                   let age = self.age,
                   let height = self.height,
                   let weight = self.weight else { return }
-            self.storage.deleteAll(User.self)
-                .flatMap { _ in
-                    return self.storage.create(User(name: name, age: age, height: height, weight: weight))
-                }
-                .map{ user -> User? in user }
-                .replaceError(with: nil)
+            DataManager.shared.createUser(user: User(name: name,
+                                                     age: age,
+                                                     height: height,
+                                                     weight: weight))
                 .receive(on: DispatchQueue.main)
                 .sink { user in
                     self.dismissAlert?.send(true)

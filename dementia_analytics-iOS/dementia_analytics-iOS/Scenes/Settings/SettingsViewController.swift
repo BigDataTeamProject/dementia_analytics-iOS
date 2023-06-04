@@ -11,7 +11,6 @@ import CoreDataStorage
 
 class SettingsViewController: UIViewController {
     private var user: User? = nil
-    private let storage = CoreDataStorage.shared(name: "DementiaDataStorage")
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     private let detectDismiss = PassthroughSubject<Bool, Never>()
     
@@ -55,10 +54,8 @@ class SettingsViewController: UIViewController {
     }
     
     func loadUserData(){
-        storage.read(type: User.self)
+        DataManager.shared.readUser()
             .receive(on: DispatchQueue.main)
-            .map{ user -> User? in user.count > 0 ?  user[0] : nil }
-            .replaceError(with: nil)
             .sink(receiveValue: { [weak self] user in
                 self?.user = user
                 self?.settingsView.setUser(user: user)

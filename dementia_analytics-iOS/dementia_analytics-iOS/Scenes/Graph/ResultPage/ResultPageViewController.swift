@@ -9,11 +9,12 @@ import UIKit
 
 class ResultPageViewController: UIViewController {
     private let dataManager = DataManager.shared
+    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     
     private var resultPageView: ResultPageView {
         return self.view as! ResultPageView
     }
-
+    
     override func loadView() {
         view = ResultPageView()
     }
@@ -24,7 +25,12 @@ class ResultPageViewController: UIViewController {
     }
     
     func configure(){
-        dataManager.analysis()
+        guard let publisher = dataManager.analysis() else { return }
+        publisher.receive(on: DispatchQueue.main)
+            .sink { [weak self] result in
+                self?.resultPageView.setResult(result: result.label)
+            }
+            .store(in: &cancellable)
     }
-
+    
 }
