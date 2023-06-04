@@ -36,6 +36,7 @@ final class ChartPageView: UIView {
         let label = UILabel()
         label.font = .bmEuljiro(20)
         label.textAlignment = .center
+        label.numberOfLines = 3
         return label
     }()
     
@@ -89,15 +90,15 @@ final class ChartPageView: UIView {
     }
     
     func setData(title: String,
-                 desc: String,
+                 desc: NSMutableAttributedString,
                  x:[String]? = nil,
                  y:[CGFloat]? = nil,
                  cnAvg: CGFloat? = nil,
-                 mciAvg: CGFloat? = nil,
-                 demAvg: CGFloat? = nil){
+                 demAvg: CGFloat? = nil,
+                 mciAvg: CGFloat? = nil){
         self.titleLabel.text = title
-        self.descriptionLabel.text = desc
-        if let y = y {
+        self.descriptionLabel.attributedText = desc
+        if let y = y, !y.isEmpty {
             let entries = y.enumerated().compactMap { (idx, value) in
                 ChartDataEntry(x: Double(idx), y: Double(value))
             }

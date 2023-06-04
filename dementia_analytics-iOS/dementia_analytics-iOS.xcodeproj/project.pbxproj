@@ -20,13 +20,17 @@
 		A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5002A28B8C400D31E77 /* Date+.swift */; };
 		A50CF5032A28B8E100D31E77 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5022A28B8E100D31E77 /* String+.swift */; };
 		A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5042A28C44400D31E77 /* ContentBox.swift */; };
-		A50CF5072A28C5D900D31E77 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5062A28C5D900D31E77 /* Color+.swift */; };
+		A50CF5072A28C5D900D31E77 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5062A28C5D900D31E77 /* UIColor+.swift */; };
 		A50CF50A2A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */; };
 		A50CF50C2A28D0D800D31E77 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF50B2A28D0D800D31E77 /* User.swift */; };
 		A520E4132A2C6CD500A7120C /* ChartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4122A2C6CD500A7120C /* ChartPageViewController.swift */; };
 		A520E4152A2C746700A7120C /* ChartPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4142A2C746700A7120C /* ChartPageView.swift */; };
 		A520E4172A2C782D00A7120C /* DADataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4162A2C782D00A7120C /* DADataType.swift */; };
-		A520E41A2A2C829600A7120C /* DAData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4192A2C829600A7120C /* DAData.swift */; };
+		A520E41C2A2C965600A7120C /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E41B2A2C965600A7120C /* DataManager.swift */; };
+		A520E41E2A2C999400A7120C /* dataset_mean.json in Resources */ = {isa = PBXBuildFile; fileRef = A520E41D2A2C999400A7120C /* dataset_mean.json */; };
+		A520E4202A2CA13900A7120C /* ResultPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E41F2A2CA13900A7120C /* ResultPageView.swift */; };
+		A520E4242A2CA1C200A7120C /* ResultPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4232A2CA1C200A7120C /* ResultPageViewController.swift */; };
+		A520E4262A2CA77B00A7120C /* DementiaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A520E4252A2CA77B00A7120C /* DementiaType.swift */; };
 		A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */; };
 		A53A341B2A2867FF008FEB89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */; };
 		A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53A341C2A28680F008FEB89 /* GraphViewController.swift */; };
@@ -44,7 +48,7 @@
 		A56BC21B2A25B063007FE478 /* CoreDataStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A56BC21A2A25B063007FE478 /* CoreDataStorage */; };
 		A58E60062A25F9E700CC1507 /* Kavoon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A58E60042A25F9E700CC1507 /* Kavoon-Regular.ttf */; };
 		A58E60072A25F9E700CC1507 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A58E60052A25F9E700CC1507 /* OFL.txt */; };
-		A58E60092A25FA1700CC1507 /* Font+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E60082A25FA1700CC1507 /* Font+.swift */; };
+		A58E60092A25FA1700CC1507 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E60082A25FA1700CC1507 /* UIFont+.swift */; };
 		A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E600B2A25FC3000CC1507 /* StringCollection.swift */; };
 		A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */; };
 		A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E60102A25FF6300CC1507 /* UIImage+.swift */; };
@@ -73,13 +77,17 @@
 		A50CF5002A28B8C400D31E77 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50CF5022A28B8E100D31E77 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A50CF5042A28C44400D31E77 /* ContentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBox.swift; sourceTree = "<group>"; };
-		A50CF5062A28C5D900D31E77 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		A50CF5062A28C5D900D31E77 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		A50CF5092A28D0A600D31E77 /* DentiaDataStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DentiaDataStorage.xcdatamodel; sourceTree = "<group>"; };
 		A50CF50B2A28D0D800D31E77 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A520E4122A2C6CD500A7120C /* ChartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPageViewController.swift; sourceTree = "<group>"; };
 		A520E4142A2C746700A7120C /* ChartPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPageView.swift; sourceTree = "<group>"; };
 		A520E4162A2C782D00A7120C /* DADataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DADataType.swift; sourceTree = "<group>"; };
-		A520E4192A2C829600A7120C /* DAData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAData.swift; sourceTree = "<group>"; };
+		A520E41B2A2C965600A7120C /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		A520E41D2A2C999400A7120C /* dataset_mean.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataset_mean.json; sourceTree = "<group>"; };
+		A520E41F2A2CA13900A7120C /* ResultPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPageView.swift; sourceTree = "<group>"; };
+		A520E4232A2CA1C200A7120C /* ResultPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPageViewController.swift; sourceTree = "<group>"; };
+		A520E4252A2CA77B00A7120C /* DementiaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DementiaType.swift; sourceTree = "<group>"; };
 		A53A34172A2867CE008FEB89 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		A53A341A2A2867FF008FEB89 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A53A341C2A28680F008FEB89 /* GraphViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +106,7 @@
 		A55B68CB2A0E07CD007D740C /* dementia_analytics-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dementia_analytics-iOS.entitlements"; sourceTree = "<group>"; };
 		A58E60042A25F9E700CC1507 /* Kavoon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kavoon-Regular.ttf"; sourceTree = "<group>"; };
 		A58E60052A25F9E700CC1507 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
-		A58E60082A25FA1700CC1507 /* Font+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+.swift"; sourceTree = "<group>"; };
+		A58E60082A25FA1700CC1507 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		A58E600B2A25FC3000CC1507 /* StringCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCollection.swift; sourceTree = "<group>"; };
 		A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInformation.swift; sourceTree = "<group>"; };
 		A58E60102A25FF6300CC1507 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -143,14 +151,32 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		A507FF552A2B2BAB00EC9426 /* LoadDataView */ = {
+		A507FF552A2B2BAB00EC9426 /* ManageDataView */ = {
 			isa = PBXGroup;
 			children = (
 				A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */,
 				A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */,
 				A5455E732A2C61F3006A508C /* DataCollectionViewCell.swift */,
 			);
-			path = LoadDataView;
+			path = ManageDataView;
+			sourceTree = "<group>";
+		};
+		A520E4212A2CA19200A7120C /* ChartPage */ = {
+			isa = PBXGroup;
+			children = (
+				A520E4142A2C746700A7120C /* ChartPageView.swift */,
+				A520E4122A2C6CD500A7120C /* ChartPageViewController.swift */,
+			);
+			path = ChartPage;
+			sourceTree = "<group>";
+		};
+		A520E4222A2CA1A200A7120C /* ResultPage */ = {
+			isa = PBXGroup;
+			children = (
+				A520E41F2A2CA13900A7120C /* ResultPageView.swift */,
+				A520E4232A2CA1C200A7120C /* ResultPageViewController.swift */,
+			);
+			path = ResultPage;
 			sourceTree = "<group>";
 		};
 		A53A34192A2867DE008FEB89 /* Home */ = {
@@ -158,7 +184,7 @@
 			children = (
 				A55087F429FF66C50023D6CC /* HomeView.swift */,
 				A55087DE29FF65880023D6CC /* HomeViewController.swift */,
-				A507FF552A2B2BAB00EC9426 /* LoadDataView */,
+				A507FF552A2B2BAB00EC9426 /* ManageDataView */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -168,8 +194,8 @@
 			children = (
 				A5B0912F2A261D9E008807AF /* GraphView.swift */,
 				A53A341C2A28680F008FEB89 /* GraphViewController.swift */,
-				A520E4142A2C746700A7120C /* ChartPageView.swift */,
-				A520E4122A2C6CD500A7120C /* ChartPageViewController.swift */,
+				A520E4222A2CA1A200A7120C /* ResultPage */,
+				A520E4212A2CA19200A7120C /* ChartPage */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -286,8 +312,8 @@
 		A58E600A2A25FB0900CC1507 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				A50CF5062A28C5D900D31E77 /* Color+.swift */,
-				A58E60082A25FA1700CC1507 /* Font+.swift */,
+				A50CF5062A28C5D900D31E77 /* UIColor+.swift */,
+				A58E60082A25FA1700CC1507 /* UIFont+.swift */,
 				A58E60102A25FF6300CC1507 /* UIImage+.swift */,
 				A50CF5002A28B8C400D31E77 /* Date+.swift */,
 				A50CF5022A28B8E100D31E77 /* String+.swift */,
@@ -317,6 +343,8 @@
 		A5D7DCC82A28528D0036C3BA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A520E41D2A2C999400A7120C /* dataset_mean.json */,
+				A520E41B2A2C965600A7120C /* DataManager.swift */,
 				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
 				A507FF4D2A2B0FAE00EC9426 /* APIService.swift */,
 				A507FF512A2B270A00EC9426 /* Prediction.swift */,
@@ -324,8 +352,8 @@
 				A50CF50B2A28D0D800D31E77 /* User.swift */,
 				A50CF4FB2A289DB300D31E77 /* SleepValue.swift */,
 				A520E4162A2C782D00A7120C /* DADataType.swift */,
-				A520E4192A2C829600A7120C /* DAData.swift */,
 				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
+				A520E4252A2CA77B00A7120C /* DementiaType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -421,6 +449,7 @@
 				A58E60072A25F9E700CC1507 /* OFL.txt in Resources */,
 				A5F18CBC2A26634400C2437D /* decor.json in Resources */,
 				A55087E429FF65890023D6CC /* Assets.xcassets in Resources */,
+				A520E41E2A2C999400A7120C /* dataset_mean.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,9 +460,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A50CF5072A28C5D900D31E77 /* Color+.swift in Sources */,
-				A58E60092A25FA1700CC1507 /* Font+.swift in Sources */,
-				A520E41A2A2C829600A7120C /* DAData.swift in Sources */,
+				A50CF5072A28C5D900D31E77 /* UIColor+.swift in Sources */,
+				A520E41C2A2C965600A7120C /* DataManager.swift in Sources */,
+				A58E60092A25FA1700CC1507 /* UIFont+.swift in Sources */,
 				A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */,
 				A5455E742A2C61F3006A508C /* DataCollectionViewCell.swift in Sources */,
 				A50CF5032A28B8E100D31E77 /* String+.swift in Sources */,
@@ -445,6 +474,7 @@
 				A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */,
 				A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */,
 				A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */,
+				A520E4242A2CA1C200A7120C /* ResultPageViewController.swift in Sources */,
 				A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */,
 				A520E4152A2C746700A7120C /* ChartPageView.swift in Sources */,
 				A5FE2E9B2A29DD1A00386F7B /* InputContentBox.swift in Sources */,
@@ -452,6 +482,7 @@
 				A50CF50A2A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld in Sources */,
 				A53A34212A2868D5008FEB89 /* SettingsView.swift in Sources */,
 				A507FF542A2B2BA700EC9426 /* ManageDataViewController.swift in Sources */,
+				A520E4262A2CA77B00A7120C /* DementiaType.swift in Sources */,
 				A507FF4E2A2B0FAE00EC9426 /* APIService.swift in Sources */,
 				A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */,
 				A55087F529FF66C50023D6CC /* HomeView.swift in Sources */,
@@ -468,6 +499,7 @@
 				A54C97242A28EC080037A9CF /* UpdateProfileViewController.swift in Sources */,
 				A507FF522A2B270A00EC9426 /* Prediction.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
+				A520E4202A2CA13900A7120C /* ResultPageView.swift in Sources */,
 				A50CF50C2A28D0D800D31E77 /* User.swift in Sources */,
 				A507FF502A2B120E00EC9426 /* Features.swift in Sources */,
 			);

@@ -19,6 +19,23 @@ struct Features: Codable {
     let activityTotal: CGFloat
     let sleepDuration: CGFloat
     let activityDailyMovement: CGFloat
+    
+    func getValue(dataType: DADataType) -> CGFloat {
+        switch dataType {
+        case .sleepBreathAverage: return sleepBreathAverage
+        case .sleepHrAverage: return sleepHrAverage
+        case .sleepHrLowest: return sleepHrLowest
+        case .sleepDeep: return sleepDeep
+        case .sleepRem: return sleepRem
+        case .activityCalTotal: return activityCalTotal
+        case .sleepAwake: return sleepAwake
+        case .activitySteps: return activitySteps
+        case .activityTotal: return activityTotal
+        case .sleepDuration: return sleepDuration
+        case .activityDailyMovement: return activityDailyMovement
+        case .unknown: return 0.0
+        }
+    }
 }
 
 extension Features {
@@ -53,19 +70,19 @@ extension Features {
                                             activityTotal: 143.0,
                                             sleepDuration: 37440.0,
                                             activityDailyMovement: 2098.0)
-
+    
     static let testDataCN: Self = Features(sleepBreathAverage: 16.1,
-                                          sleepHrAverage: 60.0,
-                                          sleepHrLowest: 54.0,
-                                          sleepDeep: 7170.0,
-                                          sleepRem: 4440.0,
-                                          activityCalTotal: 1715.0,
-                                          sleepAwake: 2280.0,
-                                          activitySteps: 8015.0,
-                                          activityTotal: 349.0,
-                                          sleepDuration: 28740.0,
-                                          activityDailyMovement: 6231.0)
-
+                                           sleepHrAverage: 60.0,
+                                           sleepHrLowest: 54.0,
+                                           sleepDeep: 7170.0,
+                                           sleepRem: 4440.0,
+                                           activityCalTotal: 1715.0,
+                                           sleepAwake: 2280.0,
+                                           activitySteps: 8015.0,
+                                           activityTotal: 349.0,
+                                           sleepDuration: 28740.0,
+                                           activityDailyMovement: 6231.0)
+    
     static let testDataDem: Self = Features(sleepBreathAverage: 17.1,
                                             sleepHrAverage: 57.4,
                                             sleepHrLowest: 51.0,

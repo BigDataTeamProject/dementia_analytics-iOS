@@ -102,7 +102,7 @@ final class SettingsView: UIView {
         contentView.tag = 10
         let label = UILabel()
         if let user = user {
-            label.text = user.name
+            label.text = "\(user.name)님"
             label.textColor = .white
             label.font = .bmEuljiro(24)
             registerProfileButton.tintColor = .daGray

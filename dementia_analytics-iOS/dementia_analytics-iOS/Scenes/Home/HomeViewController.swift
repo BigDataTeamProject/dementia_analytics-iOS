@@ -22,13 +22,13 @@ class HomeViewController: UIViewController {
     }
     
     func configure(){
-        homeView.homeButton.addTarget(self, action: #selector(showTestView), for: .touchUpInside)
+        homeView.homeButton.addTarget(self, action: #selector(showManageDataView), for: .touchUpInside)
     }
 }
 
 extension HomeViewController {
     @objc
-    func showTestView(){
+    func showManageDataView(){
         let vc = ManageDataViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

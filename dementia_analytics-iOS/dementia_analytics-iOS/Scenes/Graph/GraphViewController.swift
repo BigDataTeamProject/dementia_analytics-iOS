@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 class GraphViewController: UIViewController {
-    private var chartPageViewControllerList: [UIViewController] = {
+    private lazy var chartPageViewControllerList: [UIViewController] = {
         let viewControllers = [DADataType.activityCalTotal,
                                DADataType.activityDailyMovement,
                                DADataType.activitySteps,
@@ -27,7 +27,14 @@ class GraphViewController: UIViewController {
             chartPageViewController.setDataType(dataType: type)
             return chartPageViewController
         }
-        return viewControllers
+        
+        return [self.resultPageViewController as UIViewController] + viewControllers
+    }()
+    
+    private lazy var resultPageViewController: ResultPageViewController = {
+        let resultPageViewController = ResultPageViewController()
+        resultPageViewController.view.tag = 0
+        return resultPageViewController
     }()
     
     private lazy var pageViewController: UIPageViewController = {
@@ -57,6 +64,8 @@ class GraphViewController: UIViewController {
         if let firstVC = chartPageViewControllerList.first {
             pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
+        
+        
     }
 }
 

@@ -120,7 +120,7 @@ extension DementiaAnalyticsModel {
     
     func readActivitEnergyBurned(){
         self.readSampleQuery(sampleType: HKQuantityType(.activeEnergyBurned)) { [weak self] result, error in
-    
+            
             // guard let result = result, let sum = result.sumQuantity() else { return }
             // let cal = sum.doubleValue(for: HKUnit.kilocalorie())
         }

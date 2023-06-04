@@ -39,4 +39,23 @@ extension DADataType {
         case .unknown: return ""
         }
     }
+    
+    var of: String {
+        switch self {
+        case .activityCalTotal,
+                .activityDailyMovement,
+                .activitySteps,
+                .sleepHrLowest:
+            return "와"
+        case .activityTotal,
+                .sleepDeep,
+                .sleepRem,
+                .sleepAwake,
+                .sleepDuration,
+                .sleepHrAverage,
+                .sleepBreathAverage:
+            return "과"
+        case .unknown: return ""
+        }
+    }
 }
