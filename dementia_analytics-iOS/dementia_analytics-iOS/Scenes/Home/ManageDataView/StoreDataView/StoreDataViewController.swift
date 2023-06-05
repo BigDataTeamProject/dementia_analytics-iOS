@@ -14,6 +14,19 @@ class StoreDataViewController: UIViewController {
     private lazy var currentDateData: [DAData] = []
     private lazy var eventDates: [Date] = Array(DataManager.shared.managedData.keys)
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
+    private let detectDismiss = PassthroughSubject<Bool, Never>()
+    
+    lazy var saveDataViewButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "추가",
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(showSaveDataView))
+        button.setTitleTextAttributes([
+            NSAttributedString.Key.font : UIFont.bmEuljiro(18),
+            NSAttributedString.Key.foregroundColor : UIColor.daOrange,
+        ], for: .normal)
+        return button
+    }()
     
     private var storeDataView: StoreDataView {
         return self.view as! StoreDataView
@@ -31,11 +44,29 @@ class StoreDataViewController: UIViewController {
     func configure(){
         self.navigationItem.title = "데이터 관리"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.bmEuljiro(24)]
-    
+        self.navigationItem.rightBarButtonItem = saveDataViewButton
+        
         self.storeDataView.collectionView.delegate = self
         self.storeDataView.collectionView.dataSource = self
         self.storeDataView.calendar.delegate = self
         self.storeDataView.calendar.dataSource = self
+        
+        self.detectDismiss
+            .sink { [weak self] isDismiss in
+                guard let self = self else { return }
+                if isDismiss {
+                    self.currentDateData = (DataManager.shared.managedData[self.selectedDate] ?? [:])
+                        .values
+                        .map{ $0 }
+                        .sorted(by: { data1, data2 in
+                            return data1.type.rawValue < data2.type.rawValue
+                        })
+                    self.eventDates = Array(DataManager.shared.managedData.keys)
+                    self.storeDataView.calendar.reloadData()
+                    self.storeDataView.collectionView.reloadData()
+                }
+            }
+            .store(in: &cancellable)
     }
     
     func deleteData(_ data: DAData){
@@ -53,6 +84,12 @@ class StoreDataViewController: UIViewController {
                 self.storeDataView.collectionView.reloadData()
             }
             .store(in: &cancellable)
+    }
+    
+    @objc func showSaveDataView(){
+        let saveDataVC = SaveDataViewController(startDate: self.selectedDate)
+        saveDataVC.dismissAlert = self.detectDismiss
+        self.present(saveDataVC, animated: true)
     }
 }
 
@@ -91,8 +128,8 @@ extension StoreDataViewController: FSCalendarDelegate, FSCalendarDataSource{
 }
 
 extension StoreDataViewController: UICollectionViewDelegate,
-                                    UICollectionViewDataSource,
-                                    UICollectionViewDelegateFlowLayout{
+                                   UICollectionViewDataSource,
+                                   UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return currentDateData.count
     }

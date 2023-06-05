@@ -51,4 +51,6 @@ struct StringCollection{
     
     static let add = "추가"
     static let del = "삭제"
+    
+    static let value = "값"
 }

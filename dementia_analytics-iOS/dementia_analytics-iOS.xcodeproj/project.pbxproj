@@ -54,6 +54,8 @@
 		A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */; };
 		A58E60112A25FF6300CC1507 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E60102A25FF6300CC1507 /* UIImage+.swift */; };
 		A5B091302A261D9E008807AF /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B0912F2A261D9E008807AF /* GraphView.swift */; };
+		A5C0F09A2A2E2A4900B9626A /* SaveDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0F0992A2E2A4900B9626A /* SaveDataView.swift */; };
+		A5C0F09E2A2E2AA500B9626A /* SaveDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0F09D2A2E2AA500B9626A /* SaveDataViewController.swift */; };
 		A5C650302A2745DB00EDF3A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A5C6502F2A2745DB00EDF3A6 /* Alamofire */; };
 		A5C650342A2749BE00EDF3A6 /* BMEULJIROTTF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */; };
 		A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */; };
@@ -114,6 +116,8 @@
 		A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInformation.swift; sourceTree = "<group>"; };
 		A58E60102A25FF6300CC1507 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		A5B0912F2A261D9E008807AF /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		A5C0F0992A2E2A4900B9626A /* SaveDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataView.swift; sourceTree = "<group>"; };
+		A5C0F09D2A2E2AA500B9626A /* SaveDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataViewController.swift; sourceTree = "<group>"; };
 		A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMEULJIROTTF.ttf; sourceTree = "<group>"; };
 		A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemntiaAnalyticsModel.swift; sourceTree = "<group>"; };
 		A5DD621F2A2D734C00C1F22E /* DAData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAData.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 		A542C4252A2E170300BD5721 /* StoreDataView */ = {
 			isa = PBXGroup;
 			children = (
+				A5C0F09B2A2E2A4E00B9626A /* SaveDataView */,
 				A542C4262A2E171700BD5721 /* StoreDataView.swift */,
 				A542C4282A2E172000BD5721 /* StoreDataViewController.swift */,
 			);
@@ -344,6 +349,15 @@
 				A58E600E2A25FF2800CC1507 /* UIImageInformation.swift */,
 			);
 			path = Structure;
+			sourceTree = "<group>";
+		};
+		A5C0F09B2A2E2A4E00B9626A /* SaveDataView */ = {
+			isa = PBXGroup;
+			children = (
+				A5C0F0992A2E2A4900B9626A /* SaveDataView.swift */,
+				A5C0F09D2A2E2AA500B9626A /* SaveDataViewController.swift */,
+			);
+			path = SaveDataView;
 			sourceTree = "<group>";
 		};
 		A5C650322A27461300EDF3A6 /* BMEULJIRO */ = {
@@ -518,8 +532,10 @@
 				A58E600C2A25FC3000CC1507 /* StringCollection.swift in Sources */,
 				A5FE2E9D2A2A0F3500386F7B /* UIView+.swift in Sources */,
 				A50CF5052A28C44400D31E77 /* ContentBox.swift in Sources */,
+				A5C0F09E2A2E2AA500B9626A /* SaveDataViewController.swift in Sources */,
 				A507FF572A2B2BCC00EC9426 /* ManageDataView.swift in Sources */,
 				A520E4132A2C6CD500A7120C /* ChartPageViewController.swift in Sources */,
+				A5C0F09A2A2E2A4900B9626A /* SaveDataView.swift in Sources */,
 				A54C97242A28EC080037A9CF /* UpdateProfileViewController.swift in Sources */,
 				A507FF522A2B270A00EC9426 /* Prediction.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,
