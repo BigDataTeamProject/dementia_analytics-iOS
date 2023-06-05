@@ -33,7 +33,8 @@ struct Features: Codable {
         case .activityTotal: return activityTotal
         case .sleepDuration: return sleepDuration
         case .activityDailyMovement: return activityDailyMovement
-        case .unknown: return 0.0
+        default:
+            return 0.0
         }
     }
 }

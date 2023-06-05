@@ -18,7 +18,6 @@ final class DementiaAnalyticsModel {
     let readQuantityType: [HKQuantityType]
     let readCategoryType: [HKCategoryType]
     
-    var sleepData:[SleepValue] = []
     
     private init() {
         let readQuantityTypeIdentifiers: [HKQuantityTypeIdentifier] = [
@@ -49,9 +48,10 @@ final class DementiaAnalyticsModel {
     }
     
     private func readSampleQuery(sampleType: HKSampleType,
-                            completion: @escaping (_ result: [HKSample]?, _ error: Error?) -> Void){
-        let start = Date().addDate(byAddning: .year, value: -3)
-        let end = Date().addDate(byAddning: .day, value: 1)
+                                 completion: @escaping (_ result: [HKSample]?, _ error: Error?) -> Void){
+        let nowDate = Date().toMidnight()
+        let start = nowDate.addDate(byAddning: .year, value: -1)
+        let end = nowDate.addDate(byAddning: .day, value: 1)
         let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         
@@ -67,16 +67,28 @@ final class DementiaAnalyticsModel {
     }
     
     private func readStatisticsQuery(quantityType: HKQuantityType,
-                            completion: @escaping (_ result: [HKSample]?, _ error: Error?) -> Void){
-        let start = Date().addDate(byAddning: .year, value: -3)
-        let end = Date().addDate(byAddning: .day, value: 1)
+                                     options: HKStatisticsOptions,
+                                     completion: @escaping (_ result: [HKStatistics]?, _ error: Error?) -> Void){
+        let nowDate = Date().toMidnight()
+        let start = nowDate.addDate(byAddning: .year, value: -1)
+        let end = nowDate.addDate(byAddning: .day, value: 1)
         let predicate = HKQuery.predicateForSamples(withStart:start, end: end, options: .strictStartDate)
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
-    
-        // let query = HKStatisticsQuery(quantityType: quantityType,
-        //                               quantitySamplePredicate: predicate,
-        //                               options: <#T##HKStatisticsOptions#>, completionHandler: <#T##(HKStatisticsQuery, HKStatistics?, Error?) -> Void#>)
-        // healthStore.execute(query)
+        let daily = DateComponents(day: 1)
+        
+        let query = HKStatisticsCollectionQuery(quantityType: quantityType,
+                                                quantitySamplePredicate: predicate,
+                                                options: options,
+                                                anchorDate: start,
+                                                intervalComponents: daily)
+        
+        query.initialResultsHandler = { _, statisticsCollection, error in
+            if let statisticsCollection = statisticsCollection {
+                completion(statisticsCollection.statistics(), nil)
+            } else {
+                completion(nil, error)
+            }
+        }
+        self.healthStore.execute(query)
     }
     
     func send(features: Features) -> AnyPublisher<Prediction?, Error> {
@@ -90,39 +102,68 @@ final class DementiaAnalyticsModel {
                 error as Error
             }
             .eraseToAnyPublisher()
+        
+    }
+    
+    private func readHKCategorySamplePublisher(_ identifier: HKCategoryTypeIdentifier)
+    -> AnyPublisher<[DAData]?, Never> {
+        Future<[DAData]?, Never> { promise in
+            self.readSampleQuery(sampleType: HKCategoryType(identifier)) { result, error in
+                guard let result = result as? [HKCategorySample] else {
+                    promise(.success(nil))
+                    return }
+                let sleepAnalysisData: [DAData] = result
+                    .compactMap{ sample in
+                        let data = DAData(sample: sample)
+                        guard data.value > 0 else { return nil }
+                        return data
+                    }
+                promise(.success(sleepAnalysisData))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+    
+    func readStatisticsQueryPublisher(_ identifier: HKQuantityTypeIdentifier,
+                                      options: HKStatisticsOptions) -> AnyPublisher<[DAData]?, Never>{
+        Future<[DAData]?, Never> { promise in
+            self.readStatisticsQuery(quantityType: HKQuantityType(identifier), options: options) { result, error in
+                if let result = result {
+                    let statisticsData = result.compactMap { data in
+                        DAData(statistics: data)
+                    }
+                    promise(.success(statisticsData))
+                } else {
+                    promise(.success(nil))
+                }
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }
 
 extension DementiaAnalyticsModel {
-    func readSleepAnalysisData(){
-        self.readSampleQuery(sampleType: HKCategoryType(.sleepAnalysis)) { [weak self] result, error in
-            guard let result = result else { return }
-            self?.sleepData = (result as? [HKCategorySample] ?? []).compactMap{ sample in
-                let value = SleepValue(sample: sample)
-                guard let minute = value.durationMinute, minute > 0,
-                      value.type != nil else { return nil }
-                return value
-            }
-        }
+    func readSleepAnalysisData() -> AnyPublisher<[DAData]?, Never> {
+        return readHKCategorySamplePublisher(.sleepAnalysis)
     }
     
-    func readSleepChangeData(){
-        self.readSampleQuery(sampleType: HKCategoryType(.sleepChanges)) { [weak self] result, error in
-            guard let result = result else { return }
-            self?.sleepData = (result as? [HKCategorySample] ?? []).compactMap{ sample in
-                let value = SleepValue(sample: sample)
-                guard let minute = value.durationMinute, minute > 0,
-                      value.type != nil else { return nil }
-                return value
-            }
-        }
+    func readSleepChangeData() -> AnyPublisher<[DAData]?, Never> {
+        return readHKCategorySamplePublisher(.sleepChanges)
     }
     
-    func readActivitEnergyBurned(){
-        self.readSampleQuery(sampleType: HKQuantityType(.activeEnergyBurned)) { [weak self] result, error in
-            
-            // guard let result = result, let sum = result.sumQuantity() else { return }
-            // let cal = sum.doubleValue(for: HKUnit.kilocalorie())
-        }
+    func readActivitEnergyBurned() -> AnyPublisher<[DAData]?, Never> {
+        return readStatisticsQueryPublisher(.activeEnergyBurned, options: .cumulativeSum)
+    }
+    
+    func readBasalEnergyBurned() -> AnyPublisher<[DAData]?, Never> {
+        return readStatisticsQueryPublisher(.basalEnergyBurned, options: .cumulativeSum)
+    }
+    
+    func readDistanceWalkingRunning() -> AnyPublisher<[DAData]?, Never> {
+        return readStatisticsQueryPublisher(.distanceWalkingRunning, options: .cumulativeSum)
+    }
+    
+    func readStepCount() -> AnyPublisher<[DAData]?, Never> {
+        return readStatisticsQueryPublisher(.stepCount, options: .cumulativeSum)
     }
 }

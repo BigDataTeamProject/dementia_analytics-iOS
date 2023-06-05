@@ -15,7 +15,6 @@
 		A507FF522A2B270A00EC9426 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF512A2B270A00EC9426 /* Prediction.swift */; };
 		A507FF542A2B2BA700EC9426 /* ManageDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */; };
 		A507FF572A2B2BCC00EC9426 /* ManageDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */; };
-		A50CF4FC2A289DB300D31E77 /* SleepValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF4FB2A289DB300D31E77 /* SleepValue.swift */; };
 		A50CF4FF2A28A10A00D31E77 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = A50CF4FE2A28A10A00D31E77 /* FSCalendar */; };
 		A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5002A28B8C400D31E77 /* Date+.swift */; };
 		A50CF5032A28B8E100D31E77 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50CF5022A28B8E100D31E77 /* String+.swift */; };
@@ -56,6 +55,7 @@
 		A5C650302A2745DB00EDF3A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A5C6502F2A2745DB00EDF3A6 /* Alamofire */; };
 		A5C650342A2749BE00EDF3A6 /* BMEULJIROTTF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */; };
 		A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */; };
+		A5DD62202A2D734C00C1F22E /* DAData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DD621F2A2D734C00C1F22E /* DAData.swift */; };
 		A5F18CB02A265CCD00C2437D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A5F18CAF2A265CCD00C2437D /* Lottie */; };
 		A5F18CB72A265D7F00C2437D /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F18CB62A265D7F00C2437D /* LaunchView.swift */; };
 		A5F18CBC2A26634400C2437D /* decor.json in Resources */ = {isa = PBXBuildFile; fileRef = A5F18CBA2A26634400C2437D /* decor.json */; };
@@ -73,7 +73,6 @@
 		A507FF512A2B270A00EC9426 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		A507FF532A2B2BA700EC9426 /* ManageDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataViewController.swift; sourceTree = "<group>"; };
 		A507FF562A2B2BCC00EC9426 /* ManageDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageDataView.swift; sourceTree = "<group>"; };
-		A50CF4FB2A289DB300D31E77 /* SleepValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepValue.swift; sourceTree = "<group>"; };
 		A50CF5002A28B8C400D31E77 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A50CF5022A28B8E100D31E77 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		A50CF5042A28C44400D31E77 /* ContentBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentBox.swift; sourceTree = "<group>"; };
@@ -113,6 +112,7 @@
 		A5B0912F2A261D9E008807AF /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMEULJIROTTF.ttf; sourceTree = "<group>"; };
 		A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemntiaAnalyticsModel.swift; sourceTree = "<group>"; };
+		A5DD621F2A2D734C00C1F22E /* DAData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAData.swift; sourceTree = "<group>"; };
 		A5F18CB62A265D7F00C2437D /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		A5F18CBA2A26634400C2437D /* decor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = decor.json; sourceTree = "<group>"; };
 		A5F18CBB2A26634400C2437D /* person.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = person.json; sourceTree = "<group>"; };
@@ -343,19 +343,27 @@
 		A5D7DCC82A28528D0036C3BA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A5DD62212A2DCF5800C1F22E /* struct */,
 				A520E41D2A2C999400A7120C /* dataset_mean.json */,
 				A520E41B2A2C965600A7120C /* DataManager.swift */,
 				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
+				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A5DD62212A2DCF5800C1F22E /* struct */ = {
+			isa = PBXGroup;
+			children = (
 				A507FF4D2A2B0FAE00EC9426 /* APIService.swift */,
 				A507FF512A2B270A00EC9426 /* Prediction.swift */,
 				A507FF4F2A2B120E00EC9426 /* Features.swift */,
 				A50CF50B2A28D0D800D31E77 /* User.swift */,
-				A50CF4FB2A289DB300D31E77 /* SleepValue.swift */,
 				A520E4162A2C782D00A7120C /* DADataType.swift */,
-				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
+				A5DD621F2A2D734C00C1F22E /* DAData.swift */,
 				A520E4252A2CA77B00A7120C /* DementiaType.swift */,
 			);
-			path = Data;
+			path = struct;
 			sourceTree = "<group>";
 		};
 		A5F18CB12A265D4800C2437D /* lottie */ = {
@@ -470,7 +478,6 @@
 				A50570B42A26D57700B62C43 /* NumberPicker.swift in Sources */,
 				A520E4172A2C782D00A7120C /* DADataType.swift in Sources */,
 				A53A34182A2867CE008FEB89 /* MainTabBarViewController.swift in Sources */,
-				A50CF4FC2A289DB300D31E77 /* SleepValue.swift in Sources */,
 				A58E600F2A25FF2800CC1507 /* UIImageInformation.swift in Sources */,
 				A53A341D2A28680F008FEB89 /* GraphViewController.swift in Sources */,
 				A55087DF29FF65880023D6CC /* HomeViewController.swift in Sources */,
@@ -484,6 +491,7 @@
 				A507FF542A2B2BA700EC9426 /* ManageDataViewController.swift in Sources */,
 				A520E4262A2CA77B00A7120C /* DementiaType.swift in Sources */,
 				A507FF4E2A2B0FAE00EC9426 /* APIService.swift in Sources */,
+				A5DD62202A2D734C00C1F22E /* DAData.swift in Sources */,
 				A50CF5012A28B8C400D31E77 /* Date+.swift in Sources */,
 				A55087F529FF66C50023D6CC /* HomeView.swift in Sources */,
 				A54C97272A28EC1E0037A9CF /* UpdateProfileView.swift in Sources */,

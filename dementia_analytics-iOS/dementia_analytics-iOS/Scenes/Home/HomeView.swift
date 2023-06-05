@@ -55,7 +55,6 @@ final class HomeView: UIView {
     
     private func configure() {
         self.backgroundColor = .white
-        DementiaAnalyticsModel.shared.readActivitEnergyBurned()
     }
     
     private func addSubviews() {

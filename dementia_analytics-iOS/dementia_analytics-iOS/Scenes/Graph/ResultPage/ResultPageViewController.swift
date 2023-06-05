@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ResultPageViewController: UIViewController {
     private let dataManager = DataManager.shared

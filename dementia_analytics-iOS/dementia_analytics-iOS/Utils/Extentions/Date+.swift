@@ -8,6 +8,10 @@
 import Foundation
 
 extension Date {
+    func toMidnight() -> Date {
+        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self)!
+    }
+    
     func koString() -> String{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm" // 24 시간 대 설정

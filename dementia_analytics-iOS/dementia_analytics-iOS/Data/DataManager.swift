@@ -14,6 +14,11 @@ final class DataManager {
     static let shared = DataManager()
     private let storage = CoreDataStorage.shared(name: "DementiaDataStorage")
     private let model = DementiaAnalyticsModel.shared
+    private var cancellabel: Set<AnyCancellable> = Set<AnyCancellable>()
+    
+    var healthKitData: [Date:[DADataType: CGFloat]] = [:]
+    var managedData: [Date:[DADataType: DAData]] = [:]
+    
     var auth: Bool {
         model.auth
     }
@@ -21,9 +26,7 @@ final class DataManager {
     var mciMean: Features? = nil
     var demMean: Features? = nil
     
-    private init() {
-        load()
-    }
+    private init() { }
     
     func load(){
         guard let fileLocation = Bundle.main.url(forResource: "dataset_mean", withExtension: "json") else { return }
@@ -38,8 +41,78 @@ final class DataManager {
         } catch {
             print(error)
         }
+        bind()
+        
     }
     
+    func bind(){
+        self.model.readActivitEnergyBurned()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] daData in
+                guard let self = self else { return }
+                self.saveHealthkitData(daData, type: .activityCalTotal, sum: true)
+            }
+            .store(in: &cancellabel)
+        self.model.readBasalEnergyBurned()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] daData in
+                guard let self = self else { return }
+                self.saveHealthkitData(daData, type: .activityCalTotal, sum: true)
+            }
+            .store(in: &cancellabel)
+        
+        self.model.readStepCount()
+            .receive(on: DispatchQueue.main)
+            .sink { value in
+                print(value?.count)
+            }
+            .store(in: &cancellabel)
+        
+        self.model.readSleepAnalysisData()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] daData in
+                guard let self = self else { return }
+                self.saveHealthkitData(daData)
+            }
+            .store(in: &cancellabel)
+        
+        self.model.readDistanceWalkingRunning()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] daData in
+                guard let self = self else { return }
+                self.saveHealthkitData(daData)
+            }
+            .store(in: &cancellabel)
+        
+        
+        // 'sleep_deep', 'sleep_rem', 'activity_total', 'sleep_duration'
+        // 'sleep_breath_average', 'sleep_hr_average', 'sleep_hr_lowest'
+    }
+    
+    private func saveHealthkitData(_ daData: [DAData]?, type: DADataType? = nil, sum: Bool = false){
+        (daData ?? []).forEach{ data in
+            var dataType = data.type
+            if let newType = type {
+                dataType = newType
+            }
+            if data.value > 0 {
+                if self.healthKitData[data.startDate] == nil {
+                    self.healthKitData[data.startDate] = [:]
+                }
+                if sum {
+                    if self.healthKitData[data.startDate]![dataType] == nil {
+                        self.healthKitData[data.startDate]![dataType] = 0
+                    }
+                    self.healthKitData[data.startDate]![dataType]! += data.value
+                } else {
+                    self.healthKitData[data.startDate]![dataType] = data.value
+                }
+            }
+        }
+    }
+}
+
+extension DataManager {
     func readUser() -> AnyPublisher<User?, Never>{
         return storage.read(type: User.self)
             .map { user -> User? in user.first }
@@ -56,7 +129,9 @@ final class DataManager {
             .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
-    
+}
+
+extension DataManager {
     func mean(dataType:DADataType) -> (CGFloat?,
                                        CGFloat?,
                                        CGFloat?) {
@@ -64,7 +139,9 @@ final class DataManager {
                 demMean?.getValue(dataType: dataType),
                 mciMean?.getValue(dataType: dataType))
     }
-    
+}
+
+extension DataManager {
     func analysis() -> AnyPublisher<DementiaType, Never>? {
         // let features = Features(sleepBreathAverage: <#T##CGFloat#>,
         //          sleepHrAverage: <#T##CGFloat#>,
@@ -77,7 +154,7 @@ final class DataManager {
         //          activityTotal: <#T##CGFloat#>,
         //          sleepDuration: <#T##CGFloat#>,
         //          activityDailyMovement: <#T##CGFloat#>)
-        // model.send(features: <#T##Features#>)
+        // model.send(features: features)
         return nil
     }
 }

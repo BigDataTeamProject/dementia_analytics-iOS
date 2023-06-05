@@ -7,6 +7,7 @@
 
 import UIKit
 import HealthKit
+import CoreDataStorage
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -20,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UINavigationController(rootViewController: MainTabBarViewController())
         window?.makeKeyAndVisible()
         DementiaAnalyticsModel.shared.request()
+        DataManager.shared.load()
         guard let _ = (scene as? UIWindowScene) else { return }
     }
     
@@ -49,8 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        CoreDataStorage.shared(name: "DementiaDataStorage").saveContext()
     }
-    
-    
 }
 

@@ -7,6 +7,28 @@
 
 import Foundation
 
+enum SleepType: Int {
+    case inBed = 0
+    case asleep
+    case awake
+    case asleepCore
+    case asleepDeep
+    case asleepRem
+}
+
+extension SleepType {
+    var daDataType: DADataType {
+        switch self {
+        case .inBed: return .unknown
+        case .asleep: return .sleepDuration
+        case .awake: return .sleepAwake
+        case .asleepCore: return .unknown
+        case .asleepDeep: return .sleepDeep
+        case .asleepRem: return .sleepRem
+        }
+    }
+}
+
 enum DADataType: Int {
     case sleepBreathAverage = 0
     case sleepHrAverage
@@ -20,6 +42,8 @@ enum DADataType: Int {
     case sleepDuration
     case activityDailyMovement
     case unknown
+    case activityCal
+    case basalCal
 }
 
 extension DADataType {
@@ -36,7 +60,7 @@ extension DADataType {
         case .activityTotal: return StringCollection.activityTotal
         case .sleepDuration: return StringCollection.sleepDuration
         case .activityDailyMovement: return StringCollection.activityDailyMovement
-        case .unknown: return ""
+        default: return ""
         }
     }
     
@@ -55,7 +79,7 @@ extension DADataType {
                 .sleepHrAverage,
                 .sleepBreathAverage:
             return "과"
-        case .unknown: return ""
+        default: return ""
         }
     }
 }
