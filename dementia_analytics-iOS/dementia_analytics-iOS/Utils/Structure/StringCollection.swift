@@ -36,9 +36,19 @@ struct StringCollection{
     static let activitySteps = "걸음 수"
     static let activityTotal = "활동 시간"
     static let sleepDuration = "수면 시간"
-    static let activityDailyMovement = "매일 움직인 거리"
+    static let activityDailyMovement = "움직인 거리"
+    
+    static let countUnit = "회"
+    static let hourUnit = "시간"
+    static let minuteUnit = "분"
+    static let stepUnit = "걸음"
+    static let kcalUnit = "kcal"
+    static let meterUnit = "m"
     
     static let CN = "정상인"
     static let DEM = "치매 환자"
     static let MCI = "경증 치매 환자"
+    
+    static let add = "추가"
+    static let del = "삭제"
 }

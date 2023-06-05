@@ -48,8 +48,27 @@ struct DAData {
         } else {
             self.type = .unknown
         }
-        self.startDate = sample.startDate
+        if self.type == .sleepRem {
+            self.startDate = sample.startDate.toMidnight()
+        } else {
+            self.startDate = sample.startDate.addDate(byAddning: .day, value: 1).toMidnight()
+        }
+        
         self.endDate = sample.endDate
-        self.value = CGFloat(sample.endDate.diff(previous: sample.startDate).minute!) 
+        self.value = CGFloat(sample.endDate.diff(previous: sample.startDate).minute!)
+    }
+    
+    init(type: DADataType, startDate: Date, endDate: Date, value: CGFloat){
+        self.type = type
+        self.startDate = startDate
+        self.endDate = endDate
+        self.value = value
+    }
+    
+    func sum(value: CGFloat) -> Self {
+        DAData(type: type,
+               startDate: startDate,
+               endDate: endDate,
+               value: self.value + value)
     }
 }

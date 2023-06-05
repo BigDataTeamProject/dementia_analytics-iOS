@@ -19,7 +19,7 @@ enum SleepType: Int {
 extension SleepType {
     var daDataType: DADataType {
         switch self {
-        case .inBed: return .unknown
+        case .inBed: return .sleepDuration
         case .asleep: return .sleepDuration
         case .awake: return .sleepAwake
         case .asleepCore: return .unknown

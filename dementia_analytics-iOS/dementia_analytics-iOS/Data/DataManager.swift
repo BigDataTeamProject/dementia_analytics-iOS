@@ -16,7 +16,7 @@ final class DataManager {
     private let model = DementiaAnalyticsModel.shared
     private var cancellabel: Set<AnyCancellable> = Set<AnyCancellable>()
     
-    var healthKitData: [Date:[DADataType: CGFloat]] = [:]
+    var healthKitData: [Date:[DADataType: DAData]] = [:]
     var managedData: [Date:[DADataType: DAData]] = [:]
     
     var auth: Bool {
@@ -42,7 +42,6 @@ final class DataManager {
             print(error)
         }
         bind()
-        
     }
     
     func bind(){
@@ -53,6 +52,7 @@ final class DataManager {
                 self.saveHealthkitData(daData, type: .activityCalTotal, sum: true)
             }
             .store(in: &cancellabel)
+        
         self.model.readBasalEnergyBurned()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] daData in
@@ -63,8 +63,9 @@ final class DataManager {
         
         self.model.readStepCount()
             .receive(on: DispatchQueue.main)
-            .sink { value in
-                print(value?.count)
+            .sink { [weak self] daData in
+                guard let self = self else { return }
+                self.saveHealthkitData(daData)
             }
             .store(in: &cancellabel)
         
@@ -85,7 +86,7 @@ final class DataManager {
             .store(in: &cancellabel)
         
         
-        // 'sleep_deep', 'sleep_rem', 'activity_total', 'sleep_duration'
+        // 'activity_total'
         // 'sleep_breath_average', 'sleep_hr_average', 'sleep_hr_lowest'
     }
     
@@ -101,11 +102,14 @@ final class DataManager {
                 }
                 if sum {
                     if self.healthKitData[data.startDate]![dataType] == nil {
-                        self.healthKitData[data.startDate]![dataType] = 0
+                        self.healthKitData[data.startDate]![dataType] = DAData(type: dataType,
+                                                                               startDate: data.startDate,
+                                                                               endDate: data.endDate,
+                                                                               value: data.value)
                     }
-                    self.healthKitData[data.startDate]![dataType]! += data.value
+                    self.healthKitData[data.startDate]![dataType]! =  self.healthKitData[data.startDate]![dataType]!.sum(value: data.value)
                 } else {
-                    self.healthKitData[data.startDate]![dataType] = data.value
+                    self.healthKitData[data.startDate]![dataType] = data
                 }
             }
         }

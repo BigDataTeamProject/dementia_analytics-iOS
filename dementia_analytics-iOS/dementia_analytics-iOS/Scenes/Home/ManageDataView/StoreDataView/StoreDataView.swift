@@ -1,14 +1,14 @@
 //
-//  LoadDataView.swift
+//  StoreDataView.swift
 //  dementia_analytics-iOS
 //
-//  Created by 이전희 on 2023/06/03.
+//  Created by 이전희 on 2023/06/05.
 //
 
 import UIKit
 import FSCalendar
 
-final class ManageDataView: UIView {
+final class StoreDataView: UIView {
     private lazy var backgroundDecorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage.homeBackgroundDecor.image
