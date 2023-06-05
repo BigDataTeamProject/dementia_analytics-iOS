@@ -42,6 +42,14 @@ class StoreDataViewController: UIViewController {
         DataManager.shared.deleteData(data)
             .receive(on: DispatchQueue.main)
             .sink { _ in
+                self.currentDateData = (DataManager.shared.managedData[self.selectedDate] ?? [:])
+                    .values
+                    .map{ $0 }
+                    .sorted(by: { data1, data2 in
+                        return data1.type.rawValue < data2.type.rawValue
+                    })
+                self.eventDates = Array(DataManager.shared.managedData.keys)
+                self.storeDataView.calendar.reloadData()
                 self.storeDataView.collectionView.reloadData()
             }
             .store(in: &cancellable)

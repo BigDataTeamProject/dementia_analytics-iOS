@@ -20,6 +20,14 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func koShortString() -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM-dd" // 24 시간 대 설정
+        formatter.locale = Locale(identifier: "ko_kr") // 한국 시간 지정
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        return formatter.string(from: self)
+    }
+    
     func diff(previous: Date) -> (month: Int?, day: Int?, hour: Int?, minute: Int?, second: Int?) {
         let day = Calendar.current.dateComponents([.day], from: previous, to: self).day
         let month = Calendar.current.dateComponents([.month], from: previous, to: self).month

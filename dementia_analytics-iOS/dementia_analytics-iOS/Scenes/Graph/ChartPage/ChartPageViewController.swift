@@ -27,8 +27,12 @@ class ChartPageViewController: UIViewController {
     }
     
     func setDataType(dataType: DADataType){
-        let x = ["02-05", "03-04", "05-06", "06-01"]
-        let y: [CGFloat] = [2.0, 3.0, 2.0, 2.0]
+        var x: [String] = []
+        var y: [CGFloat] = []
+        DataManager.shared.getData(dataType: dataType).forEach{ data in
+            x.append(data.startDate.koShortString())
+            y.append(data.value)
+        }
         
         let mean = DataManager.shared.mean(dataType: dataType)
         var dementiaType = DementiaType.cn

@@ -41,10 +41,11 @@ final class DataManager {
         } catch {
             print(error)
         }
-        bind()
+        loadHealthKitData()
+        loadManagedData()
     }
     
-    func bind(){
+    func loadHealthKitData(){
         self.model.readActivitEnergyBurned()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] daData in
@@ -111,11 +112,38 @@ final class DataManager {
         }
     }
     
+    private func loadManagedData() {
+        self.managedData = [:]
+        self.storage.read(type: DAData.self)
+            .replaceError(with: [])
+            .sink { datas in
+                datas.forEach{ data in
+                    if self.managedData[data.startDate] == nil {
+                        self.managedData[data.startDate] = [:]
+                    }
+                    self.managedData[data.startDate]![data.type] =  data
+                }
+            }
+            .store(in: &cancellabel)
+    }
+    
     func saveData(_ data: DAData) -> AnyPublisher<Bool, Never> {
-        return storage.create(data)
-            .map { _ -> Bool in true }
-            .replaceError(with: false)
-            .eraseToAnyPublisher()
+        let predicate = NSPredicate(format: "startDate == %@ && type == %i",
+                                    data.startDate as NSDate,
+                                    data.type.rawValue)
+        return storage.delete(DAData.self,
+                              predicate: predicate)
+        .map { _ -> Bool in true }
+        .replaceError(with: false)
+        .flatMap { _ in
+            self.storage.create(data)
+        }
+        .map { _ -> Bool in true }
+        .replaceError(with: false)
+        .handleEvents(receiveOutput: { _ in
+            self.loadManagedData()
+        })
+        .eraseToAnyPublisher()
     }
     
     func deleteData(_ data: DAData) -> AnyPublisher<Bool, Never> {
@@ -126,6 +154,9 @@ final class DataManager {
                               predicate: predicate)
         .map { _ -> Bool in true }
         .replaceError(with: false)
+        .handleEvents(receiveOutput: { a in
+            self.loadManagedData()
+        })
         .eraseToAnyPublisher()
     }
 }
@@ -156,6 +187,14 @@ extension DataManager {
         return (cnMean?.getValue(dataType: dataType),
                 demMean?.getValue(dataType: dataType),
                 mciMean?.getValue(dataType: dataType))
+    }
+}
+
+extension DataManager {
+    func getData(dataType: DADataType) -> [DAData] {
+        return self.managedData.compactMap { (key: Date, value: [DADataType : DAData]) in
+            return value[dataType] != nil ? value[dataType] : nil
+        }
     }
 }
 
