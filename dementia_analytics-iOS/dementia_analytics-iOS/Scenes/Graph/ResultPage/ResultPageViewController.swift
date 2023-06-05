@@ -22,22 +22,23 @@ class ResultPageViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let publisher = dataManager.analysis() else { return }
-        publisher.receive(on: DispatchQueue.main)
-            .sink { [weak self] result in
-                self?.resultPageView.setResult(result: result.label)
-            }
-            .store(in: &cancellable)
+        predict()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+       
     }
     
     
-    func configure(){
-        
+    func predict(){
+        guard let publisher = dataManager.analysis() else { return }
+        publisher
+            .sink { [weak self] result in
+                print("🍎", result)
+                self?.resultPageView.setResult(result: result)
+            }
+            .store(in: &cancellable)
     }
     
 }

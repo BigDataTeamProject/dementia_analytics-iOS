@@ -57,6 +57,7 @@
 		A5C0F09A2A2E2A4900B9626A /* SaveDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0F0992A2E2A4900B9626A /* SaveDataView.swift */; };
 		A5C0F09E2A2E2AA500B9626A /* SaveDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0F09D2A2E2AA500B9626A /* SaveDataViewController.swift */; };
 		A5C0F0A02A2E38FE00B9626A /* CoreDataStorage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C0F09F2A2E38FE00B9626A /* CoreDataStorage+.swift */; };
+		A5C0F0A22A2E3DBE00B9626A /* testData.json in Resources */ = {isa = PBXBuildFile; fileRef = A5C0F0A12A2E3DBE00B9626A /* testData.json */; };
 		A5C650302A2745DB00EDF3A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A5C6502F2A2745DB00EDF3A6 /* Alamofire */; };
 		A5C650342A2749BE00EDF3A6 /* BMEULJIROTTF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */; };
 		A5DB26142A146EED00022101 /* DemntiaAnalyticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */; };
@@ -120,6 +121,7 @@
 		A5C0F0992A2E2A4900B9626A /* SaveDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataView.swift; sourceTree = "<group>"; };
 		A5C0F09D2A2E2AA500B9626A /* SaveDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataViewController.swift; sourceTree = "<group>"; };
 		A5C0F09F2A2E38FE00B9626A /* CoreDataStorage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataStorage+.swift"; sourceTree = "<group>"; };
+		A5C0F0A12A2E3DBE00B9626A /* testData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testData.json; sourceTree = "<group>"; };
 		A5C650332A2749A700EDF3A6 /* BMEULJIROTTF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMEULJIROTTF.ttf; sourceTree = "<group>"; };
 		A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemntiaAnalyticsModel.swift; sourceTree = "<group>"; };
 		A5DD621F2A2D734C00C1F22E /* DAData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAData.swift; sourceTree = "<group>"; };
@@ -363,6 +365,15 @@
 			path = SaveDataView;
 			sourceTree = "<group>";
 		};
+		A5C0F0A32A2E3DC200B9626A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				A5C0F0A12A2E3DBE00B9626A /* testData.json */,
+				A520E41D2A2C999400A7120C /* dataset_mean.json */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
 		A5C650322A27461300EDF3A6 /* BMEULJIRO */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,8 +385,8 @@
 		A5D7DCC82A28528D0036C3BA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A5C0F0A32A2E3DC200B9626A /* json */,
 				A5DD62212A2DCF5800C1F22E /* struct */,
-				A520E41D2A2C999400A7120C /* dataset_mean.json */,
 				A520E41B2A2C965600A7120C /* DataManager.swift */,
 				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
 				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
@@ -484,6 +495,7 @@
 				A5F18CBD2A26634400C2437D /* person.json in Resources */,
 				A55087E729FF65890023D6CC /* LaunchScreen.storyboard in Resources */,
 				A58E60062A25F9E700CC1507 /* Kavoon-Regular.ttf in Resources */,
+				A5C0F0A22A2E3DBE00B9626A /* testData.json in Resources */,
 				A5C650342A2749BE00EDF3A6 /* BMEULJIROTTF.ttf in Resources */,
 				A58E60072A25F9E700CC1507 /* OFL.txt in Resources */,
 				A5F18CBC2A26634400C2437D /* decor.json in Resources */,

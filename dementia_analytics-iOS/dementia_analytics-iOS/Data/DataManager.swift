@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Moya
 import Combine
 import CoreData
 import CoreDataStorage
@@ -19,6 +20,11 @@ final class DataManager {
     var healthKitData: [Date:[DADataType: DAData]] = [:]
     var managedData: [Date:[DADataType: DAData]] = [:]
     
+    private var cnData: [DAData] = []
+    private var mciData: [DAData] = []
+    private var demData: [DAData] = []
+    
+    
     var auth: Bool {
         model.auth
     }
@@ -29,6 +35,13 @@ final class DataManager {
     private init() { }
     
     func load(){
+        loadMeanJson()
+        loadTestJson()
+        loadHealthKitData()
+        loadManagedData()
+    }
+    
+    func loadMeanJson(){
         guard let fileLocation = Bundle.main.url(forResource: "dataset_mean", withExtension: "json") else { return }
         do {
             let data = try Data(contentsOf: fileLocation)
@@ -41,8 +54,31 @@ final class DataManager {
         } catch {
             print(error)
         }
-        loadHealthKitData()
-        loadManagedData()
+    }
+    
+    func loadTestJson(){
+        guard let fileLocation = Bundle.main.url(forResource: "testData", withExtension: "json") else { return }
+        do {
+            let data = try Data(contentsOf: fileLocation)
+            guard let testData = try? JSONDecoder().decode([String: [String:Features]].self,
+                                                           from: data)
+            else { return }
+            let cn = testData["CN"]!.compactMap{ (key, value) in
+                value.toDAData(key.toDate())
+            }
+            self.cnData = cn[0]+cn[1]+cn[2]
+            let dem = testData["DEM"]!.compactMap{ (key, value) in
+                value.toDAData(key.toDate())
+            }
+            self.demData = dem[0]+dem[1]+dem[2]
+            let mci = testData["CN"]!.compactMap{ (key, value) in
+                value.toDAData(key.toDate())
+            }
+            self.mciData = mci[0]+mci[1]+mci[2]
+            
+        } catch {
+            print(error)
+        }
     }
     
     func loadHealthKitData(){
@@ -142,7 +178,7 @@ final class DataManager {
                     promise(.success(true))
                 }
                 .store(in: &self.cancellabel)
-            }
+        }
         .eraseToAnyPublisher()
     }
     
@@ -223,43 +259,80 @@ extension DataManager {
 }
 
 extension DataManager {
-    func analysis() -> AnyPublisher<DementiaType, Never>? {
-        let recentData: [DADataType: DAData] = [:]
-        self.managedData.values.forEach{  dict in
-            print(dict)
+    func analysis() -> AnyPublisher<DementiaType?, Never>? {
+        var recentData: [DADataType: DAData] = [:]
+        self.managedData.forEach{ (key, value) in
+            value.forEach { (k, v) in
+                if recentData[v.type] == nil {
+                    recentData[v.type] = v
+                } else {
+                    if recentData[v.type]!.startDate < v.startDate {
+                        recentData[v.type] = v
+                    }
+                }
+            }
         }
-        print(recentData)
-        // let features = Features(sleepBreathAverage: <#T##CGFloat#>,
-        //          sleepHrAverage: <#T##CGFloat#>,
-        //          sleepHrLowest: <#T##CGFloat#>,
-        //          sleepDeep: <#T##CGFloat#>,
-        //          sleepRem: <#T##CGFloat#>,
-        //          activityCalTotal: <#T##CGFloat#>,
-        //          sleepAwake: <#T##CGFloat#>,
-        //          activitySteps: <#T##CGFloat#>,
-        //          activityTotal: <#T##CGFloat#>,
-        //          sleepDuration: <#T##CGFloat#>,
-        //          activityDailyMovement: <#T##CGFloat#>)
-        // model.send(features: features)
-        return nil
+        guard let sleepBreathAverage = recentData[.sleepBreathAverage]?.value,
+              let sleepHrAverage = recentData[.sleepHrAverage]?.value,
+              let sleepHrLowest = recentData[.sleepHrLowest]?.value,
+              let sleepDeep = recentData[.sleepDeep]?.value,
+              let sleepRem = recentData[.sleepRem]?.value,
+              let activityCalTotal = recentData[.activityCalTotal]?.value,
+              let sleepAwake = recentData[.sleepAwake]?.value,
+              let activitySteps = recentData[.activitySteps]?.value,
+              let activityTotal = recentData[.activityTotal]?.value,
+              let sleepDuration = recentData[.sleepDuration]?.value,
+              let activityDailyMovement = recentData[.activityDailyMovement]?.value else { return nil }
+        let features = Features(sleepBreathAverage: sleepBreathAverage,
+                                sleepHrAverage: sleepHrAverage,
+                                sleepHrLowest: sleepHrLowest,
+                                sleepDeep: sleepDeep,
+                                sleepRem: sleepRem,
+                                activityCalTotal: activityCalTotal,
+                                sleepAwake: sleepAwake,
+                                activitySteps: activitySteps,
+                                activityTotal: activityTotal,
+                                sleepDuration: sleepDuration,
+                                activityDailyMovement: activityDailyMovement)
+        let provider = MoyaProvider<APIService>()
+        // let featuresData = features.toJSON()!
+        let featuresData = Features.testDataCN.toJSON()!
+        return provider.requestPublisher(.predict(featuresData))
+            .map{ response -> Prediction? in
+                print(response)
+                return try? response.map(Prediction.self)
+            }
+            .mapError{ error in
+                error as Error
+            }
+            .replaceError(with: nil)
+            .map { pred -> DementiaType? in
+                return pred?.dementiaType }
+            .eraseToAnyPublisher()
     }
 }
 
 extension DataManager {
-    func saveDem(){
-        storage.deleteAll(DAData.self)
-        .map { _ -> Bool in true }
-        .replaceError(with: false)
-        .flatMap { _ in
-            self.storage.create(data)
+    func testing(_ type: DementiaType) -> AnyPublisher<Bool, Never>{
+        var testData: [DAData] = []
+        switch type {
+        case .cn: testData = cnData
+        case .dem: testData = demData
+        case .mci: testData = mciData
         }
-        .map { _ -> Bool in true }
-        .replaceError(with: false)
-        .flatMap { result -> AnyPublisher<Bool, Never> in
-            self.loadManagedDataPublisher()
-                .map { _ in result }
-                .eraseToAnyPublisher()
-        }
-        .eraseToAnyPublisher()
+        return storage.deleteAll(DAData.self)
+            .map { _ -> Bool in true }
+            .replaceError(with: false)
+            .flatMap { _ in
+                self.storage.createAll(testData)
+            }
+            .map { _ -> Bool in true }
+            .replaceError(with: false)
+            .flatMap { result -> AnyPublisher<Bool, Never> in
+                self.loadManagedDataPublisher()
+                    .map { _ in result }
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
 }

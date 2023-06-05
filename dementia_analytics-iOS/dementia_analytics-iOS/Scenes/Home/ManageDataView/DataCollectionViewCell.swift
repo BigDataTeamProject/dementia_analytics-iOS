@@ -83,8 +83,8 @@ final class DataCollectionViewCell: UICollectionViewCell {
         case .sleepBreathAverage, .sleepHrAverage, .sleepHrLowest:
             desc = "\(Int(value)) \(StringCollection.countUnit)"
         case .activityTotal, .sleepDuration, .sleepDeep, .sleepRem, .sleepAwake:
-            let hour = Int(value)/60
-            let minute = Int(value) - (hour * 60)
+            let hour = Int(value/60)/60
+            let minute = Int(value/60) - (hour * 60)
             desc = (hour > 0 ? "\(hour) \(StringCollection.hourUnit) " : "") + "\(minute) \(StringCollection.minuteUnit)"
         case .activityCalTotal:
             desc = "\(Int(value)) \(StringCollection.kcalUnit)"

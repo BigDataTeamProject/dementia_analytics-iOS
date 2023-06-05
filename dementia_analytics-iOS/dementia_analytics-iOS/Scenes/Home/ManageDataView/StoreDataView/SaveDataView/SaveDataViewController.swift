@@ -71,7 +71,6 @@ class SaveDataViewController: UIViewController {
                                                value: value))
             .receive(on: DispatchQueue.main)
             .sink { result in
-                print(result)
                 self.dismissAlert?.send(true)
                 self.dismiss(animated: true)
             }
@@ -81,6 +80,34 @@ class SaveDataViewController: UIViewController {
         self.saveDataView.cancelAction = {
             self.dismissAlert?.send(true)
             self.dismiss(animated: true)
+        }
+        
+        self.saveDataView.button1Action = {
+            DataManager.shared.testing(.cn)
+            .receive(on: DispatchQueue.main)
+            .sink { result in
+                self.dismissAlert?.send(true)
+                self.dismiss(animated: true)
+            }
+            .store(in: &self.cancellable)
+        }
+        self.saveDataView.button2Action = {
+            DataManager.shared.testing(.dem)
+            .receive(on: DispatchQueue.main)
+            .sink { result in
+                self.dismissAlert?.send(true)
+                self.dismiss(animated: true)
+            }
+            .store(in: &self.cancellable)
+        }
+        self.saveDataView.button3Action = {
+            DataManager.shared.testing(.mci)
+            .receive(on: DispatchQueue.main)
+            .sink { result in
+                self.dismissAlert?.send(true)
+                self.dismiss(animated: true)
+            }
+            .store(in: &self.cancellable)
         }
     }
 }

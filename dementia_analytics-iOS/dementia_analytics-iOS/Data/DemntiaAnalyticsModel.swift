@@ -91,20 +91,6 @@ final class DementiaAnalyticsModel {
         self.healthStore.execute(query)
     }
     
-    func send(features: Features) -> AnyPublisher<Prediction?, Error> {
-        let provider = MoyaProvider<APIService>()
-        let featuresData = features.toJSON()!
-        return provider.requestPublisher(.predict(featuresData))
-            .map{ response -> Prediction? in
-                return try? response.map(Prediction.self)
-            }
-            .mapError{ error in
-                error as Error
-            }
-            .eraseToAnyPublisher()
-        
-    }
-    
     private func readHKCategorySamplePublisher(_ identifier: HKCategoryTypeIdentifier)
     -> AnyPublisher<[DAData]?, Never> {
         Future<[DAData]?, Never> { promise in

@@ -57,7 +57,7 @@ struct DAData {
         }
         
         self.endDate = sample.endDate
-        self.value = CGFloat(sample.endDate.diff(previous: sample.startDate).minute!)
+        self.value = CGFloat(sample.endDate.diff(previous: sample.startDate).second!)
     }
     
     init(type: DADataType, startDate: Date, endDate: Date, value: CGFloat){

@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Combine
+import Moya
 
 class HomeViewController: UIViewController {
+    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     private var homeView: HomeView {
         return self.view as! HomeView
     }
@@ -19,10 +22,33 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        test()
     }
     
     func configure(){
         homeView.homeButton.addTarget(self, action: #selector(showManageDataView), for: .touchUpInside)
+    }
+    
+    func test(){
+        let provider = MoyaProvider<APIService>()
+        // let featuresData = features.toJSON()!
+        let featuresData = Features.testDataCN.toJSON()!
+        provider.requestPublisher(.predict(featuresData))
+            .map{ response -> Prediction? in
+                print(response)
+                return try? response.map(Prediction.self)
+            }
+            .mapError{ error in
+                error as Error
+            }
+            .replaceError(with: nil)
+            .map { pred -> DementiaType? in
+                return pred?.dementiaType }
+            .eraseToAnyPublisher()
+            .sink { type in
+                print(type)
+            }
+            .store(in: &cancellable)
     }
 }
 

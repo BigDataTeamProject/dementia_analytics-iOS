@@ -57,6 +57,24 @@ extension Features {
     func toJSON() -> Data?{
         return try? JSONEncoder().encode(self)
     }
+    
+    func toDAData(_ date: Date) -> [DAData]{
+        let startDate = date
+        let endDate = date.addDate(byAddning: .day, value: 1)
+        return [
+            DAData(type: .sleepBreathAverage, startDate: startDate, endDate: endDate, value: sleepBreathAverage),
+            DAData(type: .sleepHrAverage, startDate: startDate, endDate: endDate, value: sleepHrAverage),
+            DAData(type: .sleepHrLowest, startDate: startDate, endDate: endDate, value: sleepHrLowest),
+            DAData(type: .sleepDeep, startDate: startDate, endDate: endDate, value: sleepDeep),
+            DAData(type: .sleepRem, startDate: startDate, endDate: endDate, value: sleepRem),
+            DAData(type: .activityCalTotal, startDate: startDate, endDate: endDate, value: activityCalTotal),
+            DAData(type: .sleepAwake, startDate: startDate, endDate: endDate, value: sleepAwake),
+            DAData(type: .activitySteps, startDate: startDate, endDate: endDate, value: activitySteps),
+            DAData(type: .activityTotal, startDate: startDate, endDate: endDate, value: activityTotal),
+            DAData(type: .sleepDuration, startDate: startDate, endDate: endDate, value: sleepDuration),
+            DAData(type: .activityDailyMovement, startDate: startDate, endDate: endDate, value: activityDailyMovement)
+           ]
+    }
 }
 
 extension Features {

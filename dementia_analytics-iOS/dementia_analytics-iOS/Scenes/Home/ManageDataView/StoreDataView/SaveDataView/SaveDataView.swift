@@ -10,6 +10,10 @@ import UIKit
 final class SaveDataView: UIView {
     var storeAction: (()->Void)? = nil
     var cancelAction: (()->Void)? = nil
+    var button1Action: (()->Void)? = nil
+    var button2Action: (()->Void)? = nil
+    var button3Action: (()->Void)? = nil
+    
     
     private lazy var backgroundDecorImageView: UIImageView = {
         let imageView = UIImageView()
@@ -41,6 +45,15 @@ final class SaveDataView: UIView {
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layer.backgroundColor = UIColor.daGreen.cgColor
         stackView.layer.cornerRadius = 30
+        return stackView
+    }()
+    
+    private lazy var testButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 15
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -95,6 +108,48 @@ final class SaveDataView: UIView {
         return button
     }()
     
+    private lazy var testButtonCn: UIButton = {
+        let button = UIButton()
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundColor(.daGray, for: .normal)
+        button.setTitle("CN", for: .normal)
+        button.layer.cornerRadius = 5
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = .bmEuljiro(20)
+        button.addTarget(self, action: #selector(testCN), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var testButtonDem: UIButton = {
+        let button = UIButton()
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundColor(.daGray, for: .normal)
+        button.setTitle("DEM", for: .normal)
+        button.layer.cornerRadius = 5
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = .bmEuljiro(20)
+        button.addTarget(self, action: #selector(testDEM), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var testButtonMCI: UIButton = {
+        let button = UIButton()
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundColor(.daGray, for: .normal)
+        button.setTitle("MCI", for: .normal)
+        button.layer.cornerRadius = 5
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = .bmEuljiro(20)
+        button.addTarget(self, action: #selector(testMCI), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var typePicker: UIPickerView = {
         let picker = UIPickerView()
         return picker
@@ -131,7 +186,11 @@ final class SaveDataView: UIView {
             inputStackView.addArrangedSubview(view)
         }
         
-        [storeButton, cancelButton].forEach { view in
+        [testButtonCn, testButtonDem, testButtonMCI].forEach { view in
+            testButtonStackView.addArrangedSubview(view)
+        }
+        
+        [storeButton, cancelButton, testButtonStackView].forEach { view in
             buttonStackView.addArrangedSubview(view)
         }
         
@@ -178,6 +237,10 @@ final class SaveDataView: UIView {
             cancelButton.trailingAnchor.constraint(equalTo: buttonStackView.trailingAnchor, constant: -24),
             cancelButton.heightAnchor.constraint(equalToConstant: 60),
             
+            testButtonStackView.leadingAnchor.constraint(equalTo: buttonStackView.leadingAnchor, constant: 24),
+            testButtonStackView.trailingAnchor.constraint(equalTo: buttonStackView.trailingAnchor, constant: -24),
+            testButtonStackView.heightAnchor.constraint(equalToConstant: 60),
+            
             typeBox.leadingAnchor.constraint(equalTo: inputStackView.leadingAnchor),
             typeBox.trailingAnchor.constraint(equalTo: inputStackView.trailingAnchor),
             valueBox.leadingAnchor.constraint(equalTo: inputStackView.leadingAnchor),
@@ -199,5 +262,17 @@ final class SaveDataView: UIView {
     }
     @objc func cancel(){
         cancelAction?()
+    }
+    
+    @objc func testCN(){
+        button1Action?()
+    }
+    
+    @objc func testDEM(){
+        button2Action?()
+    }
+    
+    @objc func testMCI(){
+        button3Action?()
     }
 }

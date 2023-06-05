@@ -99,7 +99,7 @@ final class ResultPageView: UIView {
         NSLayoutConstraint.activate(constraints)
     }
     
-    func setResult(result: String?){
+    func setResult(result: DementiaType?){
         if let result = result {
             
         }
