@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Combine
 import FSCalendar
 
 class StoreDataViewController: UIViewController {
     private lazy var selectedDate: Date = Date().toMidnight()
     private lazy var currentDateData: [DAData] = []
-    private lazy var eventDates: [Date] = Array(DataManager.shared.healthKitData.keys)
+    private lazy var eventDates: [Date] = Array(DataManager.shared.managedData.keys)
+    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     
     private var storeDataView: StoreDataView {
         return self.view as! StoreDataView
@@ -29,10 +31,20 @@ class StoreDataViewController: UIViewController {
     func configure(){
         self.navigationItem.title = "데이터 관리"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.bmEuljiro(24)]
+    
         self.storeDataView.collectionView.delegate = self
         self.storeDataView.collectionView.dataSource = self
         self.storeDataView.calendar.delegate = self
         self.storeDataView.calendar.dataSource = self
+    }
+    
+    func deleteData(_ data: DAData){
+        DataManager.shared.deleteData(data)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.storeDataView.collectionView.reloadData()
+            }
+            .store(in: &cancellable)
     }
 }
 
@@ -44,14 +56,12 @@ extension StoreDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
-    
-    
 }
 
 extension StoreDataViewController: FSCalendarDelegate, FSCalendarDataSource{
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.selectedDate = date
-        self.currentDateData = (DataManager.shared.healthKitData[date] ?? [:])
+        self.currentDateData = (DataManager.shared.managedData[date] ?? [:])
             .values
             .map{ $0 }
             .sorted(by: { data1, data2 in
@@ -84,9 +94,9 @@ extension StoreDataViewController: UICollectionViewDelegate,
             return UICollectionViewCell()
         }
         let data = currentDateData[indexPath.row]
-        cell.setData(data)
+        cell.setData(data, add: false)
         cell.completion = {
-            print(data)
+            self.deleteData(data)
         }
         return cell
     }

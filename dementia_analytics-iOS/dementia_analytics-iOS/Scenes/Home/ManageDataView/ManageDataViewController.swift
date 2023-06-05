@@ -6,12 +6,23 @@
 //
 
 import UIKit
+import Combine
 import FSCalendar
 
 class ManageDataViewController: UIViewController {
     private lazy var selectedDate: Date = Date().toMidnight()
     private lazy var currentDateData: [DAData] = []
     private lazy var eventDates: [Date] = Array(DataManager.shared.healthKitData.keys)
+    private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
+    
+    lazy var storeDataViewButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "관리", style: .plain, target: self, action: #selector(showDataStoreView))
+        button.setTitleTextAttributes([
+            NSAttributedString.Key.font : UIFont.bmEuljiro(18),
+            NSAttributedString.Key.foregroundColor : UIColor.daOrange,
+        ], for: .normal)
+        return button
+    }()
     
     private var manageDataView: ManageDataView {
         return self.view as! ManageDataView
@@ -29,10 +40,35 @@ class ManageDataViewController: UIViewController {
     func configure(){
         self.navigationItem.title = "건강 데이터"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.bmEuljiro(24)]
+        self.navigationItem.rightBarButtonItem = storeDataViewButton
+        
         self.manageDataView.collectionView.delegate = self
         self.manageDataView.collectionView.dataSource = self
         self.manageDataView.calendar.delegate = self
         self.manageDataView.calendar.dataSource = self
+    }
+    
+    func saveData(_ data: DAData){
+        DataManager.shared.saveData(data)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.manageDataView.collectionView.reloadData()
+            }
+            .store(in: &cancellable)
+    }
+    
+    func deleteData(_ data: DAData){
+        DataManager.shared.deleteData(data)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                self.manageDataView.collectionView.reloadData()
+            }
+            .store(in: &cancellable)
+    }
+    
+    @objc func showDataStoreView(){
+        let vc = StoreDataViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -44,8 +80,6 @@ extension ManageDataViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
-    
-    
 }
 
 extension ManageDataViewController: FSCalendarDelegate, FSCalendarDataSource{
@@ -87,12 +121,12 @@ extension ManageDataViewController: UICollectionViewDelegate,
         if let sameData = DataManager.shared.managedData[data.startDate]?[data.type] {
             cell.setData(data, add: false)
             cell.completion = {
-                print(data)
+                self.deleteData(data)
             }
         } else {
             cell.setData(data)
             cell.completion = {
-                print(data)
+                self.saveData(data)
             }
         }
         return cell

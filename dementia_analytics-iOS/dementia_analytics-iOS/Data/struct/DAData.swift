@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import CoreData
+import CoreDataStorage
 import HealthKit
 
 struct DAData {
@@ -70,5 +72,25 @@ struct DAData {
                startDate: startDate,
                endDate: endDate,
                value: self.value + value)
+    }
+}
+
+extension DAData: Entitable {
+    func toEntity(in context: NSManagedObjectContext) -> DADataEntity {
+        let entity: DADataEntity = .init(context: context)
+        entity.type = Int16(type.rawValue)
+        entity.startDate = startDate
+        entity.endDate = endDate
+        entity.value = Float(value)
+        return entity
+    }
+}
+
+extension DADataEntity: Objectable {
+    public func toObject() -> some Entitable {
+        return DAData(type: DADataType(rawValue: Int(type)) ?? .unknown,
+                      startDate: startDate ?? Date(),
+                      endDate: endDate ?? Date(),
+                      value: CGFloat(value))
     }
 }

@@ -84,10 +84,6 @@ final class DataManager {
                 self.saveHealthkitData(daData)
             }
             .store(in: &cancellabel)
-        
-        
-        // 'activity_total'
-        // 'sleep_breath_average', 'sleep_hr_average', 'sleep_hr_lowest'
     }
     
     private func saveHealthkitData(_ daData: [DAData]?, type: DADataType? = nil, sum: Bool = false){
@@ -113,6 +109,24 @@ final class DataManager {
                 }
             }
         }
+    }
+    
+    func saveData(_ data: DAData) -> AnyPublisher<Bool, Never> {
+        return storage.create(data)
+            .map { _ -> Bool in true }
+            .replaceError(with: false)
+            .eraseToAnyPublisher()
+    }
+    
+    func deleteData(_ data: DAData) -> AnyPublisher<Bool, Never> {
+        let predicate = NSPredicate(format: "startDate == %@ && type == %i",
+                                    data.startDate as NSDate,
+                                    data.type.rawValue)
+        return storage.delete(DAData.self,
+                              predicate: predicate)
+        .map { _ -> Bool in true }
+        .replaceError(with: false)
+        .eraseToAnyPublisher()
     }
 }
 
