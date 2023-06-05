@@ -16,7 +16,7 @@ extension APIService: TargetType {
     var baseURL: URL {
         switch self {
         case .predict:
-            return URL(string: "http://127.0.0.1:5000")!
+            return URL(string: URLManager.shared.url)!
         }
     }
     

@@ -47,6 +47,7 @@
 		A55087E729FF65890023D6CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55087E529FF65890023D6CC /* LaunchScreen.storyboard */; };
 		A55087F529FF66C50023D6CC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55087F429FF66C50023D6CC /* HomeView.swift */; };
 		A56BC21B2A25B063007FE478 /* CoreDataStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A56BC21A2A25B063007FE478 /* CoreDataStorage */; };
+		A57F13002A2E5B5E005F2A9C /* URLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57F12FF2A2E5B5E005F2A9C /* URLManager.swift */; };
 		A58E60062A25F9E700CC1507 /* Kavoon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A58E60042A25F9E700CC1507 /* Kavoon-Regular.ttf */; };
 		A58E60072A25F9E700CC1507 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = A58E60052A25F9E700CC1507 /* OFL.txt */; };
 		A58E60092A25FA1700CC1507 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58E60082A25FA1700CC1507 /* UIFont+.swift */; };
@@ -111,6 +112,7 @@
 		A55087E829FF65890023D6CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A55087F429FF66C50023D6CC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A55B68CB2A0E07CD007D740C /* dementia_analytics-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "dementia_analytics-iOS.entitlements"; sourceTree = "<group>"; };
+		A57F12FF2A2E5B5E005F2A9C /* URLManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLManager.swift; sourceTree = "<group>"; };
 		A58E60042A25F9E700CC1507 /* Kavoon-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kavoon-Regular.ttf"; sourceTree = "<group>"; };
 		A58E60052A25F9E700CC1507 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		A58E60082A25FA1700CC1507 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 				A520E41B2A2C965600A7120C /* DataManager.swift */,
 				A5DB26132A146EED00022101 /* DemntiaAnalyticsModel.swift */,
 				A50CF5082A28D0A600D31E77 /* DementiaDataStorage.xcdatamodeld */,
+				A57F12FF2A2E5B5E005F2A9C /* URLManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				A507FF572A2B2BCC00EC9426 /* ManageDataView.swift in Sources */,
 				A520E4132A2C6CD500A7120C /* ChartPageViewController.swift in Sources */,
 				A5C0F09A2A2E2A4900B9626A /* SaveDataView.swift in Sources */,
+				A57F13002A2E5B5E005F2A9C /* URLManager.swift in Sources */,
 				A54C97242A28EC080037A9CF /* UpdateProfileViewController.swift in Sources */,
 				A507FF522A2B270A00EC9426 /* Prediction.swift in Sources */,
 				A55087DD29FF65880023D6CC /* SceneDelegate.swift in Sources */,

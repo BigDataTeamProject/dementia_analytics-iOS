@@ -16,7 +16,7 @@ final class MainTabBarViewController: UITabBarController {
     
     init(){
         super.init(nibName: nil, bundle: nil)
-        // showLaunchView()
+        showLaunchView()
     }
     
     required init?(coder: NSCoder) {

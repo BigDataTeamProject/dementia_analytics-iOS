@@ -54,4 +54,8 @@ struct StringCollection{
     
     static let value = "값"
     static let type = "종류"
+    
+    static let noDataTitle = "치매 환자 유사도 검사에"
+    static let noDataSimilar = "사용자님의 데이터가"
+    static let noDataDesc = "충분하지 않습니다."
 }

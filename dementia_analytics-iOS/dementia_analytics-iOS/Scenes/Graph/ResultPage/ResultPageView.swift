@@ -12,14 +12,14 @@ final class ResultPageView: UIView {
         let label = UILabel()
         label.font = .bmEuljiro(24)
         label.textAlignment = .center
-        label.text = "치매 환자 유사도 검사에"
+        label.text = StringCollection.noDataTitle
         return label
     }()
     private lazy var similarityLabel: UILabel = {
         let label = UILabel()
         label.font = .bmEuljiro(28)
         label.textAlignment = .center
-        label.text = "사용자님의 데이터가"
+        label.text = StringCollection.noDataSimilar
         return label
     }()
     
@@ -27,7 +27,7 @@ final class ResultPageView: UIView {
         let label = UILabel()
         label.font = .bmEuljiro(24)
         label.textAlignment = .center
-        label.text = "충분하지 않습니다."
+        label.text = StringCollection.noDataDesc
         return label
     }()
     
@@ -101,8 +101,22 @@ final class ResultPageView: UIView {
     
     func setResult(result: DementiaType?){
         if let result = result {
+            titleLabel.text = "사용자 님의"
+            let similarityText = "최근 기록은 \(result.label)\(result.of)"
+            let attribtuedString = NSMutableAttributedString(string: similarityText)
+            let range = (similarityText as NSString).range(of: result.label)
+            attribtuedString.addAttribute(.foregroundColor,
+                                          value: result.color,
+                                          range: range)
+            similarityLabel.attributedText = attribtuedString
+            descriptionLabel.text = "유사합니다."
             
+        } else {
+            titleLabel.text = StringCollection.noDataTitle
+            similarityLabel.text = StringCollection.noDataSimilar
+            descriptionLabel.text = StringCollection.noDataDesc
         }
+        layoutIfNeeded()
     }
 }
 

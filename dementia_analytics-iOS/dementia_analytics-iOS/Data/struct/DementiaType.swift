@@ -29,4 +29,11 @@ extension DementiaType {
         case .mci: return .daOrange
         }
     }
+    
+    var of: String {
+        switch self {
+        case .cn: return "과"
+        case .dem, .mci: return "와"
+        }
+    }
 }

@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         DementiaAnalyticsModel.shared.request()
         DataManager.shared.load()
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         guard let _ = (scene as? UIWindowScene) else { return }
     }
     

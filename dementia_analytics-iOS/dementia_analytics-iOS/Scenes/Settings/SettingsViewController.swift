@@ -14,6 +14,8 @@ class SettingsViewController: UIViewController {
     private var cancellable: Set<AnyCancellable> = Set<AnyCancellable>()
     private let detectDismiss = PassthroughSubject<Bool, Never>()
     
+    private var url: String = URLManager.shared.url
+    
     
     private var settingsView: SettingsView {
         return self.view as! SettingsView
@@ -51,6 +53,8 @@ class SettingsViewController: UIViewController {
                 UIApplication.shared.open(url)
             }
         }
+        
+        self.settingsView.changeURLButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
     }
     
     func loadUserData(){
@@ -61,5 +65,30 @@ class SettingsViewController: UIViewController {
                 self?.settingsView.setUser(user: user)
             })
             .store(in: &cancellable)
+    }
+    
+    @objc func showAlert(){
+        let alert = UIAlertController(title: "URL", message: "URL을 입력하세요", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: { textField in
+            self.url = URLManager.shared.url
+            textField.text = self.url
+            textField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        })
+        
+        let save = UIAlertAction(title: "저장", style: .default, handler: { _ in
+            URLManager.shared.url = self.url
+        })
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        alert.addAction(save)
+        alert.addAction(cancel)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func textFieldDidChange(_ sender: Any){
+        if let textfield = sender as? UITextField {
+            if let text = textfield.text {
+                self.url = text
+            }
+        }
     }
 }

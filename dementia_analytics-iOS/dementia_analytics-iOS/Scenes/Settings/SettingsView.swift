@@ -48,6 +48,17 @@ final class SettingsView: UIView {
         return button
     }()
     
+    lazy var changeURLButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("URL 변경", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .bmEuljiro(24)
+        button.setBackgroundColor(.daGray, for: .normal)
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        return button
+    }()
+    
     init() {
         super.init(frame: .zero)
         configure()
@@ -68,7 +79,7 @@ final class SettingsView: UIView {
     }
     
     private func addSubviews() {
-        [backgroundDecorImageView, stackView].forEach { view in
+        [backgroundDecorImageView, stackView, changeURLButton].forEach { view in
             self.addSubview(view)
         }
         
@@ -78,7 +89,7 @@ final class SettingsView: UIView {
     }
     
     private func makeConstraints() {
-        [backgroundDecorImageView, stackView].forEach { view in
+        [backgroundDecorImageView, stackView, changeURLButton].forEach { view in
             view.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -86,6 +97,12 @@ final class SettingsView: UIView {
             stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 140),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            
+            changeURLButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 50),
+            changeURLButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50),
+            changeURLButton.heightAnchor.constraint(equalToConstant: 60),
+            changeURLButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -120),
+            
             backgroundDecorImageView.widthAnchor.constraint(equalTo: self.widthAnchor,
                                                             multiplier: 0.475),
             backgroundDecorImageView.heightAnchor.constraint(equalTo:backgroundDecorImageView.widthAnchor,

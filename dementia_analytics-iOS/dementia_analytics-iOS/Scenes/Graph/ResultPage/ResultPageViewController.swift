@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Moya
 
 class ResultPageViewController: UIViewController {
     private let dataManager = DataManager.shared
@@ -27,17 +28,26 @@ class ResultPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
     }
     
     
     func predict(){
-        guard let publisher = dataManager.analysis() else { return }
-        publisher
-            .sink { [weak self] result in
-                print("🍎", result)
-                self?.resultPageView.setResult(result: result)
+        guard let feturesData = dataManager.features() else { return }
+        let provider = MoyaProvider<APIService>()
+        return provider.requestPublisher(.predict(feturesData))
+            .receive(on: DispatchQueue.main)
+            .map{ response -> Prediction? in
+                print(response)
+                return try? response.map(Prediction.self)
             }
+            .replaceError(with: nil)
+            .map { pred -> DementiaType? in
+                return pred?.dementiaType }
+            .sink (receiveValue: { type in
+                DispatchQueue.main.async {
+                    self.resultPageView.setResult(result: type)
+                }
+            })
             .store(in: &cancellable)
     }
     

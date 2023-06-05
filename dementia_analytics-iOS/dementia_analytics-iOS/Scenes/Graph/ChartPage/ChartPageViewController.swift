@@ -48,7 +48,7 @@ class ChartPageViewController: UIViewController {
             } else {
                 dementiaType = .mci
             }
-            desc = "최근 기록은 \(dementiaType.label)의\n\(dataType.title)\(dataType.of) 유사합니다."
+            desc = "최근 기록은 \(dementiaType.label)의\n\(dataType.title)\(dataType.of) 가깝습니다."
         }
         let attribtuedString = NSMutableAttributedString(string: desc)
         let range = (desc as NSString).range(of: dementiaType.label)

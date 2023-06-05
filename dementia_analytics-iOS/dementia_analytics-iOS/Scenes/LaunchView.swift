@@ -33,7 +33,7 @@ final class LaunchView: UIView {
     lazy var teamLabel: UILabel = {
         let label = UILabel()
         label.text = StringCollection.team
-        label.font = .bmEuljiro(30)
+        label.font = .bmEuljiro(40)
         label.textColor = .daGray
         label.textAlignment = .center
         return label

@@ -259,7 +259,7 @@ extension DataManager {
 }
 
 extension DataManager {
-    func analysis() -> AnyPublisher<DementiaType?, Never>? {
+    func features() -> Data? {
         var recentData: [DADataType: DAData] = [:]
         self.managedData.forEach{ (key, value) in
             value.forEach { (k, v) in
@@ -283,32 +283,20 @@ extension DataManager {
               let activityTotal = recentData[.activityTotal]?.value,
               let sleepDuration = recentData[.sleepDuration]?.value,
               let activityDailyMovement = recentData[.activityDailyMovement]?.value else { return nil }
-        let features = Features(sleepBreathAverage: sleepBreathAverage,
-                                sleepHrAverage: sleepHrAverage,
-                                sleepHrLowest: sleepHrLowest,
-                                sleepDeep: sleepDeep,
-                                sleepRem: sleepRem,
-                                activityCalTotal: activityCalTotal,
-                                sleepAwake: sleepAwake,
-                                activitySteps: activitySteps,
-                                activityTotal: activityTotal,
-                                sleepDuration: sleepDuration,
-                                activityDailyMovement: activityDailyMovement)
-        let provider = MoyaProvider<APIService>()
-        // let featuresData = features.toJSON()!
-        let featuresData = Features.testDataCN.toJSON()!
-        return provider.requestPublisher(.predict(featuresData))
-            .map{ response -> Prediction? in
-                print(response)
-                return try? response.map(Prediction.self)
-            }
-            .mapError{ error in
-                error as Error
-            }
-            .replaceError(with: nil)
-            .map { pred -> DementiaType? in
-                return pred?.dementiaType }
-            .eraseToAnyPublisher()
+        
+        let feature = Features(sleepBreathAverage: sleepBreathAverage,
+                               sleepHrAverage: sleepHrAverage,
+                               sleepHrLowest: sleepHrLowest,
+                               sleepDeep: sleepDeep,
+                               sleepRem: sleepRem,
+                               activityCalTotal: activityCalTotal,
+                               sleepAwake: sleepAwake,
+                               activitySteps: activitySteps,
+                               activityTotal: activityTotal,
+                               sleepDuration: sleepDuration,
+                               activityDailyMovement: activityDailyMovement)
+        guard let feturesData = feature.toJSON() else { return nil }
+        return feturesData
     }
 }
 
