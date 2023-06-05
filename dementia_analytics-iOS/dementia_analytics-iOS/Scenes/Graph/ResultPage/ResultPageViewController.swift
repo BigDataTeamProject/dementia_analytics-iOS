@@ -20,18 +20,24 @@ class ResultPageViewController: UIViewController {
         view = ResultPageView()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configure()
-    }
-    
-    func configure(){
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard let publisher = dataManager.analysis() else { return }
         publisher.receive(on: DispatchQueue.main)
             .sink { [weak self] result in
                 self?.resultPageView.setResult(result: result.label)
             }
             .store(in: &cancellable)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configure()
+    }
+    
+    
+    func configure(){
+        
     }
     
 }

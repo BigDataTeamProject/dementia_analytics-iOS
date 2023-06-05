@@ -127,6 +127,25 @@ final class DataManager {
             .store(in: &cancellabel)
     }
     
+    private func loadManagedDataPublisher() -> AnyPublisher<Bool, Never> {
+        return Future<Bool, Never>{ promise in
+            self.managedData = [:]
+            self.storage.read(type: DAData.self)
+                .replaceError(with: [])
+                .sink { datas in
+                    datas.forEach{ data in
+                        if self.managedData[data.startDate] == nil {
+                            self.managedData[data.startDate] = [:]
+                        }
+                        self.managedData[data.startDate]![data.type] =  data
+                    }
+                    promise(.success(true))
+                }
+                .store(in: &self.cancellabel)
+            }
+        .eraseToAnyPublisher()
+    }
+    
     func saveData(_ data: DAData) -> AnyPublisher<Bool, Never> {
         let predicate = NSPredicate(format: "startDate == %@ && type == %i",
                                     data.startDate as NSDate,
@@ -140,9 +159,11 @@ final class DataManager {
         }
         .map { _ -> Bool in true }
         .replaceError(with: false)
-        .handleEvents(receiveOutput: { _ in
-            self.loadManagedData()
-        })
+        .flatMap { result -> AnyPublisher<Bool, Never> in
+            self.loadManagedDataPublisher()
+                .map { _ in result }
+                .eraseToAnyPublisher()
+        }
         .eraseToAnyPublisher()
     }
     
@@ -154,9 +175,12 @@ final class DataManager {
                               predicate: predicate)
         .map { _ -> Bool in true }
         .replaceError(with: false)
-        .handleEvents(receiveOutput: { a in
-            self.loadManagedData()
-        })
+        .flatMap { result -> AnyPublisher<Bool, Never> in
+            self.loadManagedDataPublisher()
+                .map { _ in result }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
         .eraseToAnyPublisher()
     }
 }
@@ -200,6 +224,11 @@ extension DataManager {
 
 extension DataManager {
     func analysis() -> AnyPublisher<DementiaType, Never>? {
+        let recentData: [DADataType: DAData] = [:]
+        self.managedData.values.forEach{  dict in
+            print(dict)
+        }
+        print(recentData)
         // let features = Features(sleepBreathAverage: <#T##CGFloat#>,
         //          sleepHrAverage: <#T##CGFloat#>,
         //          sleepHrLowest: <#T##CGFloat#>,
@@ -213,5 +242,24 @@ extension DataManager {
         //          activityDailyMovement: <#T##CGFloat#>)
         // model.send(features: features)
         return nil
+    }
+}
+
+extension DataManager {
+    func saveDem(){
+        storage.deleteAll(DAData.self)
+        .map { _ -> Bool in true }
+        .replaceError(with: false)
+        .flatMap { _ in
+            self.storage.create(data)
+        }
+        .map { _ -> Bool in true }
+        .replaceError(with: false)
+        .flatMap { result -> AnyPublisher<Bool, Never> in
+            self.loadManagedDataPublisher()
+                .map { _ in result }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 }

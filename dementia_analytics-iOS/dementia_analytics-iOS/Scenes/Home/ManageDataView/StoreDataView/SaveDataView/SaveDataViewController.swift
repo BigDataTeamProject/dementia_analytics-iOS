@@ -10,8 +10,20 @@ import Combine
 import CoreDataStorage
 
 class SaveDataViewController: UIViewController {
+    private let datatypes: [DADataType] = [
+        .sleepBreathAverage,
+        .sleepHrAverage,
+        .sleepHrLowest,
+        .sleepDeep,
+        .sleepRem,
+        .activityCalTotal,
+        .sleepAwake,
+        .activitySteps,
+        .activityTotal,
+        .sleepDuration,
+        .activityDailyMovement]
     private var startDate: Date
-    private var type: DADataType? = nil
+    private var type: DADataType = .sleepBreathAverage
     private var value: CGFloat? = nil
     
     private let storage = CoreDataStorage.shared(name: "DementiaDataStorage")
@@ -44,17 +56,22 @@ class SaveDataViewController: UIViewController {
     func configure(){
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing))
         view.addGestureRecognizer(tapGesture)
+        self.saveDataView.valueInput.delegate = self
+        self.saveDataView.valueInput
+            .addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        self.saveDataView.typePicker.delegate = self
+        self.saveDataView.typePicker.dataSource = self
         
         self.saveDataView.storeAction = {
-            guard let type = self.type,
-                  let value = self.value else { return }
-            DataManager.shared.saveData(DAData(type: type,
+            guard let value = self.value else { return }
+            DataManager.shared.saveData(DAData(type: self.type,
                                                startDate: self.startDate,
                                                endDate: self.startDate.addDate(byAddning: .day,
                                                                                value: 1),
                                                value: value))
             .receive(on: DispatchQueue.main)
-            .sink { user in
+            .sink { result in
+                print(result)
                 self.dismissAlert?.send(true)
                 self.dismiss(animated: true)
             }
@@ -86,5 +103,29 @@ extension SaveDataViewController: UITextFieldDelegate {
                 self.value = CGFloat((text as NSString).floatValue)
             }
         }
+    }
+}
+
+extension SaveDataViewController: UIPickerViewDelegate,
+                                  UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.datatypes.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.type = datatypes[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label = UILabel()
+        if let v = view as? UILabel { label = v }
+        label.font = .bmEuljiro(20)
+        label.text = datatypes[row].title
+        label.textAlignment = .center
+        return label
     }
 }

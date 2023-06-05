@@ -53,4 +53,5 @@ struct StringCollection{
     static let del = "삭제"
     
     static let value = "값"
+    static let type = "종류"
 }

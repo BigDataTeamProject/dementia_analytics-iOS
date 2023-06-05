@@ -53,6 +53,13 @@ final class SaveDataView: UIView {
         return stackView
     }()
     
+    private lazy var typeBox: InputContentBox = {
+        let contentBox = InputContentBox()
+        contentBox.setTitle(StringCollection.type, fontSize: 20)
+        contentBox.setContentView(typePicker)
+        return contentBox
+    }()
+    
     private lazy var valueBox: InputContentBox = {
         let contentBox = InputContentBox()
         contentBox.setTitle(StringCollection.value, fontSize: 20)
@@ -88,8 +95,14 @@ final class SaveDataView: UIView {
         return button
     }()
     
+    lazy var typePicker: UIPickerView = {
+        let picker = UIPickerView()
+        return picker
+    }()
+    
     lazy var valueInput: UITextField = {
         let textField = UITextField()
+        textField.keyboardType = .decimalPad
         textField.tag = 0
         return textField
     }()
@@ -114,7 +127,7 @@ final class SaveDataView: UIView {
             self.addSubview(view)
         }
         
-        [valueBox].forEach { view in
+        [typeBox, valueBox].forEach { view in
             inputStackView.addArrangedSubview(view)
         }
         
@@ -165,6 +178,8 @@ final class SaveDataView: UIView {
             cancelButton.trailingAnchor.constraint(equalTo: buttonStackView.trailingAnchor, constant: -24),
             cancelButton.heightAnchor.constraint(equalToConstant: 60),
             
+            typeBox.leadingAnchor.constraint(equalTo: inputStackView.leadingAnchor),
+            typeBox.trailingAnchor.constraint(equalTo: inputStackView.trailingAnchor),
             valueBox.leadingAnchor.constraint(equalTo: inputStackView.leadingAnchor),
             valueBox.trailingAnchor.constraint(equalTo: inputStackView.trailingAnchor),
             
